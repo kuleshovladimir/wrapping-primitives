@@ -1,0 +1,10 @@
+9
+outlet		4	0	1
+inlet		2	1	1
+bottom		1	1	1
+top		1	1	1
+wall1		1	1	1
+wall2		1	1	1
+inlet_h2	2	1	2
+base1		1	1	1
+base2		1	1	1

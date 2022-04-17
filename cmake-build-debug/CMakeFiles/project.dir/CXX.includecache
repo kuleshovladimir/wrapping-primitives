@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/denraim/Desktop/project/Functions.cpp
+Functions.h
+/Users/denraim/Desktop/project/Functions.h
+
+/Users/denraim/Desktop/project/Functions.h
+iostream
+-
+fstream
+-
+string
+-
+sstream
+-
+iomanip
+-
+Region.h
+/Users/denraim/Desktop/project/Region.h
+
+/Users/denraim/Desktop/project/Region.h
+iostream
+-
+fstream
+-
+string
+-
+
