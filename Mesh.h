@@ -1,6 +1,7 @@
 #pragma once
 #include "Cell.h"
 
+
 struct  Face
 {
 	int nodes[2];		//индексы узлов грани
@@ -9,6 +10,8 @@ struct  Face
 	bool is_boundary;   //является ли эта грань граничной
 	Pnt f_center;		//координаты грани центра
 	double length;		//длина грани
+	int zone;			//номер зоны, на которой устанавливаются граничные условия
+
 
 	void Print(int k) {
 		cout << "			face index = " << k << endl;
@@ -19,8 +22,22 @@ struct  Face
 	}
 };
 
+struct Wall {
+	int vel;        //0 - проскальзывание, 1 - без проскальзывания
+	int temp;       //1 - задана температура, 2 - задан тепловой поток
+	double value;   //значение Tw или qw
+};
+
+struct Zone
+{
+	int granType; //1 - стенка, 2 - сверхзвуковой вход, 3 - симметрия, 4 - сверзвуковой выход,
+				  //5 - свободная границв, 6 - дозвуковой вход, 7 - дозвуковой выход
+	Wall* wall;
+};
+
 class Mesh
 {
+	friend void SetGran(Mesh& mesh);
 private:
 	int Nx, Ny;			//число точек по x, y в структурированной сетке
 	int nNodes, nCells, nFaces;
@@ -28,9 +45,15 @@ private:
 
 	Face* faces;		//все грани сетки
 
+	int nZones;
+	Zone* zones;
+
 public:
 	Mesh();
 	~Mesh();
+
+	void SetZones(int n);
+	Zone Get_zone(int i);
 
 	void Set_Nx(int n);
 	int Get_Nx();
@@ -50,6 +73,7 @@ public:
 	Pnt Get_node(int i);
 	void Set_node(Pnt node, int i);
 
+	Face Get_face(int i);
 
 	void ReadStruct(string filename);
 
@@ -58,5 +82,9 @@ public:
 	void CreateFases();
 
 	void CellFuncs(Cell* (&cells));
+
+	int Get_nZones();
+
+	void GradCoeffs(Cell* (&cells));
 };
 

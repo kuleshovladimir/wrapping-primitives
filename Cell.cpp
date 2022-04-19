@@ -110,6 +110,11 @@ void Cell::Set_cells(int iFace, int cell)
 	cells[iFace] = cell;
 }
 
+int Cell::Get_Cell(int i)
+{
+	return cells[i];
+}
+
 void Cell::Print(int m)
 {
 	string f = "cells.txt";
@@ -146,4 +151,19 @@ void Cell::Print(int m)
 		cout << "Не удалось открыть файл " << f << endl;
 
 	record.close();
+}
+
+bool Cell::Get_fType(int i)
+{
+	return fType[i];
+}
+
+double Cell::Get_wk(int i)
+{
+	return wk[i];
+}
+
+Vector Cell::Get_ck(int i)
+{
+	return ck[i];
 }

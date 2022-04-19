@@ -1,50 +1,44 @@
-п»ї#pragma once
+#pragma once
+#include "Polygons.h"
+#include "Mesh.h"
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <iomanip>      // std::setw
 
-#include "Region.h"
+struct parameters {
+    // main
+    double ro, p, h, H, u, v, w, T, E, e;
 
-using namespace std;
+    // transport
+    double mu, la, Pr;
 
-struct rules {
-	int iDim;
-	int iAxisym;
-	int ItMin, ItMax;
-	double ResMax;
-	int iExplicit;
-	int iTurb, iTrb2;
-	int nInviscid;
-	string cMesh;
-	int iViscous;
-	int i_transform;
-	int iOutResults;
-	int iChem;
-	int iChemH2, iChemCO, iChemNO, iChemHCl;
+    double Cp, Gm, Gam;
 
-	int Nc;		// С‡РёСЃР»Рѕ С…РёРјРёС‡РµСЃРєРёС… РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
-	int* IComps;  // РёСЃРїРѕР»СЊР·СѓРјС‹Рµ С…РёРј.РєРѕРјРїРѕРЅРµРЅС‚С‹
-
-	double CFLmax, CFLmax_Explicit;
-
-	int iDebug;
-
-	string comment[22];
-	int nameLength[22];
+    // vectors
+    double* U, * U1;
+    double* V; // ro, u,v, h
 
 };
 
+struct changes
+{
+    double* dU;
+};
 
-void SplitString(string str, string& s1, string& s2, string del);
-void ReadRules(rules& d, string fileName);
-void ShowRules(rules r, string* comps);
-void SaveRules(rules r, string fileName);
-void EditRules(rules& r, int n, string* comps);
+struct Gradient {
+    Vector* g;
+};
 
-void ReadParams(Region* (&d), int& n, int Nc, string fileName);
-void ShowParams(Region* z, int n, int* iComps, string* comps);
-void SavingData(Region* d, int n, string fileName);
-void AddData(Region* (&z), int& m, int Nc, int* iComps, string* comps);
+void Init(parameters* (&p), int nCells, int Nm);
+
+void Viscous(parameters* p, changes* du, Mesh mesh,Cell* cells, double dt);
+
+void GetParams(parameters* (&p), int nCells, int Nm);
+
+void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, double dt);
+
+void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells);
+
+double Dist(Pnt A, Pnt B, Pnt E); //расстояние от точки Е до грани АВ
+
+void SetGran(Mesh& mesh);
+
+void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm);

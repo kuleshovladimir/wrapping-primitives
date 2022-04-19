@@ -1,597 +1,434 @@
-﻿#include "Functions.h"
+#include "Functions.h"
 
-void SplitString(string str, string& s1, string& s2, string del) {
-	auto pos = str.find(del);
-	if (pos != string::npos)
-	{
-		s1 = str.substr(0, pos);
-		s2 = str.substr(pos + 1);
-	}
+void Init(parameters* (&p), int nCells, int Nm) {
+
+    double T0, Cp, la, P0, Gm, Gam, R, ro, mu;
+
+    double U0;
+
+    // ������� ������ 
+    T0 = 293.0; //K
+    la = 2.5658e-2;  // W/(m K)
+    mu = 17.863e-6;
+
+    U0 = 0.1;
+
+    P0 = 101325.0;  //Pa
+    Gam = 1.4;
+    Gm = 28.97;
+
+    //������ 
+    R = 8314.41 / Gm; //J/(kg K)
+    ro = P0 / (R * T0);
+    Cp = Gam / (Gam - 1.) * R;
+
+    for (int i = 0; i < nCells; i++) {
+        p[i].ro = ro;
+        p[i].p = P0;
+        p[i].u = U0;
+        p[i].v = 0.;
+        p[i].w = 0.;
+        p[i].T = T0;
+
+        p[i].Cp = Cp;
+        p[i].la = la;
+        p[i].mu = mu;
+        p[i].Gam = Gam;
+        p[i].Gm = Gm;
+
+        p[i].Pr = p[i].mu * p[i].Cp / p[i].la;
+
+        p[i].h = Cp * T0;
+
+        double q2 = 0.5 * (p[i].u * p[i].u + p[i].v * p[i].v);
+
+        p[i].H = p[i].h + q2;
+        p[i].E = p[i].H - p[i].p / p[i].ro;
+
+        p[i].e = p[i].h / p[i].Gam;
+
+        p[i].U = new double[Nm];
+        p[i].U1 = new double[Nm];
+
+        p[i].V = new double[Nm];
+
+        p[i].U1[0] = p[i].ro * p[i].E;
+
+        p[i].V[0] = p[i].h;
+    }
+
 }
 
-void GetName(string str, string& s1, int& n, string& s2)
+void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 {
-	string del;
-	del = "! ";
-	
-	auto pos = str.find(del);
-	if (pos != string::npos)
-	{
-		s1 = str.substr(0, pos);
-		s2 = str.substr(pos + 1);
-	}
+	int nFaces = mesh.Get_nFaces();
 
-	n = s1.size();
+	for (int i = 0; i < nFaces; i++) {
+		Face face = mesh.Get_face(i);
 
-}
+		int cr = face.cr;
+		int cl = face.cl;
 
-void Split(string str, string* (&parts), int n) {
-	const int N = 256;      //Максимальная длина строки
-	char word[N] = {};          //Буфер для считывания строки
-	stringstream x; //Создание потоковой переменной
-	x << str;                //Перенос строки в поток
+		if (face.is_boundary) {
+            int c = max(cr, cl);
 
-	int i = 0;
-	while (x >> word) {
-		if (i < n) parts[i] = word;
-		i++;
-	}
-}
+            Pnt xc = cells[c].Get_MassC();
 
+            Pnt xf = face.f_center;
 
-void ReadRules(rules& d, string fileName) {
+            double dx = xc.x - xf.x;
+            double dy = xc.y - xf.y;
+            double dl = sqrt(dx * dx + dy * dy);
 
-	string f = "Input/" + fileName;
-	ifstream reading(f);
+            double length = face.length;        //����� �����
+            double S = cells[c].Get_S();        //������� ������ �
 
-	if (reading) {
-		string line;
-		string name[23];
+            int z = face.zone;
 
-		for (int i = 0; i < 22; i++) {
-			getline(reading, line);
-			GetName(line, name[i], d.nameLength[i], d.comment[i]);
+            int btype = mesh.Get_zone(z).granType;
 
-			//cout << "name[i]  " << name[i] << endl;
-			//cout << "d.comment[i]  " << d.comment[i] << endl;
-			//cout << "d.nameLength[i]  " << d.nameLength[i] << endl;
+            double Tw;
+            if (face.zone == 2) Tw = 500;
+
+            if (face.zone == 4) Tw = 200;
+
+            if (face.zone == 2 || face.zone == 4) {
+                double hw = p[c].Cp * Tw;
+
+                //dh/dn
+                double dh_dn = (p[c].h - hw) / dl;
+
+                //mu/Pr
+                double mu_Pr = p[c].mu / p[c].Pr;
+
+                //Fv - ����� ����� �����
+                double Fv = mu_Pr * dh_dn;
+
+                du[c].dU[0] += -Fv * length / S * dt;
+            }
+            if (face.zone == 1) {
+                double Fv = 100;
+                du[c].dU[0] += Fv * length / S * dt;
+            }
+            
+            if (face.zone == 3) {
+                double Fv = -10;
+                du[c].dU[0] += Fv * length / S * dt;
+            }
+
 
 		}
-		d.iDim = atoi(name[0].c_str());
-		d.iAxisym = atoi(name[1].c_str());
-		d.ItMin = atoi(name[2].c_str());
-		d.ItMax = atoi(name[3].c_str());
-		d.ResMax = atof(name[4].c_str());
-		d.iExplicit = atoi(name[5].c_str());
-		d.iTurb = atoi(name[6].c_str());
-		d.iTrb2 = atoi(name[7].c_str());
-		d.nInviscid = atoi(name[8].c_str());
-		d.cMesh = name[9];
-		d.iViscous = atoi(name[10].c_str());
-		d.i_transform = atoi(name[11].c_str());
-		d.iOutResults = atoi(name[12].c_str());
-		d.iChem = atoi(name[13].c_str());
-		d.iChemH2 = atoi(name[14].c_str());
-		d.iChemCO = atoi(name[15].c_str());
-		d.iChemNO = atoi(name[16].c_str());
-		d.iChemHCl = atoi(name[17].c_str());
+		else {
+			//���������� ������ � ����� �����
+			Pnt xr = cells[cr].Get_MassC();
+			Pnt xl = cells[cl].Get_MassC();
 
-		d.CFLmax = atof(name[18].c_str());
-		d.CFLmax_Explicit = atof(name[19].c_str());
-		d.iDebug = atoi(name[20].c_str());
-		d.Nc = atoi(name[21].c_str());
+			//���������� ����� ��������
+			double dx = (xr.x - xl.y);
+			double dy = (xr.y - xl.y);
+			double dl = sqrt(dx * dx + dy * dy);
 
-		d.IComps = new int[d.Nc];
+			//dh/dn
+			double dh_dn = (p[cr].h - p[cl].h) / dl;
 
-		/*
-				string* Comps = new string[d.Nc];
-				Split(name[22], Comps, d.Nc);
-				for (int i = 0; i < d.Nc; i++) {
-					d.IComps[i] = atoi(Comps[i].c_str());
-					cout << "d.IComps[i]= " << d.IComps[i] << endl;
-				}
-		*/
-		for (int i = 0; i < d.Nc; i++) {
-			reading >> d.IComps[i];
+			//������� mu/Pr
+			double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
 
-			//cout << "d.IComps[i]= " << d.IComps[i] << endl;
+			//Fv - ����� ����� �����
+			double Fv = mu_Pr * dh_dn;
+
+			double lenght = face.length;	//����� �����
+			double Sr = cells[cr].Get_S();	//������� 
+			double Sl = cells[cl].Get_S();
+
+			du[cr].dU[0] += -Fv * lenght / Sr * dt;
+			du[cl].dU[0] += Fv * lenght / Sl * dt;
+
 		}
-
-
-		
 	}
-	else
-		cout << "Ошибка открытия файла в ReadRules!" << endl;
-
-
-	reading.close();
 }
 
-
-void ShowRules(rules r, string* comps) {
-	string a, c, b;
-
-	system("clear"); //очистка консоли
-
-	cout << "ПРАВИЛА: " << endl;
-
-	cout << "1. Размерность задачи: " << r.iDim << endl;
-
-	c = "Нет";
-	if (r.iAxisym == 1) c = "Да";
-	cout << "2. Осесимметричность: " << c << endl;
-
-	cout << "3. Мин. и макс.число итераций:: " << r.ItMin <<", " << r.ItMax << endl;
-
-	cout << "4. Макс. невязка: " << r.ResMax << endl;
-
-	c = "Неявная";
-	if (r.iExplicit == 1) c = "Явная";
-	cout << "5. Тип численной схемы: " << c << endl;
-
-	string s[5] = { "Ламинарная","k-epsilon","k-omega","k-g","SST" };
-	int i = r.iTurb;
-	c = "без учета сжимаемости";
-	if (r.iTrb2 == 2) c = "с учетом сжимаемости";
-	cout << "6. Модель турбулентности: " << s[i] <<  ", " << c << endl;
-
-	cout << "7. Порядок представления невязких потоков: " << r.nInviscid << endl;
-
-	cout << "8. Сеточный файл: " << r.cMesh << endl;
-
-	c = "Нет";
-	if (r.iViscous == 1) c = "Да";
-	cout << "9. Учитываются ли вязкие потоки: " << c << endl;
-
-	a = "Задаются в программе (файл \"InitAll.txt\")";
-	if (r.i_transform == 2) a = "Берутся из предыдущего расчета из файла \"Results.txt\"";
-	cout << "10. Способ задания начальных условий: " << a << endl;
-
-	c = "Нет";
-	if (r.iOutResults == 1) c = "Да";
-	cout << "11. Создавать файл \"Results.txt\"?: " << c << endl;
-
-	c = "Нет";
-	if (r.iChem == 1) c = "Да";
-	cout << "12. Учитываются химические реакции: " << c << endl;
-
-	string d;
-	a = ""; b = ""; c = ""; d = "";
-	
-	if (r.iChemH2 == 1) a = "H2+O2 упрощенная, ";
-	if (r.iChemH2 == 2) a = "H2+O2 полная, ";
-	if (r.iChemCO == 1) b = "CO+O2 упрощенная, ";
-	if (r.iChemCO == 2) b = "CO+O2 полная, ";
-	if (r.iChemNO == 1) c = "N2+O2 упрощенная, ";
-	if (r.iChemNO == 2) c = "N2+O2 + e, ";
-	if (r.iChemNO == 3) c = "N2+O2 полная, ";
-	if (r.iChemHCl == 1) c = " реакции хлора ";
-	cout << "13. Хим.кинетика: " << a << b << c << d <<  endl;
-
-	int q = r.IComps[0] - 1;
-	c = comps[q];
-
-	for (int i = 1; i < r.Nc; i++) {
-		q = r.IComps[i] - 1;
-		c += ", " + comps[q];
-	}
-
-	cout << "14. Химические компоненты: " << c << endl;
-
-	cout << "+ В систему при расчете будут добавлены компоненты, " ;
-	cout << "входящие в указанные выше реакции" << endl;
-
-
-	cout << "15. Максимальное значение числа CFL: " << r.CFLmax << endl;
-	cout << "16. Максимальное значение числа CFL в явной схеме: " << r.CFLmax_Explicit << endl;
-
-	c = "Нет";
-	if (r.iDebug == 1) c = "Да";
-	cout << "17. Режим отладки: " << c << endl;
-	
-	cout << "------------------------------------------- "  << endl << endl;
-
-
-
-}
-
-void SaveRules(rules r, string fileName)
+void GetParams(parameters* (&p), int nCells, int Nm)
 {
-	// создаем поток для записи
-	string f = "Input/" + fileName;
-	ofstream record(f, ios::out);
+    for (int i = 0; i < nCells; i++) {
+        p[i].E = p[i].U1[0] / p[i].ro;
 
-	if (record) {
-		record << setw(r.nameLength[0]) << left << r.iDim << "!" << r.comment[0]  << endl;
-			record << setw(r.nameLength[1]) << left << r.iAxisym << "!" << r.comment[1] << endl;
-			record << setw(r.nameLength[2]) << left << r.ItMin << "!" << r.comment[2] << endl;
-			record << setw(r.nameLength[3]) << left << r.ItMax << "!" << r.comment[3] << endl;
+        double q = 0.5 * (p[i].u * p[i].u + p[i].v * p[i].v);
+        double e = p[i].E - q;
 
-			record.setf(ios::scientific);
-			record.precision(2); // две цифры после запятой
-			record << setw(r.nameLength[4]) << left << r.ResMax << "!" << r.comment[4] << endl;
-			record.unsetf(ios::scientific);
+        p[i].h = e * p[i].Gam;
+        p[i].T = p[i].h / p[i].Cp;
+        p[i].H = p[i].h + q;
 
-			record << setw(r.nameLength[5]) << left << r.iExplicit << "!" << r.comment[5] << endl;
-			record << setw(r.nameLength[6]) << left << r.iTurb << "!" << r.comment[6] << endl;
-			record << setw(r.nameLength[7]) << left << r.iTrb2 << "!" << r.comment[7] << endl;
-			record << setw(r.nameLength[8]) << left << r.nInviscid << "!" << r.comment[8] << endl;
-			record << setw(r.nameLength[9]) << left << r.cMesh << "!" << r.comment[9] << endl;
-			record << setw(r.nameLength[10]) << left << r.iViscous << "!" << r.comment[10] << endl;
-			record << setw(r.nameLength[11]) << left << r.i_transform << "!" << r.comment[11] << endl;
-			record << setw(r.nameLength[12]) << left << r.iOutResults << "!" << r.comment[12] << endl;
-			record << setw(r.nameLength[13]) << left << r.iChem << "!" << r.comment[13] << endl;
-			record << setw(r.nameLength[14]) << left << r.iChemH2 << "!" << r.comment[14] << endl;
-			record << setw(r.nameLength[15]) << left << r.iChemCO << "!" << r.comment[15] << endl;
-			record << setw(r.nameLength[16]) << left << r.iChemNO << "!" << r.comment[16] << endl;
-			record << setw(r.nameLength[17]) << left << r.iChemHCl << "!" << r.comment[17] << endl;
+        double R = 8314.41 / p[i].Gm;
+        p[i].p = p[i].ro * R * p[i].T;
 
-			record.setf(ios::scientific);
-			record.precision(2); // две цифры после запятой
-			record << setw(r.nameLength[18]) << left << r.CFLmax << "!" << r.comment[18] << endl;
-			record << setw(r.nameLength[19]) << left << r.CFLmax_Explicit << "!" << r.comment[19] << endl;
-			record.unsetf(ios::scientific);
+        p[i].V[0] = p[i].h;
 
-			record << setw(r.nameLength[20]) << left << r.iDebug << "!" << r.comment[20] << endl;
-			record << setw(r.nameLength[21]) << left << r.Nc << "!" << r.comment[21] << endl;
-
-			for (int i = 0; i < r.Nc; i++) {
-				record << r.IComps[i] << " ";
-			}
-	}
-	else
-		cout << "Ошибка открытия файла!" << endl;
-
-	record.close();
+    }
 }
 
-void EditRules(rules& r, int n, string* comps)
+//***********
+void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, double dt)
 {
-	int i;
-	string s;
+    int nFaces = mesh.Get_nFaces();
 
-	switch (n)
-	{
-	case 1:
-		cout << "Введите размерность задачи (2 или 3): " << endl;
-		cin >> i;
-		if (i == 2 || i == 3)
-			r.iDim = i;
-		else
-			cout << "Ошибка ввода!" << endl << endl;
-		break;
+    for (int i = 0; i < nFaces; i++) {
+        Face face = mesh.Get_face(i);
 
-	case 2:
-		cout << "Задача осесимметричная? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iAxisym = 1;
-		else
-			r.iAxisym = 0;
-		break;
+        int cr = face.cr;
+        int cl = face.cl;
 
-	case 3:
-		cout << "Мин. и максимальное число итераций (любые числа > 1): " << endl;
-		cin >> r.ItMin >> r.ItMax;
-		break;
+        //nodes
+        int n1 = face.nodes[0];
+        int n2 = face.nodes[1];
 
-	case 4:
-		cout << " Максимальная невязка: " << endl;
-		cin >> r.ResMax;
-		break;
+        double dl = face.length;    //����� �����
 
-	case 5:
-		cout << "Какая схема используется? (1 - Явная; любое другое число - Неявная): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iExplicit = 1;
-		else
-			r.iExplicit = 0;
-		break;
+        Pnt x1 = mesh.Get_node(n1);
+        Pnt x2 = mesh.Get_node(n2);
 
-	case 6:
-		//string s[5] = { "Ламинарная","","k-omega","k-g","SST" };
+        double nx = (x1.y - x2.y) / dl;
+        double ny = (x2.x - x1.x) / dl;
 
-		cout << "Какая Модель турбулентности используется? " << endl;
-		cout << "(0 - лам.течение; 1 - k-epsilon; 2 - k-omega; 3 - k-g; любое другое число - SST): " << endl;
-		cin >> i;
-		if (i < 4)
-			r.iTurb = i;
-		else
-			r.iTurb = 4;
+        double Fc;
 
-		cout << "Учитывается сжимаемость? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iTrb2 = 2;
-		else
-			r.iTrb2 = 1;
+        if (i == -10) {
+            double un = p[cl].u * nx + p[cl].v * ny;
+        }
 
-		break;
+        if (face.is_boundary) {
+            int c = max(cr, cl);
+            double S = cells[c].Get_S();
 
-	case 7:
-		cout << "Порядок представления невязких потоков? (1 - первый; любое другое число - 2-ой): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.nInviscid = 1;
-		else
-			r.nInviscid = 2;
-		break;
 
-	case 8:
-		cout << "Имя сеточного файла " << endl;
-		cin >> s;
-		if (s != "")  r.cMesh = s;
+            if (face.zone == 1) {
+                double uInlet, vInlet, T_Inlet;
+                uInlet = p[c].u;
+                vInlet = p[c].v;
+                T_Inlet = 800;
 
-		break;
+                double un = uInlet * nx + vInlet * ny;
 
-	case 9:
-		cout << "Учитываются вязкие потоки? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iViscous = 1;
-		else
-			r.iViscous = 0;
+                double h = p[c].Cp * T_Inlet;
+                double H = h + 0.5 * (uInlet * uInlet + vInlet * vInlet);
 
-		break;
+                double E = h / p[c].Gam + 0.5 * (uInlet * uInlet + vInlet * vInlet);
 
-	case 10:
-		cout << "Какой способ задания начальных условий?" << endl;
-		cout << "(0 - Задаются в программе; любое другое число - Берутся из предыдущего расчета из файла \"Results.txt\": " << endl;
-		cin >> i;
-		if (i == 0)
-			r.i_transform = i;
-		else
-			r.i_transform = 2;
+                Fc = p[c].ro * H * un;
 
-		break;
+                du[c].dU[0] += -Fc * dl / S * dt;
 
-	case 11:
-		cout << "Создавать файл \"Results.txt\"? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iOutResults = 1;
-		else
-			r.iOutResults = 0;
+            }
 
-		break;
+            if (face.zone == 3) {
+                double un = p[c].u * nx + p[c].v * ny;
 
-	case 12:
-		cout << "Учитывать химические реакции? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iChem = 1;
-		else
-			r.iChem = 0;
+                Fc = p[c].ro * p[c].H * un;
+                du[c].dU[0] += Fc * dl / S * dt;
+            }
 
-		break;
+            if ((face.zone == 2) || (face.zone == 4)) {
+                du[c].dU[0] += 0;
+            }
+        }
+        else {
+            //������� ��������
+            double u_, v_, un_, H_, E_, ro_;
 
-	case 13:
+            u_ = 0.5 * (p[cr].u + p[cl].u);
+            v_ = 0.5 * (p[cr].v + p[cl].v);
+            un_ = u_ * nx + v_ * ny;
+            H_ = 0.5 * (p[cr].H + p[cl].H);
+            E_ = 0.5 * (p[cr].E + p[cl].E);
+            ro_ = 0.5 * (p[cr].ro + p[cl].ro);
 
-		cout << "Какая схема для H2+O2?  : " << endl;
-		cin >> r.iChemH2;
-		cout << "Какая схема для CO+O2?  : " << endl;
-		cin >> r.iChemCO;
-		cout << "Какая схема для N2+O2?  : " << endl;
-		cin >> r.iChemNO;
-		cout << "Какая схема для HCl?  : " << endl;
-		cin >> r.iChemHCl;
+            double A = H_ / E_ * un_;
+            double Apl, Amn;
 
-		break;
+            Apl = 0.5 * (A + abs(A));
+            Amn = 0.5 * (A - abs(A));
 
-	case 14:
-		cout << "Число хим. компонентов  : " << endl;
-		cin >> r.Nc;
-		delete(r.IComps);
-		r.IComps = new int[r.Nc];
+            double UL, UR;
+            UL = p[cl].U[0];
+            UR = p[cr].U[0];
 
-		cout << "Выберите номера хим. компонентов из списка  : " << endl;
-		for (int i = 0; i < 30; i++)
-		{
-			if (comps[i] != "ZZ")
-				cout << i + 1 << " -> " << comps[i] << endl;
-		}
-		int j;
-		for (int i = 0; i < r.Nc; i++)
-		{
-			cin >> j;
-			r.IComps[i] = j;
-		}
+            Fc = Apl * UL + Amn * UR;
 
-		break;
+            double Sr = cells[cr].Get_S();
+            double Sl = cells[cl].Get_S();
 
-	case 15:
-		cout << "Максимальное значение числа CFL: " << endl;
-		cin >> r.CFLmax;
-		break;
+            du[cr].dU[0] += Fc * dl / Sr * dt;
+            du[cl].dU[0] -= Fc * dl / Sl * dt;
 
-	case 16:
-		cout << "Максимальное значение числа CFL в явной схеме: " << endl;
-		cin >> r.CFLmax_Explicit;
-		break;
 
-	case 17:
-		cout << "Режим отладки? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iDebug = 1;
-		else
-			r.iDebug = 0;
-		break;
-
-	default:
-		break;
-	}
-
+        }
+    }
 }
 
-void ReadParams(Region* (&d), int& n, int Nc, string fileName)
+void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 {
-	string reg;
-	string f = "Input/" + fileName;
-	ifstream reading(f);
+    // ������� ����� ��� ������
+    string f = "T.plt";
+    ofstream record(f, ios::out);
+    if (record) {
+        record << "VARIABLES = \"X\", \"Y\", \"T,K\"" << endl;
 
+        record << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
+        for (int i = 0; i < nCells; i++) {
+            record << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << p[i].T << endl;
+        }
 
-	if (reading) {
-
-		reading >> n;
-
-		// временные переменные
-		Gas gas;
-		Turb turb;
-		int iMol;
-		double* Yc = new double[Nc];
-		//cout << "Nc = " << Nc << endl;
-		//  выделяем память
-		d = new Region[n];
-
-		for (int i = 0; i < n; i++) {
-			reading >> reg;
-			reading >> gas.Lchar >> gas.U[0] >> gas.U[1] >> gas.U[2] >> gas.T >> gas.p;
-			reading >> iMol;
-
-			for (int j = 0; j < Nc; j++)
-				reading >> Yc[j];
-
-			//cout << "Yc[0] = " << Yc[0] << ", Yc[1] = " << Yc[1] << endl;
-
-			reading >> turb.turb_intens >> turb.turb_scale >> turb.MuT_Mu;
-
-			d[i].DataEntry(gas, iMol, Yc, turb, Nc);
-		}
-
-		// cout << "Данные считаны in ReadParams!" << endl;
-		//cout << endl;
-	}
-	else {
-		cout << "Ошибка открытия файла в ReadParams" << endl;
-	}
-
-	reading.close();
+    }
+    record.close();
 }
 
-void ShowParams(Region* z, int n, int* iComps, string* comps)
+
+
+double Dist(Pnt A, Pnt B, Pnt E)
 {
-	cout << "*****************************" << endl;
-	
-	for (int i = 0; i < n; i++) {
-		cout << "       Участок № " << i + 1 << ":" << endl;
+    double AB[2], BE[2], AE[2];
 
-		z[i].Print(iComps, comps);
-		cout << "___________________________" << endl;
+    double AB_BE, AB_AE;
 
-	}
-	cout << " " << endl;
+    double dist;
 
+    //�������
+    AB[0] = B.x - A.x;
+    AB[1] = B.y - A.y;
+
+    BE[0] = E.x - B.x;
+    BE[1] = E.y - B.y;
+
+    AE[0] = E.x - A.x;
+    AE[1] = E.y - A.y;
+
+    //��������� ������������ ��������
+    AB_BE = (AB[0] * BE[0] + AB[1] * BE[1]);
+    AB_AE = (AB[0] * AE[0] + AB[1] * AE[1]);
+
+    if (AB_BE > 0) {
+        double y = E.y - B.y;
+        double x = E.x - B.x;
+        dist = sqrt(x * x + y * y);
+    }
+    else if (AB_BE < 0) {
+        double y = E.y - A.y;
+        double x = E.x - A.x;
+        dist = sqrt(x * x + y * y);
+    }
+    else {
+        dist = abs(AB[0] * AE[1] - AB[1] * AE[0]) / sqrt(AB[0] * AB[0] + AB[1] * AB[1]);
+    }
+
+    return dist;
 }
 
-void SavingData(Region* d, int n, string fileName)
+void SetGran(Mesh& mesh)
 {
-	// создаем поток для записи
-	string f = "Input/" + fileName;
-	ofstream record(f, ios::out);
+    mesh.zones[0].granType = 1;
+    mesh.zones[1].granType = 1;
+    mesh.zones[2].granType = 1;
+    mesh.zones[3].granType = 1;
 
-	if (record) {
-		record << n << endl;
+    int nZones = mesh.nZones;
 
-		for (int i = 0; i < n; i++) {
-			record << "region" << i + 1 << endl;
-			record << d[i].GetGas().Lchar << " " << d[i].GetGas().U[0] << " " << d[i].GetGas().U[1]
-				<< " " << d[i].GetGas().U[2] << " " << d[i].GetGas().T << " " << d[i].GetGas().p << endl;
-			record << d[i].GetiMol() << endl;
+    //� ������� - ���� �� �����
+    //�������� ��������
 
-			//Yc
-			for (int j = 0; j < d[i].GetNc(); j++) {
-				record << d[i].GetYc(j) << " ";
-			}
-			record << endl;
+    for (int i = 0; i < nZones; i++) {
+        int tp = mesh.zones[i].granType;
+        if (tp == 1) {
+            mesh.zones[i].wall = new Wall;
 
-			record << d[i].GetTurb().turb_intens << " " << d[i].GetTurb().turb_scale
-				<< " " << d[i].GetTurb().MuT_Mu << endl;
-		}
+        }
+        mesh.zones[0].wall->vel = 1;
+        mesh.zones[0].wall->temp = 2;
+        mesh.zones[0].wall->value = 0;
 
-		cout << "Данные записаны!" << endl;
-	}
-	else
-		cout << "Ошибка открытия файла!" << endl;
+        mesh.zones[1].wall->vel = 1;
+        mesh.zones[1].wall->temp = 1;
+        mesh.zones[1].wall->value = 500;
 
-	record.close();
+        mesh.zones[2].wall->vel = 1;
+        mesh.zones[2].wall->temp = 2;
+        mesh.zones[2].wall->value = 0;
+
+        mesh.zones[3].wall->vel = 1;
+        mesh.zones[3].wall->temp = 1;
+        mesh.zones[3].wall->value = 200;
+    }
 }
 
-void Copy(Region* (&d_n), Region* (&d_o), int n) {
-	for (int i = 0; i < n; i++) {
-		d_n[i] = d_o[i];
-	}
-}
-
-void AddData(Region* (&z), int& m, int Nc, int* iComps, string* comps)
+void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 {
+    int nCells = mesh.Get_nCells();
 
-	// временные переменные
-	Gas gas;
-	Turb turb;
-	int iMol;
+    //�������� ������� Vc � ������ ������
+    double* Vc = new double[Nm];
+    //��������� ������� Vc �� ��������� � �������� ������
+    double* dVk = new double[Nm];
 
-	double* Yc = new double[Nc];
+    //��������� ������ ���������� ��� ���� ���������� ������� V
+    Vector* gr_ = new Vector[Nm];
 
-	// временный массив
-	Region* buf = new Region[m];
+    for (int i = 0; i < Nm; i++) {
+        gr_[i].cx = new double[2];
+    }
 
+    for (int i = 0; i < nCells; i++) {
+        int NB = cells[i].Get_NFaces();     //����� ���������� ������
 
-	Copy(buf, z, m);
+        for (int j = 0; j < Nm; j++) {
+            gr_[j].cx[0] = 0;
+            gr_[j].cx[1] = 0;
+        }
 
-	//// Выделяем новую память
-	z = new Region[m + 1];
+        for (int j = 0; j < Nm; j++) {
+            Vc[j] = p[i].V[j];
+        }
 
-	//z[m].GetYc() = new double[Nc];
+        for (int j = 0; j < NB; j++) {      //������ �� ������
+            bool fType = cells[i].Get_fType(j);
 
-	Copy(z, buf, m);
-	cout << "Введите характерный размер [м]:  ";
-	cin >> gas.Lchar;
+            int nb = cells[i].Get_Cell(j);
+            int nf = cells[i].Get_Face(j);
 
-	cout << "Введите компоненты скорости u, v, w [м/с]:  ";
-	cin >> gas.U[0];
-	cin >> gas.U[1];
-	cin >> gas.U[2];
-	cout << "Введите температуру [K]:  ";
-	cin >> gas.T;
-	cout << "Введите давление [Па]:  ";
-	cin >> gas.p;
+            if (!fType) {
+                for (int m = 0; m < Nm; m++) {
+                    dVk[m] = p[nb].V[m] - Vc[m];
+                }
+            }
+            else {
+                int z = mesh.Get_face(nf).zone;
+                int btype = mesh.Get_zone(z).granType;
 
-	int f;
-	cout << "Используются мольные (1) или массовые доли (0) компонентов?  ";
-	cin >> f;
-	if (f == 0)
-		iMol = 0;
-	else
-		iMol = 1;
+                if (btype == 1) {
+                    int vel = mesh.Get_zone(z).wall->vel;
+                    int temp = mesh.Get_zone(z).wall->temp;
+                    double value = mesh.Get_zone(z).wall->value;
 
-	for (int j = 0; j < Nc; j++) {
-		if (iMol == 0)
-			cout << "Введите массовую долю " << j + 1 << "-го компонента:   ";
-		else
-			cout << "Введите мольную долю " << j + 1 << "-го компонента:   ";
+                    if (temp == 1) {
+                        double Tw = value;
+                        double hw = p[i].Cp * Tw;
 
-		cin >> Yc[j];
-	}
+                        dVk[0] = hw - Vc[0];
+                    }
 
-	cout << "Введите интенсивность турбулентности (в долях от скорости):  ";
-	cin >> turb.turb_intens;
+                    if (temp == 2) {
+                        dVk[0] = 0;
+                    }
+                }
+            }
 
-	cout << "Введите масштаб турбулентности (в долях от характ.размера):  ";
-	cin >> turb.turb_scale;
+            gr_[0].cx[0] += cells[i].Get_wk(j) * dVk[0] * cells[i].Get_ck(j).cx[0];
+            gr_[0].cx[1] += cells[i].Get_wk(j) * dVk[0] * cells[i].Get_ck(j).cx[1];
 
-	cout << "Введите MuT/Mu:  ";
-	cin >> turb.MuT_Mu;
+        }
 
-	z[m].DataEntry(gas, iMol, Yc, turb, Nc);
-
-
-	m++;
-
-	system("clear");
-	delete[] buf;
-
-	cout << "Данные добавлены!" << endl;
-	system("pause");
+        for (int j = 0; j < Nm; j++) {
+            gr[i].g[j].cx[0] = gr_[j].cx[0];
+            gr[i].g[j].cx[1] = gr_[j].cx[1];
+        }
+    }
 }
