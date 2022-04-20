@@ -155,13 +155,13 @@ void Mesh::CreateFases()
 				faces[k].is_boundary = true;
 				faces[k].cr = -1;
 				faces[k].cl = (Ny - 1) * i + j;
-				faces[k].zone = 1;
+				faces[k].zone = 0;
 			}
 			else if (i == Nx - 1) {
 				faces[k].is_boundary = true;
 				faces[k].cr = (Ny - 1) * (i - 1) + j;
 				faces[k].cl = -1;
-				faces[k].zone = 3;
+				faces[k].zone = 2;
  			}
 			else {
 				faces[k].is_boundary = false;
@@ -194,13 +194,13 @@ void Mesh::CreateFases()
 				faces[k].is_boundary = true;
 				faces[k].cl = -1;
 				faces[k].cr = (Ny - 1) * i + j;
-				faces[k].zone = 2;
+				faces[k].zone = 1;
 			}
 			else if (j == Ny - 1) {
 				faces[k].is_boundary = true;
 				faces[k].cl = (Ny - 1) * i + j - 1;
 				faces[k].cr = -1;
-				faces[k].zone = 4;
+				faces[k].zone = 3;
 			}
 			else {
 				faces[k].is_boundary = false;
