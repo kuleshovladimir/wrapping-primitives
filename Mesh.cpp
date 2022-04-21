@@ -8,10 +8,23 @@ Mesh::Mesh()
 	nCells = 0;
 	nFaces = 0;
 	nodes = new Pnt[nNodes];
+	nZones = 4;
+	zones = new Zone[nZones];
 }
 
 Mesh::~Mesh()
 {
+}
+
+void Mesh::SetZones(int n)
+{
+	nZones = n;
+	zones = new Zone[nZones];
+}
+
+Zone Mesh::Get_zone(int i)
+{
+	return zones[i];
 }
 
 void Mesh::Set_Nx(int n)
@@ -72,6 +85,11 @@ Pnt Mesh::Get_node(int i)
 void Mesh::Set_node(Pnt node, int i)
 {
 	nodes[i] = node;
+}
+
+Face Mesh::Get_face(int i)
+{
+	return faces[i];
 }
 
 void Mesh::ReadStruct(string filename)
@@ -137,16 +155,19 @@ void Mesh::CreateFases()
 				faces[k].is_boundary = true;
 				faces[k].cr = -1;
 				faces[k].cl = (Ny - 1) * i + j;
+				faces[k].zone = 0;
 			}
 			else if (i == Nx - 1) {
 				faces[k].is_boundary = true;
 				faces[k].cr = (Ny - 1) * (i - 1) + j;
 				faces[k].cl = -1;
+				faces[k].zone = 2;
  			}
 			else {
 				faces[k].is_boundary = false;
 				faces[k].cr = (Ny - 1) * (i - 1) + j;
 				faces[k].cl = (Ny - 1) * i + j;
+				faces[k].zone = -1;
 			}
 
 			faces[k].f_center.x = 0.5 * (nodes[n1].x + nodes[n2].x);
@@ -156,7 +177,7 @@ void Mesh::CreateFases()
 			double dy = nodes[n1].y - nodes[n2].y;
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
-			faces[k].Print(k);
+			//faces[k].Print(k);
 
 			k++;
 		}
@@ -173,16 +194,19 @@ void Mesh::CreateFases()
 				faces[k].is_boundary = true;
 				faces[k].cl = -1;
 				faces[k].cr = (Ny - 1) * i + j;
+				faces[k].zone = 1;
 			}
 			else if (j == Ny - 1) {
 				faces[k].is_boundary = true;
 				faces[k].cl = (Ny - 1) * i + j - 1;
 				faces[k].cr = -1;
+				faces[k].zone = 3;
 			}
 			else {
 				faces[k].is_boundary = false;
 				faces[k].cr = (Ny - 1) * i + j;
 				faces[k].cl = (Ny - 1) * i + j - 1;
+				faces[k].zone = -1;
 			}
 
 			faces[k].f_center.x = 0.5 * (nodes[n1].x + nodes[n2].x);
@@ -192,7 +216,7 @@ void Mesh::CreateFases()
 			double dy = nodes[n1].y - nodes[n2].y;
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
-			faces[k].Print(k);
+			//faces[k].Print(k);
 
 			k++;
 		}
@@ -282,6 +306,79 @@ void Mesh::CellFuncs(Cell* (&cells))
 				}
 			}
 		}
+	}
+}
+
+int Mesh::Get_nZones()
+{
+	return nZones;
+}
+
+void Mesh::GradCoeffs(Cell* (&cells))
+{
+	for (int i = 0; i < nCells; i++) {
+		int nFaces = cells[i].Get_NFaces();
+
+		//массивы весовых коэффициентов wk и векторов ck
+		cells[i].wk = new double[nFaces];
+		cells[i].ck = new Vector[nFaces];
+
+		int iDim = 2;
+
+		for (int j = 0; j < nFaces; j++) {
+			cells[i].ck[j].cx = new double[iDim];
+		}
+
+		//координаты центра €чейки
+		Pnt xc = cells[i].Get_MassC();
+
+		//рассто€ни€ до соседей
+		double* dx = new double[nFaces];
+		double* dy = new double[nFaces];
+
+		//компоненты матрицы
+		double axx = 0, axy = 0, ayy = 0;
+
+		for (int k = 0; k < nFaces; k++) {
+			int nf = cells[i].Get_Face(k);
+			if (!faces[nf].is_boundary) {
+				//номер соседней €чейки
+				int nc = cells[i].Get_Cell(k);
+				//ее центр
+				Pnt xk = cells[nc].Get_MassC();
+
+				dx[k] = xk.x - xc.x;
+				dy[k] = xk.y - xc.y;
+
+			}
+			else{
+				//центр грани
+				Pnt xk = faces[nf].f_center;
+				dx[k] = xk.x - xc.x;
+				dy[k] = xk.y - xc.y;
+			}
+
+			double wk = 1 / sqrt(dx[k] * dx[k] + dy[k] * dy[k]);
+			cells[i].wk[k] = wk;
+
+			axx += wk * dx[k] * dx[k];
+			axy += wk * dx[k] * dy[k];
+			ayy += wk * dy[k] * dy[k];
+		}
+
+		//получение обратной матрицы
+		double det = axx * ayy - axy * axy;
+		double Mxx, Mxy, Myy;
+
+		Mxx = ayy / det;
+		Mxy = -axy / det;
+		Myy = axx / det;
+
+		for (int k = 0; k < nFaces; k++) {
+			cells[i].ck[k].cx[0] = Mxx * dx[k] + Mxy * dy[k];
+			cells[i].ck[k].cx[1] = Mxy * dx[k] + Myy * dy[k];
+		}
+
 	}
 }
 

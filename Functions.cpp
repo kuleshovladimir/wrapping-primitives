@@ -1,597 +1,909 @@
-﻿#include "Functions.h"
+#include "Functions.h"
 
-void SplitString(string str, string& s1, string& s2, string del) {
-	auto pos = str.find(del);
-	if (pos != string::npos)
-	{
-		s1 = str.substr(0, pos);
-		s2 = str.substr(pos + 1);
-	}
+void Init(parameters* (&p), int nCells, int Nm) {
+
+    double T0, Cp, la, P0, Gm, Gam, R, ro, mu;
+
+    double U0;
+
+    // ������� ������ 
+    T0 = 273; //����������� ��������� ����
+    la = 2.5658e-2;  // ����������� ���������������� 
+    mu = 17.863e-6;  // ��������
+
+    U0 = 867.9; //��������
+
+    P0 = 1931;  //��������
+    Gam = 1.4;  //��������� ��������
+    Gm = 28.97; //�������� �����
+
+    //������ 
+    R = 8314.41 / Gm; 
+    ro = P0 / (R * T0); //���������
+    Cp = Gam / (Gam - 1.) * R; //������������
+
+    for (int i = 0; i < nCells; i++) {
+        p[i].ro = ro;
+        p[i].p = P0;
+        p[i].u = U0;
+        p[i].v = 0.;
+        p[i].w = 0.;
+        p[i].T = T0;
+
+        p[i].Cp = Cp;
+        p[i].la = la;
+        p[i].mu = mu;
+        p[i].Gam = Gam;
+        p[i].Gm = Gm;
+
+        p[i].Pr = p[i].mu * p[i].Cp / p[i].la;
+
+        p[i].h = Cp * T0;
+
+        double q2 = 0.5 * (p[i].u * p[i].u + p[i].v * p[i].v);
+
+        p[i].H = p[i].h + q2;
+        p[i].E = p[i].H - p[i].p / p[i].ro;
+
+        p[i].e = p[i].h / p[i].Gam;
+
+        // NS: 
+
+        p[i].U = new double[Nm];
+        p[i].U1 = new double[Nm];
+
+        p[i].V = new double[Nm];
+
+        p[i].U1[0] = p[i].ro;
+        p[i].U1[1] = p[i].ro * p[i].u;
+        p[i].U1[2] = p[i].ro * p[i].v;
+        p[i].U1[3] = p[i].ro * p[i].E;
+
+        p[i].V[0] = p[i].ro;
+        p[i].V[1] = p[i].u;
+        p[i].V[2] = p[i].v;
+        p[i].V[3] = p[i].h;
+    }
+
 }
 
-void GetName(string str, string& s1, int& n, string& s2)
+
+
+void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 {
-	string del;
-	del = "! ";
-	
-	auto pos = str.find(del);
-	if (pos != string::npos)
-	{
-		s1 = str.substr(0, pos);
-		s2 = str.substr(pos + 1);
-	}
+	int nFaces = mesh.Get_nFaces();
 
-	n = s1.size();
+	for (int i = 0; i < nFaces; i++) {
+		Face face = mesh.Get_face(i);
 
-}
+		int cr = face.cr;
+		int cl = face.cl;
 
-void Split(string str, string* (&parts), int n) {
-	const int N = 256;      //Максимальная длина строки
-	char word[N] = {};          //Буфер для считывания строки
-	stringstream x; //Создание потоковой переменной
-	x << str;                //Перенос строки в поток
+		if (face.is_boundary) {
 
-	int i = 0;
-	while (x >> word) {
-		if (i < n) parts[i] = word;
-		i++;
-	}
-}
+            int c = max(cr, cl);
 
+            Pnt xc = cells[c].Get_MassC();
 
-void ReadRules(rules& d, string fileName) {
+            Pnt xf = face.f_center;
 
-	string f = "Input/" + fileName;
-	ifstream reading(f);
+            double dx = xc.x - xf.x;
+            double dy = xc.y - xf.y;
+            double dl = sqrt(dx * dx + dy * dy);
 
-	if (reading) {
-		string line;
-		string name[23];
+            double length = face.length;        //����� �����
+            double S = cells[c].Get_S();        //������� ������ �
 
-		for (int i = 0; i < 22; i++) {
-			getline(reading, line);
-			GetName(line, name[i], d.nameLength[i], d.comment[i]);
+            int z = face.zone;
 
-			//cout << "name[i]  " << name[i] << endl;
-			//cout << "d.comment[i]  " << d.comment[i] << endl;
-			//cout << "d.nameLength[i]  " << d.nameLength[i] << endl;
+            int btype = mesh.Get_zone(z).granType;
+
+            double Tw;
+            if (face.zone == 1) Tw = 500;
+
+            if (face.zone == 3) Tw = 200;
+
+            if (face.zone == 1 || face.zone == 3) {
+                double hw = p[c].Cp * Tw;
+
+                //dh/dn
+                double dh_dn = (p[c].h - hw) / dl;
+
+                //mu/Pr
+                double mu_Pr = p[c].mu / p[c].Pr;
+
+                //Fv - ����� ����� �����
+                double Fv = mu_Pr * dh_dn;
+
+                du[c].dU[0] += -Fv * length / S * dt;
+            }
+            if (face.zone == 0) {
+                double Fv = 100;
+                du[c].dU[0] += Fv * length / S * dt;
+            }
+            
+            if (face.zone == 2) {
+                double Fv = -10;
+                du[c].dU[0] += Fv * length / S * dt;
+            }
+
 
 		}
-		d.iDim = atoi(name[0].c_str());
-		d.iAxisym = atoi(name[1].c_str());
-		d.ItMin = atoi(name[2].c_str());
-		d.ItMax = atoi(name[3].c_str());
-		d.ResMax = atof(name[4].c_str());
-		d.iExplicit = atoi(name[5].c_str());
-		d.iTurb = atoi(name[6].c_str());
-		d.iTrb2 = atoi(name[7].c_str());
-		d.nInviscid = atoi(name[8].c_str());
-		d.cMesh = name[9];
-		d.iViscous = atoi(name[10].c_str());
-		d.i_transform = atoi(name[11].c_str());
-		d.iOutResults = atoi(name[12].c_str());
-		d.iChem = atoi(name[13].c_str());
-		d.iChemH2 = atoi(name[14].c_str());
-		d.iChemCO = atoi(name[15].c_str());
-		d.iChemNO = atoi(name[16].c_str());
-		d.iChemHCl = atoi(name[17].c_str());
+		else {
+			//���������� ������ � ����� �����
+			Pnt xr = cells[cr].Get_MassC();
+			Pnt xl = cells[cl].Get_MassC();
 
-		d.CFLmax = atof(name[18].c_str());
-		d.CFLmax_Explicit = atof(name[19].c_str());
-		d.iDebug = atoi(name[20].c_str());
-		d.Nc = atoi(name[21].c_str());
+			//���������� ����� ��������
+			double dx = (xr.x - xl.y);
+			double dy = (xr.y - xl.y);
+			double dl = sqrt(dx * dx + dy * dy);
 
-		d.IComps = new int[d.Nc];
+			//dh/dn
+			double dh_dn = (p[cr].h - p[cl].h) / dl;
 
-		/*
-				string* Comps = new string[d.Nc];
-				Split(name[22], Comps, d.Nc);
-				for (int i = 0; i < d.Nc; i++) {
-					d.IComps[i] = atoi(Comps[i].c_str());
-					cout << "d.IComps[i]= " << d.IComps[i] << endl;
-				}
-		*/
-		for (int i = 0; i < d.Nc; i++) {
-			reading >> d.IComps[i];
+			//������� mu/Pr
+			double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
 
-			//cout << "d.IComps[i]= " << d.IComps[i] << endl;
+			//Fv - ����� ����� �����
+			double Fv = mu_Pr * dh_dn;
+
+			double lenght = face.length;	//����� �����
+			double Sr = cells[cr].Get_S();	//������� 
+			double Sl = cells[cl].Get_S();
+
+			du[cr].dU[0] += -Fv * lenght / Sr * dt;
+			du[cl].dU[0] += Fv * lenght / Sl * dt;
+
 		}
-
-
-		
 	}
-	else
-		cout << "Ошибка открытия файла в ReadRules!" << endl;
-
-
-	reading.close();
 }
 
-
-void ShowRules(rules r, string* comps) {
-	string a, c, b;
-
-	system("clear"); //очистка консоли
-
-	cout << "ПРАВИЛА: " << endl;
-
-	cout << "1. Размерность задачи: " << r.iDim << endl;
-
-	c = "Нет";
-	if (r.iAxisym == 1) c = "Да";
-	cout << "2. Осесимметричность: " << c << endl;
-
-	cout << "3. Мин. и макс.число итераций:: " << r.ItMin <<", " << r.ItMax << endl;
-
-	cout << "4. Макс. невязка: " << r.ResMax << endl;
-
-	c = "Неявная";
-	if (r.iExplicit == 1) c = "Явная";
-	cout << "5. Тип численной схемы: " << c << endl;
-
-	string s[5] = { "Ламинарная","k-epsilon","k-omega","k-g","SST" };
-	int i = r.iTurb;
-	c = "без учета сжимаемости";
-	if (r.iTrb2 == 2) c = "с учетом сжимаемости";
-	cout << "6. Модель турбулентности: " << s[i] <<  ", " << c << endl;
-
-	cout << "7. Порядок представления невязких потоков: " << r.nInviscid << endl;
-
-	cout << "8. Сеточный файл: " << r.cMesh << endl;
-
-	c = "Нет";
-	if (r.iViscous == 1) c = "Да";
-	cout << "9. Учитываются ли вязкие потоки: " << c << endl;
-
-	a = "Задаются в программе (файл \"InitAll.txt\")";
-	if (r.i_transform == 2) a = "Берутся из предыдущего расчета из файла \"Results.txt\"";
-	cout << "10. Способ задания начальных условий: " << a << endl;
-
-	c = "Нет";
-	if (r.iOutResults == 1) c = "Да";
-	cout << "11. Создавать файл \"Results.txt\"?: " << c << endl;
-
-	c = "Нет";
-	if (r.iChem == 1) c = "Да";
-	cout << "12. Учитываются химические реакции: " << c << endl;
-
-	string d;
-	a = ""; b = ""; c = ""; d = "";
-	
-	if (r.iChemH2 == 1) a = "H2+O2 упрощенная, ";
-	if (r.iChemH2 == 2) a = "H2+O2 полная, ";
-	if (r.iChemCO == 1) b = "CO+O2 упрощенная, ";
-	if (r.iChemCO == 2) b = "CO+O2 полная, ";
-	if (r.iChemNO == 1) c = "N2+O2 упрощенная, ";
-	if (r.iChemNO == 2) c = "N2+O2 + e, ";
-	if (r.iChemNO == 3) c = "N2+O2 полная, ";
-	if (r.iChemHCl == 1) c = " реакции хлора ";
-	cout << "13. Хим.кинетика: " << a << b << c << d <<  endl;
-
-	int q = r.IComps[0] - 1;
-	c = comps[q];
-
-	for (int i = 1; i < r.Nc; i++) {
-		q = r.IComps[i] - 1;
-		c += ", " + comps[q];
-	}
-
-	cout << "14. Химические компоненты: " << c << endl;
-
-	cout << "+ В систему при расчете будут добавлены компоненты, " ;
-	cout << "входящие в указанные выше реакции" << endl;
-
-
-	cout << "15. Максимальное значение числа CFL: " << r.CFLmax << endl;
-	cout << "16. Максимальное значение числа CFL в явной схеме: " << r.CFLmax_Explicit << endl;
-
-	c = "Нет";
-	if (r.iDebug == 1) c = "Да";
-	cout << "17. Режим отладки: " << c << endl;
-	
-	cout << "------------------------------------------- "  << endl << endl;
-
-
-
-}
-
-void SaveRules(rules r, string fileName)
+void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt, Gradient* gr, int Nm)
 {
-	// создаем поток для записи
-	string f = "Input/" + fileName;
-	ofstream record(f, ios::out);
+    int nFaces = mesh.Get_nFaces();
 
-	if (record) {
-		record << setw(r.nameLength[0]) << left << r.iDim << "!" << r.comment[0]  << endl;
-			record << setw(r.nameLength[1]) << left << r.iAxisym << "!" << r.comment[1] << endl;
-			record << setw(r.nameLength[2]) << left << r.ItMin << "!" << r.comment[2] << endl;
-			record << setw(r.nameLength[3]) << left << r.ItMax << "!" << r.comment[3] << endl;
+    double* Fv = new double[Nm];
 
-			record.setf(ios::scientific);
-			record.precision(2); // две цифры после запятой
-			record << setw(r.nameLength[4]) << left << r.ResMax << "!" << r.comment[4] << endl;
-			record.unsetf(ios::scientific);
+    for (int i = 0; i < nFaces; i++) {
+        Face face = mesh.Get_face(i);
 
-			record << setw(r.nameLength[5]) << left << r.iExplicit << "!" << r.comment[5] << endl;
-			record << setw(r.nameLength[6]) << left << r.iTurb << "!" << r.comment[6] << endl;
-			record << setw(r.nameLength[7]) << left << r.iTrb2 << "!" << r.comment[7] << endl;
-			record << setw(r.nameLength[8]) << left << r.nInviscid << "!" << r.comment[8] << endl;
-			record << setw(r.nameLength[9]) << left << r.cMesh << "!" << r.comment[9] << endl;
-			record << setw(r.nameLength[10]) << left << r.iViscous << "!" << r.comment[10] << endl;
-			record << setw(r.nameLength[11]) << left << r.i_transform << "!" << r.comment[11] << endl;
-			record << setw(r.nameLength[12]) << left << r.iOutResults << "!" << r.comment[12] << endl;
-			record << setw(r.nameLength[13]) << left << r.iChem << "!" << r.comment[13] << endl;
-			record << setw(r.nameLength[14]) << left << r.iChemH2 << "!" << r.comment[14] << endl;
-			record << setw(r.nameLength[15]) << left << r.iChemCO << "!" << r.comment[15] << endl;
-			record << setw(r.nameLength[16]) << left << r.iChemNO << "!" << r.comment[16] << endl;
-			record << setw(r.nameLength[17]) << left << r.iChemHCl << "!" << r.comment[17] << endl;
+        int cr = face.cr;
+        int cl = face.cl;
 
-			record.setf(ios::scientific);
-			record.precision(2); // две цифры после запятой
-			record << setw(r.nameLength[18]) << left << r.CFLmax << "!" << r.comment[18] << endl;
-			record << setw(r.nameLength[19]) << left << r.CFLmax_Explicit << "!" << r.comment[19] << endl;
-			record.unsetf(ios::scientific);
+        double length = face.length;
 
-			record << setw(r.nameLength[20]) << left << r.iDebug << "!" << r.comment[20] << endl;
-			record << setw(r.nameLength[21]) << left << r.Nc << "!" << r.comment[21] << endl;
+        int n1 = face.nodes[0];
+        int n2 = face.nodes[1];
 
-			for (int i = 0; i < r.Nc; i++) {
-				record << r.IComps[i] << " ";
-			}
-	}
-	else
-		cout << "Ошибка открытия файла!" << endl;
+        Pnt x1 = mesh.Get_node(n1);
+        Pnt x2 = mesh.Get_node(n2);
 
-	record.close();
+        double nx = (x1.y - x2.y) / length;
+        double ny = (x2.x - x1.x) / length;
+
+        if (face.is_boundary) {
+            int c = max(cr, cl);
+
+            Pnt xc = cells[c].Get_MassC();
+
+            int z = face.zone;
+            int granType = mesh.Get_zone(z).granType;
+
+            if (granType == 1) {
+                double dl = cells[i].Get_Yw();
+
+                double du_dx, du_dy, dv_dx, dv_dy, dh_dx, dh_dy;
+                double  u_, v_;
+
+                if (mesh.Get_zone(z).bnd[0].rules[0] == 0) {
+                    double ux = gr[c].g[1].cx[0];
+                    double uy = gr[c].g[1].cx[1];
+                    du_dx = ny * ny * ux - nx * ny * uy;
+                    du_dy = -nx * ny * ux + nx * nx * uy;
+
+                    double vx = gr[c].g[2].cx[0];
+                    double vy = gr[c].g[2].cx[1];
+                    dv_dx = ny * ny * vx - nx * ny * vy;
+                    dv_dy = -nx * ny * vx + nx * nx * vy;
+                    
+                    u_ = p[c].u;
+                    v_ = p[c].v;
+
+                }
+
+                if (mesh.Get_zone(z).bnd[0].rules[0] == 1) {
+                    double du_dn = p[c].u / dl;
+                    double dv_dn = p[c].v / dl;
+                    double du_dl = 0;
+                    double dv_dl = 0;
+                    du_dx = du_dn * nx - du_dl * ny;
+                    dv_dx = dv_dn * nx - dv_dn * ny;
+
+                    du_dy = du_dn * ny + du_dl * nx;
+                    dv_dy = dv_dn * ny + dv_dl * nx;
+
+                    u_ = 0;
+                    v_ = 0;
+                 }
+
+                if (mesh.Get_zone(z).bnd[0].rules[1] == 1) {
+                    double Tw = mesh.Get_zone(z).bnd[0].vals[0];
+                    double hw = p[c].Cp * Tw;
+                    double dh_dn = (p[c].h - hw) / dl;
+
+                    double dh_dl = 0;
+
+                    dh_dx = dh_dn * nx + dh_dl * ny;
+                    dh_dy = dh_dn * ny + dh_dl * nx;
+
+                }
+
+                if (mesh.Get_zone(z).bnd[0].rules[1] == 2) {
+                    double tx = gr[c].g[3].cx[0];
+                    double ty = gr[c].g[3].cx[1];
+
+                    dh_dx = ny * ny * tx - nx * nx * ty;
+                    dh_dy = -nx * ny * tx + nx * nx * ty;
+
+                }
+
+                double mu = p[c].mu;
+
+                double div = du_dx + dv_dy;
+                double txx = mu * (2 * du_dx - 2 * div / 3);
+                double tyy = mu * (2 * dv_dy - 2 * div / 3);
+                double txy = mu * (du_dy + dv_dx);
+
+                double mu_Pr = p[c].mu / p[c].Pr;
+
+                double qx = -mu_Pr * dh_dx;
+                double qy = -mu_Pr * dh_dy;
+
+                Fv[0] = 0;
+                Fv[1] = txx * nx + txy * ny;
+                Fv[2] = txy * nx + tyy * ny;
+                Fv[3] = (u_ * txx + v_ * txy - qx) * nx + (u_ * txy + v_ * tyy - qy) * ny;
+
+            } 
+
+            if (granType == 3) {
+                double dl = cells[i].Get_Yw();
+
+                double du_dx, du_dy, dv_dx, dv_dy, dh_dx, dh_dy;
+                double  u_, v_;
+
+                double ux = gr[c].g[1].cx[0];
+                double uy = gr[c].g[1].cx[1];
+                du_dx = ny * ny * ux - nx * ny * uy;
+                du_dy = -nx * ny * ux + nx * nx * uy;
+
+                double vx = gr[c].g[2].cx[0];
+                double vy = gr[c].g[2].cx[1];
+                dv_dx = ny * ny * vx - nx * ny * vy;
+                dv_dy = -nx * ny * vx + nx * nx * vy;
+
+                u_ = p[c].u;
+                v_ = p[c].v;
+
+                double tx = gr[c].g[3].cx[0];
+                double ty = gr[c].g[3].cx[1];
+
+                dh_dx = ny * ny * tx - nx * nx * ty;
+                dh_dy = -nx * ny * tx + nx * nx * ty;
+
+                double mu = p[c].mu;
+
+                double div = du_dx + dv_dy;
+                double txx = mu * (2 * du_dx - 2 * div / 3);
+                double tyy = mu * (2 * dv_dy - 2 * div / 3);
+                double txy = mu * (du_dy + dv_dx);
+
+                double mu_Pr = p[c].mu / p[c].Pr;
+
+                double qx = -mu_Pr * dh_dx;
+                double qy = -mu_Pr * dh_dy;
+
+                Fv[0] = 0;
+                Fv[1] = txx * nx + txy * ny;
+                Fv[2] = txy * nx + tyy * ny;
+                Fv[3] = (u_ * txx + v_ * txy - qx) * nx + (u_ * txy + v_ * tyy - qy) * ny;
+
+            }
+
+            if (granType == 2 || granType == 4) {
+                for (int m = 0; m < 4; m++) {
+                    Fv[m] = 0;
+                }
+            }
+
+            double length = face.length;
+            if (cr >= 0) {
+                double Sr = cells[cr].Get_S();
+                for (int m = 0; m < Nm; m++) {
+                    du[cr].dU[m] += -Fv[m] * length / Sr * dt;
+                }
+            }
+
+            if (cl >= 0) {
+                double Sl = cells[cl].Get_S();
+                for (int m = 0; m < Nm; m++) {
+                    du[cl].dU[m] += Fv[m] * length / Sl * dt;
+                }
+            }
+
+        }
+        else {
+
+
+            Pnt xr = cells[cr].Get_MassC();
+            Pnt xl = cells[cl].Get_MassC();
+
+            double dx = xr.x - xl.x;
+            double dy = xr.y - xl.y;
+            double dl = sqrt(dx * dx + dy * dy);
+
+            double du_dx = 0.5 * (gr[cr].g[1].cx[0] + gr[cl].g[1].cx[0]);
+            double du_dy = 0.5 * (gr[cr].g[1].cx[1] + gr[cl].g[1].cx[1]);
+
+            double dv_dx = 0.5 * (gr[cr].g[2].cx[0] + gr[cl].g[2].cx[0]);
+            double dv_dy = 0.5 * (gr[cr].g[2].cx[1] + gr[cl].g[2].cx[1]);
+
+            double dh_dx = 0.5 * (gr[cr].g[3].cx[0] + gr[cl].g[3].cx[0]);
+            double dh_dy = 0.5 * (gr[cr].g[3].cx[1] + gr[cl].g[3].cx[1]);
+
+            double mu = 0.5 * (p[cr].mu + p[cl].mu);
+
+            double div = du_dx + dv_dy;
+            double txx = mu * (2 * du_dx - 2 * div / 3);
+            double tyy = mu * (2 * dv_dy - 2 * div / 3);
+            double txy = mu * (du_dy + dv_dx);
+
+            double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
+
+            double qx = -mu_Pr * dh_dx;
+            double qy = -mu_Pr * dh_dy;
+            
+            double u_ = 0.5 * (p[cr].u + p[cl].u);
+            double v_ = 0.5 * (p[cr].v + p[cl].v);
+
+            Fv[0] = 0;
+            Fv[1] = txx * nx + txy * ny;
+            Fv[2] = txy * nx + tyy * ny;
+            Fv[3] = (u_ * txx + v_ * txy - qx) * nx + (u_ * txy +v_ * tyy - qy) * ny;
+
+            double lenght = face.length;
+            double Sr = cells[cr].Get_S();
+            double Sl = cells[cl].Get_S();
+
+            for (int m = 0; m < Nm; m++) {
+                du[cr].dU[m] += -Fv[m] * length / Sr * dt;
+                du[cl].dU[m] += Fv[m] * length / Sl * dt;
+            }
+
+        }
+    }
 }
 
-void EditRules(rules& r, int n, string* comps)
+void GetParams(parameters* (&p), int nCells, int Nm)
 {
-	int i;
-	string s;
+    for (int i = 0; i < nCells; i++) {
+        p[i].ro = p[i].U1[0];
+        p[i].u = p[i].U1[1] / p[i].ro;
+        p[i].v = p[i].U1[2] / p[i].ro;
+        p[i].E = p[i].U1[3] / p[i].ro;
 
-	switch (n)
-	{
-	case 1:
-		cout << "Введите размерность задачи (2 или 3): " << endl;
-		cin >> i;
-		if (i == 2 || i == 3)
-			r.iDim = i;
-		else
-			cout << "Ошибка ввода!" << endl << endl;
-		break;
+        double q = 0.5 * (p[i].u * p[i].u + p[i].v * p[i].v);
 
-	case 2:
-		cout << "Задача осесимметричная? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iAxisym = 1;
-		else
-			r.iAxisym = 0;
-		break;
+        double e = p[i].E - q;
 
-	case 3:
-		cout << "Мин. и максимальное число итераций (любые числа > 1): " << endl;
-		cin >> r.ItMin >> r.ItMax;
-		break;
+        p[i].h = e * p[i].Gam;
+        p[i].T = p[i].h / p[i].Cp;
+        p[i].H = p[i].h + q;
 
-	case 4:
-		cout << " Максимальная невязка: " << endl;
-		cin >> r.ResMax;
-		break;
+        double R = 8314.41 / p[i].Gm;
+        p[i].p = p[i].ro * R * p[i].T;
 
-	case 5:
-		cout << "Какая схема используется? (1 - Явная; любое другое число - Неявная): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iExplicit = 1;
-		else
-			r.iExplicit = 0;
-		break;
+        p[i].V[0] = p[i].ro;    
+        p[i].V[1] = p[i].u;
+        p[i].V[2] = p[i].v;
+        p[i].V[3] = p[i].h;
 
-	case 6:
-		//string s[5] = { "Ламинарная","","k-omega","k-g","SST" };
-
-		cout << "Какая Модель турбулентности используется? " << endl;
-		cout << "(0 - лам.течение; 1 - k-epsilon; 2 - k-omega; 3 - k-g; любое другое число - SST): " << endl;
-		cin >> i;
-		if (i < 4)
-			r.iTurb = i;
-		else
-			r.iTurb = 4;
-
-		cout << "Учитывается сжимаемость? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iTrb2 = 2;
-		else
-			r.iTrb2 = 1;
-
-		break;
-
-	case 7:
-		cout << "Порядок представления невязких потоков? (1 - первый; любое другое число - 2-ой): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.nInviscid = 1;
-		else
-			r.nInviscid = 2;
-		break;
-
-	case 8:
-		cout << "Имя сеточного файла " << endl;
-		cin >> s;
-		if (s != "")  r.cMesh = s;
-
-		break;
-
-	case 9:
-		cout << "Учитываются вязкие потоки? (1 - Да; любое другое число - Нет): " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iViscous = 1;
-		else
-			r.iViscous = 0;
-
-		break;
-
-	case 10:
-		cout << "Какой способ задания начальных условий?" << endl;
-		cout << "(0 - Задаются в программе; любое другое число - Берутся из предыдущего расчета из файла \"Results.txt\": " << endl;
-		cin >> i;
-		if (i == 0)
-			r.i_transform = i;
-		else
-			r.i_transform = 2;
-
-		break;
-
-	case 11:
-		cout << "Создавать файл \"Results.txt\"? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iOutResults = 1;
-		else
-			r.iOutResults = 0;
-
-		break;
-
-	case 12:
-		cout << "Учитывать химические реакции? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iChem = 1;
-		else
-			r.iChem = 0;
-
-		break;
-
-	case 13:
-
-		cout << "Какая схема для H2+O2?  : " << endl;
-		cin >> r.iChemH2;
-		cout << "Какая схема для CO+O2?  : " << endl;
-		cin >> r.iChemCO;
-		cout << "Какая схема для N2+O2?  : " << endl;
-		cin >> r.iChemNO;
-		cout << "Какая схема для HCl?  : " << endl;
-		cin >> r.iChemHCl;
-
-		break;
-
-	case 14:
-		cout << "Число хим. компонентов  : " << endl;
-		cin >> r.Nc;
-		delete(r.IComps);
-		r.IComps = new int[r.Nc];
-
-		cout << "Выберите номера хим. компонентов из списка  : " << endl;
-		for (int i = 0; i < 30; i++)
-		{
-			if (comps[i] != "ZZ")
-				cout << i + 1 << " -> " << comps[i] << endl;
-		}
-		int j;
-		for (int i = 0; i < r.Nc; i++)
-		{
-			cin >> j;
-			r.IComps[i] = j;
-		}
-
-		break;
-
-	case 15:
-		cout << "Максимальное значение числа CFL: " << endl;
-		cin >> r.CFLmax;
-		break;
-
-	case 16:
-		cout << "Максимальное значение числа CFL в явной схеме: " << endl;
-		cin >> r.CFLmax_Explicit;
-		break;
-
-	case 17:
-		cout << "Режим отладки? (1 - Да; любое другое число - Нет) : " << endl;
-		cin >> i;
-		if (i == 1)
-			r.iDebug = 1;
-		else
-			r.iDebug = 0;
-		break;
-
-	default:
-		break;
-	}
-
+    }
 }
 
-void ReadParams(Region* (&d), int& n, int Nc, string fileName)
+//***********
+void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, double dt)
 {
-	string reg;
-	string f = "Input/" + fileName;
-	ifstream reading(f);
+    int nFaces = mesh.Get_nFaces();
+
+    for (int i = 0; i < nFaces; i++) {
+        Face face = mesh.Get_face(i);
+
+        int cr = face.cr;
+        int cl = face.cl;
+
+        //nodes
+        int n1 = face.nodes[0];
+        int n2 = face.nodes[1];
+
+        double dl = face.length;    //����� �����
+
+        Pnt x1 = mesh.Get_node(n1);
+        Pnt x2 = mesh.Get_node(n2);
+
+        double nx = (x1.y - x2.y) / dl;
+        double ny = (x2.x - x1.x) / dl;
+
+        double Fc;
+
+        if (i == -10) {
+            double un = p[cl].u * nx + p[cl].v * ny;
+        }
+
+        if (face.is_boundary) {
+            int c = max(cr, cl);
+            double S = cells[c].Get_S();
 
 
-	if (reading) {
+            if (face.zone == 1) {
+                double uInlet, vInlet, T_Inlet;
+                uInlet = p[c].u;
+                vInlet = p[c].v;
+                T_Inlet = 273;
 
-		reading >> n;
+                double un = uInlet * nx + vInlet * ny;
 
-		// временные переменные
-		Gas gas;
-		Turb turb;
-		int iMol;
-		double* Yc = new double[Nc];
-		//cout << "Nc = " << Nc << endl;
-		//  выделяем память
-		d = new Region[n];
+                double h = p[c].Cp * T_Inlet;
+                double H = h + 0.5 * (uInlet * uInlet + vInlet * vInlet);
 
-		for (int i = 0; i < n; i++) {
-			reading >> reg;
-			reading >> gas.Lchar >> gas.U[0] >> gas.U[1] >> gas.U[2] >> gas.T >> gas.p;
-			reading >> iMol;
+                double E = h / p[c].Gam + 0.5 * (uInlet * uInlet + vInlet * vInlet);
 
-			for (int j = 0; j < Nc; j++)
-				reading >> Yc[j];
+                Fc = p[c].ro * H * un;
 
-			//cout << "Yc[0] = " << Yc[0] << ", Yc[1] = " << Yc[1] << endl;
+                du[c].dU[0] += -Fc * dl / S * dt;
 
-			reading >> turb.turb_intens >> turb.turb_scale >> turb.MuT_Mu;
+            }
 
-			d[i].DataEntry(gas, iMol, Yc, turb, Nc);
-		}
+            if (face.zone == 3) {
+                double un = p[c].u * nx + p[c].v * ny;
 
-		// cout << "Данные считаны in ReadParams!" << endl;
-		//cout << endl;
-	}
-	else {
-		cout << "Ошибка открытия файла в ReadParams" << endl;
-	}
+                Fc = p[c].ro * p[c].H * un;
+                du[c].dU[0] += Fc * dl / S * dt;
+            }
 
-	reading.close();
+            if ((face.zone == 2) || (face.zone == 4)) {
+                du[c].dU[0] += 0;
+            }
+        }
+        else {
+            //������� ��������
+            double u_, v_, un_, H_, E_, ro_;
+
+            u_ = 0.5 * (p[cr].u + p[cl].u);
+            v_ = 0.5 * (p[cr].v + p[cl].v);
+            un_ = u_ * nx + v_ * ny;
+            H_ = 0.5 * (p[cr].H + p[cl].H);
+            E_ = 0.5 * (p[cr].E + p[cl].E);
+            ro_ = 0.5 * (p[cr].ro + p[cl].ro);
+
+            double A = H_ / E_ * un_;
+            double Apl, Amn;
+
+            Apl = 0.5 * (A + abs(A));
+            Amn = 0.5 * (A - abs(A));
+
+            double UL, UR;
+            UL = p[cl].U[0];
+            UR = p[cr].U[0];
+
+            Fc = Apl * UL + Amn * UR;
+
+            double Sr = cells[cr].Get_S();
+            double Sl = cells[cl].Get_S();
+
+            du[cr].dU[0] += Fc * dl / Sr * dt;
+            du[cl].dU[0] -= Fc * dl / Sl * dt;
+
+
+        }
+    }
 }
 
-void ShowParams(Region* z, int n, int* iComps, string* comps)
+void Yw(Mesh mesh, Cell* (&cells), int nCells)
 {
-	cout << "*****************************" << endl;
-	
-	for (int i = 0; i < n; i++) {
-		cout << "       Участок № " << i + 1 << ":" << endl;
+    int nFaces = mesh.Get_nFaces();
 
-		z[i].Print(iComps, comps);
-		cout << "___________________________" << endl;
+    for (int k = 0; k < nCells; k++) {
+        double z1 = 1.e10;
+        Pnt E = cells[k].Get_MassC();
 
-	}
-	cout << " " << endl;
+        for (int i = 0; i < nFaces; i++) {
+            int nz = mesh.Get_face(i).zone;
+            int granType = mesh.Get_zone(nz).granType;
 
+            if (granType == 1) {
+                int n1 = mesh.Get_face(i).nodes[0];
+                int n2 = mesh.Get_face(i).nodes[1];
+                Pnt A = mesh.Get_node(n1);
+                Pnt B = mesh.Get_node(n2);
+
+
+                double z2 = Dist(A, B, E);
+
+                if (z1 > z2) { z1 = z2; };
+            }
+        }
+        cells[k].Set_Yw(z1);
+    }
+
+    //����� ������
+    int Nx = mesh.Get_Nx();
+    int Ny = mesh.Get_Ny();
+
+    string f = "Yw.plt";
+    ofstream record2(f, ios::out);
+    if (record2) {
+        record2 << "VARIABLES= \"X\", \"Y\", \"Yw,m\"" << endl;
+        record2 << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
+
+        for (int i = 0; i < nCells; i++) {
+            record2 << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << cells[i].Get_Yw() << endl;
+        }
+
+    }
+    record2.close();
 }
 
-void SavingData(Region* d, int n, string fileName)
+void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 {
-	// создаем поток для записи
-	string f = "Input/" + fileName;
-	ofstream record(f, ios::out);
+    // ������� ����� ��� ������
+    string f = "T.plt";
+    ofstream record(f, ios::out);
+    if (record) {
+        record << "VARIABLES= \"X\", \"Y\", \"T,K\"" << endl;
 
-	if (record) {
-		record << n << endl;
+        record << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
+        for (int i = 0; i < nCells; i++) {
+            record << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << p[i].T << endl;
+        }
 
-		for (int i = 0; i < n; i++) {
-			record << "region" << i + 1 << endl;
-			record << d[i].GetGas().Lchar << " " << d[i].GetGas().U[0] << " " << d[i].GetGas().U[1]
-				<< " " << d[i].GetGas().U[2] << " " << d[i].GetGas().T << " " << d[i].GetGas().p << endl;
-			record << d[i].GetiMol() << endl;
-
-			//Yc
-			for (int j = 0; j < d[i].GetNc(); j++) {
-				record << d[i].GetYc(j) << " ";
-			}
-			record << endl;
-
-			record << d[i].GetTurb().turb_intens << " " << d[i].GetTurb().turb_scale
-				<< " " << d[i].GetTurb().MuT_Mu << endl;
-		}
-
-		cout << "Данные записаны!" << endl;
-	}
-	else
-		cout << "Ошибка открытия файла!" << endl;
-
-	record.close();
+    }
+    record.close();
 }
 
-void Copy(Region* (&d_n), Region* (&d_o), int n) {
-	for (int i = 0; i < n; i++) {
-		d_n[i] = d_o[i];
-	}
-}
 
-void AddData(Region* (&z), int& m, int Nc, int* iComps, string* comps)
+
+double Dist(Pnt A, Pnt B, Pnt E)
 {
+    double AB[2], BE[2], AE[2];
 
-	// временные переменные
-	Gas gas;
-	Turb turb;
-	int iMol;
+    double AB_BE, AB_AE;
 
-	double* Yc = new double[Nc];
+    double dist;
 
-	// временный массив
-	Region* buf = new Region[m];
+    //�������
+    AB[0] = B.x - A.x;
+    AB[1] = B.y - A.y;
+
+    BE[0] = E.x - B.x;
+    BE[1] = E.y - B.y;
+
+    AE[0] = E.x - A.x;
+    AE[1] = E.y - A.y;
+
+    //��������� ������������ ��������
+    AB_BE = (AB[0] * BE[0] + AB[1] * BE[1]);
+    AB_AE = (AB[0] * AE[0] + AB[1] * AE[1]);
+
+    if (AB_BE > 0) {
+        double y = E.y - B.y;
+        double x = E.x - B.x;
+        dist = sqrt(x * x + y * y);
+    }
+    else if (AB_BE < 0) {
+        double y = E.y - A.y;
+        double x = E.x - A.x;
+        dist = sqrt(x * x + y * y);
+    }
+    else {
+        dist = abs(AB[0] * AE[1] - AB[1] * AE[0]) / sqrt(AB[0] * AB[0] + AB[1] * AB[1]);
+    }
+
+    return dist;
+}
+
+void SetGran(Mesh& mesh)
+{
+    mesh.zones[0].granType = 3;
+    mesh.zones[1].granType = 1;
+    mesh.zones[2].granType = 4;
+    mesh.zones[3].granType = 2;
+
+    int nZones = mesh.nZones;
+
+    //� ������� - ���� �� �����
+    //�������� ��������
+
+    for (int i = 0; i < nZones; i++) {
+        int tp = mesh.zones[i].granType;
+        mesh.zones[i].bnd = new Boudary;
+        if (tp == 1) {
+            mesh.zones[i].bnd[0].rules = new int[2];
+            mesh.zones[i].bnd[0].vals = new double;
+        }
+        if (tp == 2) {
+            mesh.zones[i].bnd[0].rules = new int;
+            mesh.zones[i].bnd[0].vals = new double[5];
+        }
+    }
+
+    mesh.zones[1].bnd[0].rules[0] = 1;
+    mesh.zones[1].bnd[0].rules[1] = 1;
+    mesh.zones[1].bnd[0].vals[0] = 105;
+    
+    mesh.zones[3].bnd[0].rules[0] = 1;
+    mesh.zones[3].bnd[0].vals[0] = 0.08;
+    mesh.zones[3].bnd[0].vals[1] = 867.9;
+    mesh.zones[3].bnd[0].vals[2] = 75.1;
+    mesh.zones[3].bnd[0].vals[3] = 1931;
+    mesh.zones[3].bnd[0].vals[4] = 0;
+    
+}
+
+void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
+{
+    int nCells = mesh.Get_nCells();
+
+    //�������� ������� Vc � ������ ������
+    double* Vc = new double[Nm];
+    //��������� ������� Vc �� ��������� � �������� ������
+    double* dVk = new double[Nm];
+
+    //��������� ������ ���������� ��� ���� ���������� ������� V
+    Vector* gr_ = new Vector[Nm];
+
+    for (int i = 0; i < Nm; i++) {
+        gr_[i].cx = new double[2];
+    }
+
+    for (int i = 0; i < nCells; i++) {
+        int NB = cells[i].Get_NFaces();     //����� ���������� ������
+
+        for (int j = 0; j < Nm; j++) {
+            gr_[j].cx[0] = 0;
+            gr_[j].cx[1] = 0;
+        }
+
+        for (int j = 0; j < Nm; j++) {
+            Vc[j] = p[i].V[j];
+        }
+
+        for (int j = 0; j < NB; j++) {      //������ �� ������
+            bool fType = cells[i].Get_fType(j);
+
+            int nb = cells[i].Get_Cell(j);
+            int nf = cells[i].Get_Face(j);
+
+            if (!fType) {
+                for (int m = 0; m < Nm; m++) {
+                    dVk[m] = p[nb].V[m] - Vc[m];
+                }
+            }
+            else {
+                int z = mesh.Get_face(nf).zone;
+                int btype = mesh.Get_zone(z).granType;
+
+                if (btype == 1) {
+                    bool vel = mesh.Get_zone(z).bnd[0].rules[0];
+                    int temp = mesh.Get_zone(z).bnd[0].rules[1];
+                    double value = mesh.Get_zone(z).bnd[0].vals[0];
+
+                    if (!vel) {
+                        dVk[1] = 0;
+                        dVk[2] = 0;
+
+                    }
+                    else {
+                        dVk[1] = -Vc[1];
+                        dVk[2] = -Vc[2];
+                    }
+
+                    if (temp == 1) {
+                        double Tw = value;
+                        double hw = p[i].Cp * Tw;
+
+                        dVk[3] = hw - Vc[3];
+
+                        double ro = p[i].p * p[i].Gm / (8314.41 * Tw);
+                        dVk[0] = ro - Vc[0];
+                    }
+
+                    if (temp == 2) {
+                        dVk[3] = 0;
+                        dVk[0] = 0;
+                    }
+                }
+
+                if (btype == 2) {
+                    double u = mesh.Get_zone(z).bnd->vals[1];
+                    double T = mesh.Get_zone(z).bnd->vals[2];
+                    double P = mesh.Get_zone(z).bnd->vals[3];
+
+                    double ro = P * p[i].Gm / (8314.41 * T);
+                    double h = p[i].Cp * T;
+
+                    dVk[0] = ro - Vc[0];
+                    dVk[1] = u - Vc[1];
+                    dVk[2] = -Vc[2];
+                    dVk[3] = h - Vc[3];
+                }
+
+                if (btype == 3) {
+                    dVk[0] = 0;
+                    dVk[1] = 0;
+                    dVk[2] = -Vc[2];
+                    dVk[3] = 0;
+                }
+
+                if (btype == 4) {
+                    dVk[0] = 0;
+                    dVk[1] = 0;
+                    dVk[2] = 0;
+                    dVk[3] = 0;
+                }
+            }
+
+            for (int m = 0; m < Nm; m++) {
+                gr_[m].cx[0] += cells[i].Get_wk(j) * dVk[m] * cells[i].Get_ck(j).cx[0];
+                gr_[m].cx[1] += cells[i].Get_wk(j) * dVk[m] * cells[i].Get_ck(j).cx[1];
+            }
+        }
+
+        for (int j = 0; j < Nm; j++) {
+            gr[i].g[j].cx[0] = gr_[j].cx[0];
+            gr[i].g[j].cx[1] = gr_[j].cx[1];
+        }
+    }
+}
+
+void Matrix_Diag(double A[4][4], double L[4], double B[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            B[i][j] = A[i][j] * L[j];
+        }
+    }
+}
+
+void Matrix_Matrix(double A[4][4], double B[4][4], double C[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < 4; k++) {
+                C[i][j] += A[i][k] + B[k][j];
+            }
+        }
+    }
+}
+
+void Matrix_Vector(double A[4][4], double B[4], double C[4])
+{
+    for (int i = 0; i < 4; i++) {
+        C[i] = 0;
+        for (int j = 0; j < 4; j++) {
+            C[i] += A[i][j] * B[j];
+        }
+    }
+}
+
+void PrintMatrix(double A[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cout << setw(15) << A[i][j];
+        }
+        cout << endl;
+    }
+}
+
+/*void ConvectNS()
+{
+    double A[4][4];
+    double u, double v, double ro, double p, double h, double nx, double ny;
+    int iMod;
+    S_Matr(A, u, v, ro, p, h, nx, ny, iMod);
+}*/
 
 
-	Copy(buf, z, m);
+void S_Matr(double A[4][4], double u, double v, double ro, double p, double h, double nx, double ny, int iMod)
+{
+    double gam = h / (h - p / ro);
+    double a = sqrt(gam * p / ro);
 
-	//// Выделяем новую память
-	z = new Region[m + 1];
+    double beta = gam - 1;
+    double alpha = 0.5 * (u * u + v * v);
 
-	//z[m].GetYc() = new double[Nc];
+    double Ht = h + alpha;
+    double Et = Ht - p / ro;
 
-	Copy(z, buf, m);
-	cout << "Введите характерный размер [м]:  ";
-	cin >> gas.Lchar;
+    double ly = nx;
+    double lx = -ny;
 
-	cout << "Введите компоненты скорости u, v, w [м/с]:  ";
-	cin >> gas.U[0];
-	cin >> gas.U[1];
-	cin >> gas.U[2];
-	cout << "Введите температуру [K]:  ";
-	cin >> gas.T;
-	cout << "Введите давление [Па]:  ";
-	cin >> gas.p;
+    double U_ = u * nx + v * ny;
+    double V_ = u * lx + v * ly;
 
-	int f;
-	cout << "Используются мольные (1) или массовые доли (0) компонентов?  ";
-	cin >> f;
-	if (f == 0)
-		iMol = 0;
-	else
-		iMol = 1;
+    double S[4][4], S_[4][4];
 
-	for (int j = 0; j < Nc; j++) {
-		if (iMol == 0)
-			cout << "Введите массовую долю " << j + 1 << "-го компонента:   ";
-		else
-			cout << "Введите мольную долю " << j + 1 << "-го компонента:   ";
+    S[0][0] = a * a - alpha * alpha;
+    S[0][1] = beta * u;
+    S[0][2] = beta * v;
+    S[0][3] = -beta;
 
-		cin >> Yc[j];
-	}
+    S[1][0] = -V_;
+    S[1][1] = lx;
+    S[1][2] = ly;
+    S[1][3] = 0;
 
-	cout << "Введите интенсивность турбулентности (в долях от скорости):  ";
-	cin >> turb.turb_intens;
+    S[2][0] = alpha * beta - U_ * a;
+    S[2][1] = a * nx - beta * u;
+    S[2][2] = a * ny - beta * v;
+    S[2][3] = beta;
 
-	cout << "Введите масштаб турбулентности (в долях от характ.размера):  ";
-	cin >> turb.turb_scale;
+    S[3][0] = alpha * beta + U_ * a;
+    S[3][1] = -a * nx - beta * u;
+    S[3][2] = -a * ny - beta * v;
+    S[3][3] = beta;
 
-	cout << "Введите MuT/Mu:  ";
-	cin >> turb.MuT_Mu;
+    double a2 = a * a;
 
-	z[m].DataEntry(gas, iMol, Yc, turb, Nc);
+    S_[0][0] = 1 / a2;
+    S_[0][1] = 0;
+    S_[0][2] = 1 / (2 * a2);
+    S_[0][3] = 1 / (2 * a2);
 
+    S_[1][0] = u / a2;
+    S_[1][1] = lx;
+    S_[1][2] = (u + a * nx) / (2 * a2);
+    S_[1][3] = (u - a * nx) / (2 * a2);
 
-	m++;
+    S_[2][0] = v / a2;
+    S_[2][1] = ly;
+    S_[2][2] = (v + a * ny) / (2 * a2);
+    S_[2][3] = (v - a * ny) / (2 * a2);
 
-	system("clear");
-	delete[] buf;
+    S_[3][0] = alpha / a2;
+    S_[3][1] = V_;
+    S_[3][2] = (Ht + a * U_) / (2 * a2);
+    S_[3][3] = (Ht - a * U_) / (2 * a2);
 
-	cout << "Данные добавлены!" << endl;
-	system("pause");
+    double L[4];
+
+    L[0] = U_;
+    L[1] = U_;
+    L[2] = U_ + a;
+    L[3] = U_ - a;
+
+    if (iMod == 1) { //������� �
+        
+    }
+
+    if (iMod == 2) { //������� B
+        for (int i = 0; i < 4; i++) {
+            L[0] = 0.5 * (L[i] + abs(L[i]));
+        }
+    }
+
+    if (iMod == 3) { //������� �
+        for (int i = 0; i < 4; i++) {
+            L[0] = 0.5 * (L[i] - abs(L[i]));
+        }
+    }
+
+    double Tmp[4][4];
+
+    Matrix_Diag(S_, L, Tmp);
+
+    Matrix_Matrix(Tmp, S, A);
 }
