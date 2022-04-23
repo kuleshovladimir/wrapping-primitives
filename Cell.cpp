@@ -44,6 +44,16 @@ double Cell::Get_S()
 	return S;
 }
 
+void Cell::Set_Yw(double yw)
+{
+	Yw = yw;
+}
+
+double Cell::Get_Yw()
+{
+	return Yw;
+}
+
 void Cell::Set_NFaces(int NF)
 {
 	nFaces = NF;

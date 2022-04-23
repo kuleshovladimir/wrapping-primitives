@@ -13,6 +13,7 @@ private:
 	Pnt MassC;  // координаты центра т€жести
 	double S;   // площадь €чейки
 
+	double Yw;
 
 	int nFaces; // число граней, окружающих €чейку
 	int nNodes; // число узлов, окружающих €чейку
@@ -39,6 +40,9 @@ public:
 
 	void Set_S(double S_);
 	double Get_S();
+
+	void Set_Yw(double yw);
+	double Get_Yw();
 
 	void Set_NFaces(int NF);
 	int Get_NFaces();

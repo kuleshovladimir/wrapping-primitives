@@ -48,7 +48,7 @@ int main()
 
 	mesh.GradCoeffs(cells);
 
-	double dt = 2.e-1;
+	double dt = 0.0001;
 
 	int ItMax = 50000;
 	int It = 0;
@@ -84,7 +84,7 @@ int main()
 
 
 		//приращение за счет невязких потоков
-		Convect(p, du, mesh, cells, It, dt);
+		ConvectNS(p, du, mesh, cells, dt, Nm);
 
 		//приращение за счет вязкости
 		Viscous(p, du, mesh, cells, dt, gr, Nm);
@@ -95,7 +95,7 @@ int main()
 			}
 		}
 
-		GetParams(p, nCells, Nm);
+		GetParams(p, nCells, Nm, cells);
 
 		res = 0;
 		for (int i = 0; i < nCells; i++) {
@@ -130,6 +130,6 @@ int main()
 
 	record.close();
 
-	cout << "It = " << It << "	res = " << res << endl;
+	std::cout << "It = " << It << "	res = " << res << endl;
 	return 0;
 }

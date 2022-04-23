@@ -1,180 +1,6750 @@
 			cell index = 0
-center = 0.5,0.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 15, type = 1
-ind = 3, type = 0
-ind = 19, type = 0
+ind = 500, type = 1
+ind = 50, type = 0
+ind = 509, type = 0
 ind = 0, type = 1
 number of nodes = 4
 node indexes: 
-0, 4, 5, 1
+0, 51, 52, 1
 neighbour indexes: 
--1, 3, 1, -1
+-1, 50, 1, -1
 ***********************
 			cell index = 1
-center = 0.5,1.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 19, type = 0
-ind = 4, type = 0
-ind = 23, type = 0
+ind = 509, type = 0
+ind = 51, type = 0
+ind = 518, type = 0
 ind = 1, type = 1
 number of nodes = 4
 node indexes: 
-1, 5, 6, 2
+1, 52, 53, 2
 neighbour indexes: 
-0, 4, 2, -1
+0, 51, 2, -1
 ***********************
 			cell index = 2
-center = 0.5,2.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 23, type = 0
-ind = 5, type = 0
-ind = 27, type = 1
+ind = 518, type = 0
+ind = 52, type = 0
+ind = 527, type = 0
 ind = 2, type = 1
 number of nodes = 4
 node indexes: 
-2, 6, 7, 3
+2, 53, 54, 3
 neighbour indexes: 
-1, 5, -1, -1
+1, 52, 3, -1
 ***********************
 			cell index = 3
-center = 1.5,0.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 16, type = 1
-ind = 6, type = 0
-ind = 20, type = 0
-ind = 3, type = 0
+ind = 527, type = 0
+ind = 53, type = 0
+ind = 536, type = 0
+ind = 3, type = 1
 number of nodes = 4
 node indexes: 
-4, 8, 9, 5
+3, 54, 55, 4
 neighbour indexes: 
--1, 6, 4, 0
+2, 53, 4, -1
 ***********************
 			cell index = 4
-center = 1.5,1.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 20, type = 0
-ind = 7, type = 0
-ind = 24, type = 0
-ind = 4, type = 0
+ind = 536, type = 0
+ind = 54, type = 0
+ind = 545, type = 0
+ind = 4, type = 1
 number of nodes = 4
 node indexes: 
-5, 9, 10, 6
+4, 55, 56, 5
 neighbour indexes: 
-3, 7, 5, 1
+3, 54, 5, -1
 ***********************
 			cell index = 5
-center = 1.5,2.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 24, type = 0
-ind = 8, type = 0
-ind = 28, type = 1
-ind = 5, type = 0
+ind = 545, type = 0
+ind = 55, type = 0
+ind = 554, type = 0
+ind = 5, type = 1
 number of nodes = 4
 node indexes: 
-6, 10, 11, 7
+5, 56, 57, 6
 neighbour indexes: 
-4, 8, -1, 2
+4, 55, 6, -1
 ***********************
 			cell index = 6
-center = 2.5,0.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 17, type = 1
-ind = 9, type = 0
-ind = 21, type = 0
-ind = 6, type = 0
+ind = 554, type = 0
+ind = 56, type = 0
+ind = 563, type = 0
+ind = 6, type = 1
 number of nodes = 4
 node indexes: 
-8, 12, 13, 9
+6, 57, 58, 7
 neighbour indexes: 
--1, 9, 7, 3
+5, 56, 7, -1
 ***********************
 			cell index = 7
-center = 2.5,1.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 21, type = 0
-ind = 10, type = 0
-ind = 25, type = 0
-ind = 7, type = 0
+ind = 563, type = 0
+ind = 57, type = 0
+ind = 572, type = 0
+ind = 7, type = 1
 number of nodes = 4
 node indexes: 
-9, 13, 14, 10
+7, 58, 59, 8
 neighbour indexes: 
-6, 10, 8, 4
+6, 57, 8, -1
 ***********************
 			cell index = 8
-center = 2.5,2.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 25, type = 0
-ind = 11, type = 0
-ind = 29, type = 1
-ind = 8, type = 0
+ind = 572, type = 0
+ind = 58, type = 0
+ind = 581, type = 0
+ind = 8, type = 1
 number of nodes = 4
 node indexes: 
-10, 14, 15, 11
+8, 59, 60, 9
 neighbour indexes: 
-7, 11, -1, 5
+7, 58, 9, -1
 ***********************
 			cell index = 9
-center = 3.5,0.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 18, type = 1
-ind = 12, type = 1
-ind = 22, type = 0
-ind = 9, type = 0
+ind = 581, type = 0
+ind = 59, type = 0
+ind = 590, type = 0
+ind = 9, type = 1
 number of nodes = 4
 node indexes: 
-12, 16, 17, 13
+9, 60, 61, 10
 neighbour indexes: 
--1, -1, 10, 6
+8, 59, 10, -1
 ***********************
 			cell index = 10
-center = 3.5,1.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 22, type = 0
-ind = 13, type = 1
-ind = 26, type = 0
-ind = 10, type = 0
+ind = 590, type = 0
+ind = 60, type = 0
+ind = 599, type = 0
+ind = 10, type = 1
 number of nodes = 4
 node indexes: 
-13, 17, 18, 14
+10, 61, 62, 11
 neighbour indexes: 
-9, -1, 11, 7
+9, 60, 11, -1
 ***********************
 			cell index = 11
-center = 3.5,2.5
-square = 1
+center = -nan(ind),-nan(ind)
+square = 0
 number of faces = 4
 face indexes and types: 
-ind = 26, type = 0
-ind = 14, type = 1
-ind = 30, type = 1
-ind = 11, type = 0
+ind = 599, type = 0
+ind = 61, type = 0
+ind = 608, type = 0
+ind = 11, type = 1
 number of nodes = 4
 node indexes: 
-14, 18, 19, 15
+11, 62, 63, 12
 neighbour indexes: 
-10, -1, -1, 8
+10, 61, 12, -1
+***********************
+			cell index = 12
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 608, type = 0
+ind = 62, type = 0
+ind = 617, type = 0
+ind = 12, type = 1
+number of nodes = 4
+node indexes: 
+12, 63, 64, 13
+neighbour indexes: 
+11, 62, 13, -1
+***********************
+			cell index = 13
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 617, type = 0
+ind = 63, type = 0
+ind = 626, type = 0
+ind = 13, type = 1
+number of nodes = 4
+node indexes: 
+13, 64, 65, 14
+neighbour indexes: 
+12, 63, 14, -1
+***********************
+			cell index = 14
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 626, type = 0
+ind = 64, type = 0
+ind = 635, type = 0
+ind = 14, type = 1
+number of nodes = 4
+node indexes: 
+14, 65, 66, 15
+neighbour indexes: 
+13, 64, 15, -1
+***********************
+			cell index = 15
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 635, type = 0
+ind = 65, type = 0
+ind = 644, type = 0
+ind = 15, type = 1
+number of nodes = 4
+node indexes: 
+15, 66, 67, 16
+neighbour indexes: 
+14, 65, 16, -1
+***********************
+			cell index = 16
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 644, type = 0
+ind = 66, type = 0
+ind = 653, type = 0
+ind = 16, type = 1
+number of nodes = 4
+node indexes: 
+16, 67, 68, 17
+neighbour indexes: 
+15, 66, 17, -1
+***********************
+			cell index = 17
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 653, type = 0
+ind = 67, type = 0
+ind = 662, type = 0
+ind = 17, type = 1
+number of nodes = 4
+node indexes: 
+17, 68, 69, 18
+neighbour indexes: 
+16, 67, 18, -1
+***********************
+			cell index = 18
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 662, type = 0
+ind = 68, type = 0
+ind = 671, type = 0
+ind = 18, type = 1
+number of nodes = 4
+node indexes: 
+18, 69, 70, 19
+neighbour indexes: 
+17, 68, 19, -1
+***********************
+			cell index = 19
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 671, type = 0
+ind = 69, type = 0
+ind = 680, type = 0
+ind = 19, type = 1
+number of nodes = 4
+node indexes: 
+19, 70, 71, 20
+neighbour indexes: 
+18, 69, 20, -1
+***********************
+			cell index = 20
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 680, type = 0
+ind = 70, type = 0
+ind = 689, type = 0
+ind = 20, type = 1
+number of nodes = 4
+node indexes: 
+20, 71, 72, 21
+neighbour indexes: 
+19, 70, 21, -1
+***********************
+			cell index = 21
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 689, type = 0
+ind = 71, type = 0
+ind = 698, type = 0
+ind = 21, type = 1
+number of nodes = 4
+node indexes: 
+21, 72, 73, 22
+neighbour indexes: 
+20, 71, 22, -1
+***********************
+			cell index = 22
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 698, type = 0
+ind = 72, type = 0
+ind = 707, type = 0
+ind = 22, type = 1
+number of nodes = 4
+node indexes: 
+22, 73, 74, 23
+neighbour indexes: 
+21, 72, 23, -1
+***********************
+			cell index = 23
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 707, type = 0
+ind = 73, type = 0
+ind = 716, type = 0
+ind = 23, type = 1
+number of nodes = 4
+node indexes: 
+23, 74, 75, 24
+neighbour indexes: 
+22, 73, 24, -1
+***********************
+			cell index = 24
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 716, type = 0
+ind = 74, type = 0
+ind = 725, type = 0
+ind = 24, type = 1
+number of nodes = 4
+node indexes: 
+24, 75, 76, 25
+neighbour indexes: 
+23, 74, 25, -1
+***********************
+			cell index = 25
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 725, type = 0
+ind = 75, type = 0
+ind = 734, type = 0
+ind = 25, type = 1
+number of nodes = 4
+node indexes: 
+25, 76, 77, 26
+neighbour indexes: 
+24, 75, 26, -1
+***********************
+			cell index = 26
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 734, type = 0
+ind = 76, type = 0
+ind = 743, type = 0
+ind = 26, type = 1
+number of nodes = 4
+node indexes: 
+26, 77, 78, 27
+neighbour indexes: 
+25, 76, 27, -1
+***********************
+			cell index = 27
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 743, type = 0
+ind = 77, type = 0
+ind = 752, type = 0
+ind = 27, type = 1
+number of nodes = 4
+node indexes: 
+27, 78, 79, 28
+neighbour indexes: 
+26, 77, 28, -1
+***********************
+			cell index = 28
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 752, type = 0
+ind = 78, type = 0
+ind = 761, type = 0
+ind = 28, type = 1
+number of nodes = 4
+node indexes: 
+28, 79, 80, 29
+neighbour indexes: 
+27, 78, 29, -1
+***********************
+			cell index = 29
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 761, type = 0
+ind = 79, type = 0
+ind = 770, type = 0
+ind = 29, type = 1
+number of nodes = 4
+node indexes: 
+29, 80, 81, 30
+neighbour indexes: 
+28, 79, 30, -1
+***********************
+			cell index = 30
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 770, type = 0
+ind = 80, type = 0
+ind = 779, type = 0
+ind = 30, type = 1
+number of nodes = 4
+node indexes: 
+30, 81, 82, 31
+neighbour indexes: 
+29, 80, 31, -1
+***********************
+			cell index = 31
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 779, type = 0
+ind = 81, type = 0
+ind = 788, type = 0
+ind = 31, type = 1
+number of nodes = 4
+node indexes: 
+31, 82, 83, 32
+neighbour indexes: 
+30, 81, 32, -1
+***********************
+			cell index = 32
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 788, type = 0
+ind = 82, type = 0
+ind = 797, type = 0
+ind = 32, type = 1
+number of nodes = 4
+node indexes: 
+32, 83, 84, 33
+neighbour indexes: 
+31, 82, 33, -1
+***********************
+			cell index = 33
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 797, type = 0
+ind = 83, type = 0
+ind = 806, type = 0
+ind = 33, type = 1
+number of nodes = 4
+node indexes: 
+33, 84, 85, 34
+neighbour indexes: 
+32, 83, 34, -1
+***********************
+			cell index = 34
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 806, type = 0
+ind = 84, type = 0
+ind = 815, type = 0
+ind = 34, type = 1
+number of nodes = 4
+node indexes: 
+34, 85, 86, 35
+neighbour indexes: 
+33, 84, 35, -1
+***********************
+			cell index = 35
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 815, type = 0
+ind = 85, type = 0
+ind = 824, type = 0
+ind = 35, type = 1
+number of nodes = 4
+node indexes: 
+35, 86, 87, 36
+neighbour indexes: 
+34, 85, 36, -1
+***********************
+			cell index = 36
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 824, type = 0
+ind = 86, type = 0
+ind = 833, type = 0
+ind = 36, type = 1
+number of nodes = 4
+node indexes: 
+36, 87, 88, 37
+neighbour indexes: 
+35, 86, 37, -1
+***********************
+			cell index = 37
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 833, type = 0
+ind = 87, type = 0
+ind = 842, type = 0
+ind = 37, type = 1
+number of nodes = 4
+node indexes: 
+37, 88, 89, 38
+neighbour indexes: 
+36, 87, 38, -1
+***********************
+			cell index = 38
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 842, type = 0
+ind = 88, type = 0
+ind = 851, type = 0
+ind = 38, type = 1
+number of nodes = 4
+node indexes: 
+38, 89, 90, 39
+neighbour indexes: 
+37, 88, 39, -1
+***********************
+			cell index = 39
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 851, type = 0
+ind = 89, type = 0
+ind = 860, type = 0
+ind = 39, type = 1
+number of nodes = 4
+node indexes: 
+39, 90, 91, 40
+neighbour indexes: 
+38, 89, 40, -1
+***********************
+			cell index = 40
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 860, type = 0
+ind = 90, type = 0
+ind = 869, type = 0
+ind = 40, type = 1
+number of nodes = 4
+node indexes: 
+40, 91, 92, 41
+neighbour indexes: 
+39, 90, 41, -1
+***********************
+			cell index = 41
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 869, type = 0
+ind = 91, type = 0
+ind = 878, type = 0
+ind = 41, type = 1
+number of nodes = 4
+node indexes: 
+41, 92, 93, 42
+neighbour indexes: 
+40, 91, 42, -1
+***********************
+			cell index = 42
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 878, type = 0
+ind = 92, type = 0
+ind = 887, type = 0
+ind = 42, type = 1
+number of nodes = 4
+node indexes: 
+42, 93, 94, 43
+neighbour indexes: 
+41, 92, 43, -1
+***********************
+			cell index = 43
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 887, type = 0
+ind = 93, type = 0
+ind = 896, type = 0
+ind = 43, type = 1
+number of nodes = 4
+node indexes: 
+43, 94, 95, 44
+neighbour indexes: 
+42, 93, 44, -1
+***********************
+			cell index = 44
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 896, type = 0
+ind = 94, type = 0
+ind = 905, type = 0
+ind = 44, type = 1
+number of nodes = 4
+node indexes: 
+44, 95, 96, 45
+neighbour indexes: 
+43, 94, 45, -1
+***********************
+			cell index = 45
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 905, type = 0
+ind = 95, type = 0
+ind = 914, type = 0
+ind = 45, type = 1
+number of nodes = 4
+node indexes: 
+45, 96, 97, 46
+neighbour indexes: 
+44, 95, 46, -1
+***********************
+			cell index = 46
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 914, type = 0
+ind = 96, type = 0
+ind = 923, type = 0
+ind = 46, type = 1
+number of nodes = 4
+node indexes: 
+46, 97, 98, 47
+neighbour indexes: 
+45, 96, 47, -1
+***********************
+			cell index = 47
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 923, type = 0
+ind = 97, type = 0
+ind = 932, type = 0
+ind = 47, type = 1
+number of nodes = 4
+node indexes: 
+47, 98, 99, 48
+neighbour indexes: 
+46, 97, 48, -1
+***********************
+			cell index = 48
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 932, type = 0
+ind = 98, type = 0
+ind = 941, type = 0
+ind = 48, type = 1
+number of nodes = 4
+node indexes: 
+48, 99, 100, 49
+neighbour indexes: 
+47, 98, 49, -1
+***********************
+			cell index = 49
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 941, type = 0
+ind = 99, type = 0
+ind = 950, type = 1
+ind = 49, type = 1
+number of nodes = 4
+node indexes: 
+49, 100, 101, 50
+neighbour indexes: 
+48, 99, -1, -1
+***********************
+			cell index = 50
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 501, type = 1
+ind = 100, type = 0
+ind = 510, type = 0
+ind = 50, type = 0
+number of nodes = 4
+node indexes: 
+51, 102, 103, 52
+neighbour indexes: 
+-1, 100, 51, 0
+***********************
+			cell index = 51
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 510, type = 0
+ind = 101, type = 0
+ind = 519, type = 0
+ind = 51, type = 0
+number of nodes = 4
+node indexes: 
+52, 103, 104, 53
+neighbour indexes: 
+50, 101, 52, 1
+***********************
+			cell index = 52
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 519, type = 0
+ind = 102, type = 0
+ind = 528, type = 0
+ind = 52, type = 0
+number of nodes = 4
+node indexes: 
+53, 104, 105, 54
+neighbour indexes: 
+51, 102, 53, 2
+***********************
+			cell index = 53
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 528, type = 0
+ind = 103, type = 0
+ind = 537, type = 0
+ind = 53, type = 0
+number of nodes = 4
+node indexes: 
+54, 105, 106, 55
+neighbour indexes: 
+52, 103, 54, 3
+***********************
+			cell index = 54
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 537, type = 0
+ind = 104, type = 0
+ind = 546, type = 0
+ind = 54, type = 0
+number of nodes = 4
+node indexes: 
+55, 106, 107, 56
+neighbour indexes: 
+53, 104, 55, 4
+***********************
+			cell index = 55
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 546, type = 0
+ind = 105, type = 0
+ind = 555, type = 0
+ind = 55, type = 0
+number of nodes = 4
+node indexes: 
+56, 107, 108, 57
+neighbour indexes: 
+54, 105, 56, 5
+***********************
+			cell index = 56
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 555, type = 0
+ind = 106, type = 0
+ind = 564, type = 0
+ind = 56, type = 0
+number of nodes = 4
+node indexes: 
+57, 108, 109, 58
+neighbour indexes: 
+55, 106, 57, 6
+***********************
+			cell index = 57
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 564, type = 0
+ind = 107, type = 0
+ind = 573, type = 0
+ind = 57, type = 0
+number of nodes = 4
+node indexes: 
+58, 109, 110, 59
+neighbour indexes: 
+56, 107, 58, 7
+***********************
+			cell index = 58
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 573, type = 0
+ind = 108, type = 0
+ind = 582, type = 0
+ind = 58, type = 0
+number of nodes = 4
+node indexes: 
+59, 110, 111, 60
+neighbour indexes: 
+57, 108, 59, 8
+***********************
+			cell index = 59
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 582, type = 0
+ind = 109, type = 0
+ind = 591, type = 0
+ind = 59, type = 0
+number of nodes = 4
+node indexes: 
+60, 111, 112, 61
+neighbour indexes: 
+58, 109, 60, 9
+***********************
+			cell index = 60
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 591, type = 0
+ind = 110, type = 0
+ind = 600, type = 0
+ind = 60, type = 0
+number of nodes = 4
+node indexes: 
+61, 112, 113, 62
+neighbour indexes: 
+59, 110, 61, 10
+***********************
+			cell index = 61
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 600, type = 0
+ind = 111, type = 0
+ind = 609, type = 0
+ind = 61, type = 0
+number of nodes = 4
+node indexes: 
+62, 113, 114, 63
+neighbour indexes: 
+60, 111, 62, 11
+***********************
+			cell index = 62
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 609, type = 0
+ind = 112, type = 0
+ind = 618, type = 0
+ind = 62, type = 0
+number of nodes = 4
+node indexes: 
+63, 114, 115, 64
+neighbour indexes: 
+61, 112, 63, 12
+***********************
+			cell index = 63
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 618, type = 0
+ind = 113, type = 0
+ind = 627, type = 0
+ind = 63, type = 0
+number of nodes = 4
+node indexes: 
+64, 115, 116, 65
+neighbour indexes: 
+62, 113, 64, 13
+***********************
+			cell index = 64
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 627, type = 0
+ind = 114, type = 0
+ind = 636, type = 0
+ind = 64, type = 0
+number of nodes = 4
+node indexes: 
+65, 116, 117, 66
+neighbour indexes: 
+63, 114, 65, 14
+***********************
+			cell index = 65
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 636, type = 0
+ind = 115, type = 0
+ind = 645, type = 0
+ind = 65, type = 0
+number of nodes = 4
+node indexes: 
+66, 117, 118, 67
+neighbour indexes: 
+64, 115, 66, 15
+***********************
+			cell index = 66
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 645, type = 0
+ind = 116, type = 0
+ind = 654, type = 0
+ind = 66, type = 0
+number of nodes = 4
+node indexes: 
+67, 118, 119, 68
+neighbour indexes: 
+65, 116, 67, 16
+***********************
+			cell index = 67
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 654, type = 0
+ind = 117, type = 0
+ind = 663, type = 0
+ind = 67, type = 0
+number of nodes = 4
+node indexes: 
+68, 119, 120, 69
+neighbour indexes: 
+66, 117, 68, 17
+***********************
+			cell index = 68
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 663, type = 0
+ind = 118, type = 0
+ind = 672, type = 0
+ind = 68, type = 0
+number of nodes = 4
+node indexes: 
+69, 120, 121, 70
+neighbour indexes: 
+67, 118, 69, 18
+***********************
+			cell index = 69
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 672, type = 0
+ind = 119, type = 0
+ind = 681, type = 0
+ind = 69, type = 0
+number of nodes = 4
+node indexes: 
+70, 121, 122, 71
+neighbour indexes: 
+68, 119, 70, 19
+***********************
+			cell index = 70
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 681, type = 0
+ind = 120, type = 0
+ind = 690, type = 0
+ind = 70, type = 0
+number of nodes = 4
+node indexes: 
+71, 122, 123, 72
+neighbour indexes: 
+69, 120, 71, 20
+***********************
+			cell index = 71
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 690, type = 0
+ind = 121, type = 0
+ind = 699, type = 0
+ind = 71, type = 0
+number of nodes = 4
+node indexes: 
+72, 123, 124, 73
+neighbour indexes: 
+70, 121, 72, 21
+***********************
+			cell index = 72
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 699, type = 0
+ind = 122, type = 0
+ind = 708, type = 0
+ind = 72, type = 0
+number of nodes = 4
+node indexes: 
+73, 124, 125, 74
+neighbour indexes: 
+71, 122, 73, 22
+***********************
+			cell index = 73
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 708, type = 0
+ind = 123, type = 0
+ind = 717, type = 0
+ind = 73, type = 0
+number of nodes = 4
+node indexes: 
+74, 125, 126, 75
+neighbour indexes: 
+72, 123, 74, 23
+***********************
+			cell index = 74
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 717, type = 0
+ind = 124, type = 0
+ind = 726, type = 0
+ind = 74, type = 0
+number of nodes = 4
+node indexes: 
+75, 126, 127, 76
+neighbour indexes: 
+73, 124, 75, 24
+***********************
+			cell index = 75
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 726, type = 0
+ind = 125, type = 0
+ind = 735, type = 0
+ind = 75, type = 0
+number of nodes = 4
+node indexes: 
+76, 127, 128, 77
+neighbour indexes: 
+74, 125, 76, 25
+***********************
+			cell index = 76
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 735, type = 0
+ind = 126, type = 0
+ind = 744, type = 0
+ind = 76, type = 0
+number of nodes = 4
+node indexes: 
+77, 128, 129, 78
+neighbour indexes: 
+75, 126, 77, 26
+***********************
+			cell index = 77
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 744, type = 0
+ind = 127, type = 0
+ind = 753, type = 0
+ind = 77, type = 0
+number of nodes = 4
+node indexes: 
+78, 129, 130, 79
+neighbour indexes: 
+76, 127, 78, 27
+***********************
+			cell index = 78
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 753, type = 0
+ind = 128, type = 0
+ind = 762, type = 0
+ind = 78, type = 0
+number of nodes = 4
+node indexes: 
+79, 130, 131, 80
+neighbour indexes: 
+77, 128, 79, 28
+***********************
+			cell index = 79
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 762, type = 0
+ind = 129, type = 0
+ind = 771, type = 0
+ind = 79, type = 0
+number of nodes = 4
+node indexes: 
+80, 131, 132, 81
+neighbour indexes: 
+78, 129, 80, 29
+***********************
+			cell index = 80
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 771, type = 0
+ind = 130, type = 0
+ind = 780, type = 0
+ind = 80, type = 0
+number of nodes = 4
+node indexes: 
+81, 132, 133, 82
+neighbour indexes: 
+79, 130, 81, 30
+***********************
+			cell index = 81
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 780, type = 0
+ind = 131, type = 0
+ind = 789, type = 0
+ind = 81, type = 0
+number of nodes = 4
+node indexes: 
+82, 133, 134, 83
+neighbour indexes: 
+80, 131, 82, 31
+***********************
+			cell index = 82
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 789, type = 0
+ind = 132, type = 0
+ind = 798, type = 0
+ind = 82, type = 0
+number of nodes = 4
+node indexes: 
+83, 134, 135, 84
+neighbour indexes: 
+81, 132, 83, 32
+***********************
+			cell index = 83
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 798, type = 0
+ind = 133, type = 0
+ind = 807, type = 0
+ind = 83, type = 0
+number of nodes = 4
+node indexes: 
+84, 135, 136, 85
+neighbour indexes: 
+82, 133, 84, 33
+***********************
+			cell index = 84
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 807, type = 0
+ind = 134, type = 0
+ind = 816, type = 0
+ind = 84, type = 0
+number of nodes = 4
+node indexes: 
+85, 136, 137, 86
+neighbour indexes: 
+83, 134, 85, 34
+***********************
+			cell index = 85
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 816, type = 0
+ind = 135, type = 0
+ind = 825, type = 0
+ind = 85, type = 0
+number of nodes = 4
+node indexes: 
+86, 137, 138, 87
+neighbour indexes: 
+84, 135, 86, 35
+***********************
+			cell index = 86
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 825, type = 0
+ind = 136, type = 0
+ind = 834, type = 0
+ind = 86, type = 0
+number of nodes = 4
+node indexes: 
+87, 138, 139, 88
+neighbour indexes: 
+85, 136, 87, 36
+***********************
+			cell index = 87
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 834, type = 0
+ind = 137, type = 0
+ind = 843, type = 0
+ind = 87, type = 0
+number of nodes = 4
+node indexes: 
+88, 139, 140, 89
+neighbour indexes: 
+86, 137, 88, 37
+***********************
+			cell index = 88
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 843, type = 0
+ind = 138, type = 0
+ind = 852, type = 0
+ind = 88, type = 0
+number of nodes = 4
+node indexes: 
+89, 140, 141, 90
+neighbour indexes: 
+87, 138, 89, 38
+***********************
+			cell index = 89
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 852, type = 0
+ind = 139, type = 0
+ind = 861, type = 0
+ind = 89, type = 0
+number of nodes = 4
+node indexes: 
+90, 141, 142, 91
+neighbour indexes: 
+88, 139, 90, 39
+***********************
+			cell index = 90
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 861, type = 0
+ind = 140, type = 0
+ind = 870, type = 0
+ind = 90, type = 0
+number of nodes = 4
+node indexes: 
+91, 142, 143, 92
+neighbour indexes: 
+89, 140, 91, 40
+***********************
+			cell index = 91
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 870, type = 0
+ind = 141, type = 0
+ind = 879, type = 0
+ind = 91, type = 0
+number of nodes = 4
+node indexes: 
+92, 143, 144, 93
+neighbour indexes: 
+90, 141, 92, 41
+***********************
+			cell index = 92
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 879, type = 0
+ind = 142, type = 0
+ind = 888, type = 0
+ind = 92, type = 0
+number of nodes = 4
+node indexes: 
+93, 144, 145, 94
+neighbour indexes: 
+91, 142, 93, 42
+***********************
+			cell index = 93
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 888, type = 0
+ind = 143, type = 0
+ind = 897, type = 0
+ind = 93, type = 0
+number of nodes = 4
+node indexes: 
+94, 145, 146, 95
+neighbour indexes: 
+92, 143, 94, 43
+***********************
+			cell index = 94
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 897, type = 0
+ind = 144, type = 0
+ind = 906, type = 0
+ind = 94, type = 0
+number of nodes = 4
+node indexes: 
+95, 146, 147, 96
+neighbour indexes: 
+93, 144, 95, 44
+***********************
+			cell index = 95
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 906, type = 0
+ind = 145, type = 0
+ind = 915, type = 0
+ind = 95, type = 0
+number of nodes = 4
+node indexes: 
+96, 147, 148, 97
+neighbour indexes: 
+94, 145, 96, 45
+***********************
+			cell index = 96
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 915, type = 0
+ind = 146, type = 0
+ind = 924, type = 0
+ind = 96, type = 0
+number of nodes = 4
+node indexes: 
+97, 148, 149, 98
+neighbour indexes: 
+95, 146, 97, 46
+***********************
+			cell index = 97
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 924, type = 0
+ind = 147, type = 0
+ind = 933, type = 0
+ind = 97, type = 0
+number of nodes = 4
+node indexes: 
+98, 149, 150, 99
+neighbour indexes: 
+96, 147, 98, 47
+***********************
+			cell index = 98
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 933, type = 0
+ind = 148, type = 0
+ind = 942, type = 0
+ind = 98, type = 0
+number of nodes = 4
+node indexes: 
+99, 150, 151, 100
+neighbour indexes: 
+97, 148, 99, 48
+***********************
+			cell index = 99
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 942, type = 0
+ind = 149, type = 0
+ind = 951, type = 1
+ind = 99, type = 0
+number of nodes = 4
+node indexes: 
+100, 151, 152, 101
+neighbour indexes: 
+98, 149, -1, 49
+***********************
+			cell index = 100
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 502, type = 1
+ind = 150, type = 0
+ind = 511, type = 0
+ind = 100, type = 0
+number of nodes = 4
+node indexes: 
+102, 153, 154, 103
+neighbour indexes: 
+-1, 150, 101, 50
+***********************
+			cell index = 101
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 511, type = 0
+ind = 151, type = 0
+ind = 520, type = 0
+ind = 101, type = 0
+number of nodes = 4
+node indexes: 
+103, 154, 155, 104
+neighbour indexes: 
+100, 151, 102, 51
+***********************
+			cell index = 102
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 520, type = 0
+ind = 152, type = 0
+ind = 529, type = 0
+ind = 102, type = 0
+number of nodes = 4
+node indexes: 
+104, 155, 156, 105
+neighbour indexes: 
+101, 152, 103, 52
+***********************
+			cell index = 103
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 529, type = 0
+ind = 153, type = 0
+ind = 538, type = 0
+ind = 103, type = 0
+number of nodes = 4
+node indexes: 
+105, 156, 157, 106
+neighbour indexes: 
+102, 153, 104, 53
+***********************
+			cell index = 104
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 538, type = 0
+ind = 154, type = 0
+ind = 547, type = 0
+ind = 104, type = 0
+number of nodes = 4
+node indexes: 
+106, 157, 158, 107
+neighbour indexes: 
+103, 154, 105, 54
+***********************
+			cell index = 105
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 547, type = 0
+ind = 155, type = 0
+ind = 556, type = 0
+ind = 105, type = 0
+number of nodes = 4
+node indexes: 
+107, 158, 159, 108
+neighbour indexes: 
+104, 155, 106, 55
+***********************
+			cell index = 106
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 556, type = 0
+ind = 156, type = 0
+ind = 565, type = 0
+ind = 106, type = 0
+number of nodes = 4
+node indexes: 
+108, 159, 160, 109
+neighbour indexes: 
+105, 156, 107, 56
+***********************
+			cell index = 107
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 565, type = 0
+ind = 157, type = 0
+ind = 574, type = 0
+ind = 107, type = 0
+number of nodes = 4
+node indexes: 
+109, 160, 161, 110
+neighbour indexes: 
+106, 157, 108, 57
+***********************
+			cell index = 108
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 574, type = 0
+ind = 158, type = 0
+ind = 583, type = 0
+ind = 108, type = 0
+number of nodes = 4
+node indexes: 
+110, 161, 162, 111
+neighbour indexes: 
+107, 158, 109, 58
+***********************
+			cell index = 109
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 583, type = 0
+ind = 159, type = 0
+ind = 592, type = 0
+ind = 109, type = 0
+number of nodes = 4
+node indexes: 
+111, 162, 163, 112
+neighbour indexes: 
+108, 159, 110, 59
+***********************
+			cell index = 110
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 592, type = 0
+ind = 160, type = 0
+ind = 601, type = 0
+ind = 110, type = 0
+number of nodes = 4
+node indexes: 
+112, 163, 164, 113
+neighbour indexes: 
+109, 160, 111, 60
+***********************
+			cell index = 111
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 601, type = 0
+ind = 161, type = 0
+ind = 610, type = 0
+ind = 111, type = 0
+number of nodes = 4
+node indexes: 
+113, 164, 165, 114
+neighbour indexes: 
+110, 161, 112, 61
+***********************
+			cell index = 112
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 610, type = 0
+ind = 162, type = 0
+ind = 619, type = 0
+ind = 112, type = 0
+number of nodes = 4
+node indexes: 
+114, 165, 166, 115
+neighbour indexes: 
+111, 162, 113, 62
+***********************
+			cell index = 113
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 619, type = 0
+ind = 163, type = 0
+ind = 628, type = 0
+ind = 113, type = 0
+number of nodes = 4
+node indexes: 
+115, 166, 167, 116
+neighbour indexes: 
+112, 163, 114, 63
+***********************
+			cell index = 114
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 628, type = 0
+ind = 164, type = 0
+ind = 637, type = 0
+ind = 114, type = 0
+number of nodes = 4
+node indexes: 
+116, 167, 168, 117
+neighbour indexes: 
+113, 164, 115, 64
+***********************
+			cell index = 115
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 637, type = 0
+ind = 165, type = 0
+ind = 646, type = 0
+ind = 115, type = 0
+number of nodes = 4
+node indexes: 
+117, 168, 169, 118
+neighbour indexes: 
+114, 165, 116, 65
+***********************
+			cell index = 116
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 646, type = 0
+ind = 166, type = 0
+ind = 655, type = 0
+ind = 116, type = 0
+number of nodes = 4
+node indexes: 
+118, 169, 170, 119
+neighbour indexes: 
+115, 166, 117, 66
+***********************
+			cell index = 117
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 655, type = 0
+ind = 167, type = 0
+ind = 664, type = 0
+ind = 117, type = 0
+number of nodes = 4
+node indexes: 
+119, 170, 171, 120
+neighbour indexes: 
+116, 167, 118, 67
+***********************
+			cell index = 118
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 664, type = 0
+ind = 168, type = 0
+ind = 673, type = 0
+ind = 118, type = 0
+number of nodes = 4
+node indexes: 
+120, 171, 172, 121
+neighbour indexes: 
+117, 168, 119, 68
+***********************
+			cell index = 119
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 673, type = 0
+ind = 169, type = 0
+ind = 682, type = 0
+ind = 119, type = 0
+number of nodes = 4
+node indexes: 
+121, 172, 173, 122
+neighbour indexes: 
+118, 169, 120, 69
+***********************
+			cell index = 120
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 682, type = 0
+ind = 170, type = 0
+ind = 691, type = 0
+ind = 120, type = 0
+number of nodes = 4
+node indexes: 
+122, 173, 174, 123
+neighbour indexes: 
+119, 170, 121, 70
+***********************
+			cell index = 121
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 691, type = 0
+ind = 171, type = 0
+ind = 700, type = 0
+ind = 121, type = 0
+number of nodes = 4
+node indexes: 
+123, 174, 175, 124
+neighbour indexes: 
+120, 171, 122, 71
+***********************
+			cell index = 122
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 700, type = 0
+ind = 172, type = 0
+ind = 709, type = 0
+ind = 122, type = 0
+number of nodes = 4
+node indexes: 
+124, 175, 176, 125
+neighbour indexes: 
+121, 172, 123, 72
+***********************
+			cell index = 123
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 709, type = 0
+ind = 173, type = 0
+ind = 718, type = 0
+ind = 123, type = 0
+number of nodes = 4
+node indexes: 
+125, 176, 177, 126
+neighbour indexes: 
+122, 173, 124, 73
+***********************
+			cell index = 124
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 718, type = 0
+ind = 174, type = 0
+ind = 727, type = 0
+ind = 124, type = 0
+number of nodes = 4
+node indexes: 
+126, 177, 178, 127
+neighbour indexes: 
+123, 174, 125, 74
+***********************
+			cell index = 125
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 727, type = 0
+ind = 175, type = 0
+ind = 736, type = 0
+ind = 125, type = 0
+number of nodes = 4
+node indexes: 
+127, 178, 179, 128
+neighbour indexes: 
+124, 175, 126, 75
+***********************
+			cell index = 126
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 736, type = 0
+ind = 176, type = 0
+ind = 745, type = 0
+ind = 126, type = 0
+number of nodes = 4
+node indexes: 
+128, 179, 180, 129
+neighbour indexes: 
+125, 176, 127, 76
+***********************
+			cell index = 127
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 745, type = 0
+ind = 177, type = 0
+ind = 754, type = 0
+ind = 127, type = 0
+number of nodes = 4
+node indexes: 
+129, 180, 181, 130
+neighbour indexes: 
+126, 177, 128, 77
+***********************
+			cell index = 128
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 754, type = 0
+ind = 178, type = 0
+ind = 763, type = 0
+ind = 128, type = 0
+number of nodes = 4
+node indexes: 
+130, 181, 182, 131
+neighbour indexes: 
+127, 178, 129, 78
+***********************
+			cell index = 129
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 763, type = 0
+ind = 179, type = 0
+ind = 772, type = 0
+ind = 129, type = 0
+number of nodes = 4
+node indexes: 
+131, 182, 183, 132
+neighbour indexes: 
+128, 179, 130, 79
+***********************
+			cell index = 130
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 772, type = 0
+ind = 180, type = 0
+ind = 781, type = 0
+ind = 130, type = 0
+number of nodes = 4
+node indexes: 
+132, 183, 184, 133
+neighbour indexes: 
+129, 180, 131, 80
+***********************
+			cell index = 131
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 781, type = 0
+ind = 181, type = 0
+ind = 790, type = 0
+ind = 131, type = 0
+number of nodes = 4
+node indexes: 
+133, 184, 185, 134
+neighbour indexes: 
+130, 181, 132, 81
+***********************
+			cell index = 132
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 790, type = 0
+ind = 182, type = 0
+ind = 799, type = 0
+ind = 132, type = 0
+number of nodes = 4
+node indexes: 
+134, 185, 186, 135
+neighbour indexes: 
+131, 182, 133, 82
+***********************
+			cell index = 133
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 799, type = 0
+ind = 183, type = 0
+ind = 808, type = 0
+ind = 133, type = 0
+number of nodes = 4
+node indexes: 
+135, 186, 187, 136
+neighbour indexes: 
+132, 183, 134, 83
+***********************
+			cell index = 134
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 808, type = 0
+ind = 184, type = 0
+ind = 817, type = 0
+ind = 134, type = 0
+number of nodes = 4
+node indexes: 
+136, 187, 188, 137
+neighbour indexes: 
+133, 184, 135, 84
+***********************
+			cell index = 135
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 817, type = 0
+ind = 185, type = 0
+ind = 826, type = 0
+ind = 135, type = 0
+number of nodes = 4
+node indexes: 
+137, 188, 189, 138
+neighbour indexes: 
+134, 185, 136, 85
+***********************
+			cell index = 136
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 826, type = 0
+ind = 186, type = 0
+ind = 835, type = 0
+ind = 136, type = 0
+number of nodes = 4
+node indexes: 
+138, 189, 190, 139
+neighbour indexes: 
+135, 186, 137, 86
+***********************
+			cell index = 137
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 835, type = 0
+ind = 187, type = 0
+ind = 844, type = 0
+ind = 137, type = 0
+number of nodes = 4
+node indexes: 
+139, 190, 191, 140
+neighbour indexes: 
+136, 187, 138, 87
+***********************
+			cell index = 138
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 844, type = 0
+ind = 188, type = 0
+ind = 853, type = 0
+ind = 138, type = 0
+number of nodes = 4
+node indexes: 
+140, 191, 192, 141
+neighbour indexes: 
+137, 188, 139, 88
+***********************
+			cell index = 139
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 853, type = 0
+ind = 189, type = 0
+ind = 862, type = 0
+ind = 139, type = 0
+number of nodes = 4
+node indexes: 
+141, 192, 193, 142
+neighbour indexes: 
+138, 189, 140, 89
+***********************
+			cell index = 140
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 862, type = 0
+ind = 190, type = 0
+ind = 871, type = 0
+ind = 140, type = 0
+number of nodes = 4
+node indexes: 
+142, 193, 194, 143
+neighbour indexes: 
+139, 190, 141, 90
+***********************
+			cell index = 141
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 871, type = 0
+ind = 191, type = 0
+ind = 880, type = 0
+ind = 141, type = 0
+number of nodes = 4
+node indexes: 
+143, 194, 195, 144
+neighbour indexes: 
+140, 191, 142, 91
+***********************
+			cell index = 142
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 880, type = 0
+ind = 192, type = 0
+ind = 889, type = 0
+ind = 142, type = 0
+number of nodes = 4
+node indexes: 
+144, 195, 196, 145
+neighbour indexes: 
+141, 192, 143, 92
+***********************
+			cell index = 143
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 889, type = 0
+ind = 193, type = 0
+ind = 898, type = 0
+ind = 143, type = 0
+number of nodes = 4
+node indexes: 
+145, 196, 197, 146
+neighbour indexes: 
+142, 193, 144, 93
+***********************
+			cell index = 144
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 898, type = 0
+ind = 194, type = 0
+ind = 907, type = 0
+ind = 144, type = 0
+number of nodes = 4
+node indexes: 
+146, 197, 198, 147
+neighbour indexes: 
+143, 194, 145, 94
+***********************
+			cell index = 145
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 907, type = 0
+ind = 195, type = 0
+ind = 916, type = 0
+ind = 145, type = 0
+number of nodes = 4
+node indexes: 
+147, 198, 199, 148
+neighbour indexes: 
+144, 195, 146, 95
+***********************
+			cell index = 146
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 916, type = 0
+ind = 196, type = 0
+ind = 925, type = 0
+ind = 146, type = 0
+number of nodes = 4
+node indexes: 
+148, 199, 200, 149
+neighbour indexes: 
+145, 196, 147, 96
+***********************
+			cell index = 147
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 925, type = 0
+ind = 197, type = 0
+ind = 934, type = 0
+ind = 147, type = 0
+number of nodes = 4
+node indexes: 
+149, 200, 201, 150
+neighbour indexes: 
+146, 197, 148, 97
+***********************
+			cell index = 148
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 934, type = 0
+ind = 198, type = 0
+ind = 943, type = 0
+ind = 148, type = 0
+number of nodes = 4
+node indexes: 
+150, 201, 202, 151
+neighbour indexes: 
+147, 198, 149, 98
+***********************
+			cell index = 149
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 943, type = 0
+ind = 199, type = 0
+ind = 952, type = 1
+ind = 149, type = 0
+number of nodes = 4
+node indexes: 
+151, 202, 203, 152
+neighbour indexes: 
+148, 199, -1, 99
+***********************
+			cell index = 150
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 503, type = 1
+ind = 200, type = 0
+ind = 512, type = 0
+ind = 150, type = 0
+number of nodes = 4
+node indexes: 
+153, 204, 205, 154
+neighbour indexes: 
+-1, 200, 151, 100
+***********************
+			cell index = 151
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 512, type = 0
+ind = 201, type = 0
+ind = 521, type = 0
+ind = 151, type = 0
+number of nodes = 4
+node indexes: 
+154, 205, 206, 155
+neighbour indexes: 
+150, 201, 152, 101
+***********************
+			cell index = 152
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 521, type = 0
+ind = 202, type = 0
+ind = 530, type = 0
+ind = 152, type = 0
+number of nodes = 4
+node indexes: 
+155, 206, 207, 156
+neighbour indexes: 
+151, 202, 153, 102
+***********************
+			cell index = 153
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 530, type = 0
+ind = 203, type = 0
+ind = 539, type = 0
+ind = 153, type = 0
+number of nodes = 4
+node indexes: 
+156, 207, 208, 157
+neighbour indexes: 
+152, 203, 154, 103
+***********************
+			cell index = 154
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 539, type = 0
+ind = 204, type = 0
+ind = 548, type = 0
+ind = 154, type = 0
+number of nodes = 4
+node indexes: 
+157, 208, 209, 158
+neighbour indexes: 
+153, 204, 155, 104
+***********************
+			cell index = 155
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 548, type = 0
+ind = 205, type = 0
+ind = 557, type = 0
+ind = 155, type = 0
+number of nodes = 4
+node indexes: 
+158, 209, 210, 159
+neighbour indexes: 
+154, 205, 156, 105
+***********************
+			cell index = 156
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 557, type = 0
+ind = 206, type = 0
+ind = 566, type = 0
+ind = 156, type = 0
+number of nodes = 4
+node indexes: 
+159, 210, 211, 160
+neighbour indexes: 
+155, 206, 157, 106
+***********************
+			cell index = 157
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 566, type = 0
+ind = 207, type = 0
+ind = 575, type = 0
+ind = 157, type = 0
+number of nodes = 4
+node indexes: 
+160, 211, 212, 161
+neighbour indexes: 
+156, 207, 158, 107
+***********************
+			cell index = 158
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 575, type = 0
+ind = 208, type = 0
+ind = 584, type = 0
+ind = 158, type = 0
+number of nodes = 4
+node indexes: 
+161, 212, 213, 162
+neighbour indexes: 
+157, 208, 159, 108
+***********************
+			cell index = 159
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 584, type = 0
+ind = 209, type = 0
+ind = 593, type = 0
+ind = 159, type = 0
+number of nodes = 4
+node indexes: 
+162, 213, 214, 163
+neighbour indexes: 
+158, 209, 160, 109
+***********************
+			cell index = 160
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 593, type = 0
+ind = 210, type = 0
+ind = 602, type = 0
+ind = 160, type = 0
+number of nodes = 4
+node indexes: 
+163, 214, 215, 164
+neighbour indexes: 
+159, 210, 161, 110
+***********************
+			cell index = 161
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 602, type = 0
+ind = 211, type = 0
+ind = 611, type = 0
+ind = 161, type = 0
+number of nodes = 4
+node indexes: 
+164, 215, 216, 165
+neighbour indexes: 
+160, 211, 162, 111
+***********************
+			cell index = 162
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 611, type = 0
+ind = 212, type = 0
+ind = 620, type = 0
+ind = 162, type = 0
+number of nodes = 4
+node indexes: 
+165, 216, 217, 166
+neighbour indexes: 
+161, 212, 163, 112
+***********************
+			cell index = 163
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 620, type = 0
+ind = 213, type = 0
+ind = 629, type = 0
+ind = 163, type = 0
+number of nodes = 4
+node indexes: 
+166, 217, 218, 167
+neighbour indexes: 
+162, 213, 164, 113
+***********************
+			cell index = 164
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 629, type = 0
+ind = 214, type = 0
+ind = 638, type = 0
+ind = 164, type = 0
+number of nodes = 4
+node indexes: 
+167, 218, 219, 168
+neighbour indexes: 
+163, 214, 165, 114
+***********************
+			cell index = 165
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 638, type = 0
+ind = 215, type = 0
+ind = 647, type = 0
+ind = 165, type = 0
+number of nodes = 4
+node indexes: 
+168, 219, 220, 169
+neighbour indexes: 
+164, 215, 166, 115
+***********************
+			cell index = 166
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 647, type = 0
+ind = 216, type = 0
+ind = 656, type = 0
+ind = 166, type = 0
+number of nodes = 4
+node indexes: 
+169, 220, 221, 170
+neighbour indexes: 
+165, 216, 167, 116
+***********************
+			cell index = 167
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 656, type = 0
+ind = 217, type = 0
+ind = 665, type = 0
+ind = 167, type = 0
+number of nodes = 4
+node indexes: 
+170, 221, 222, 171
+neighbour indexes: 
+166, 217, 168, 117
+***********************
+			cell index = 168
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 665, type = 0
+ind = 218, type = 0
+ind = 674, type = 0
+ind = 168, type = 0
+number of nodes = 4
+node indexes: 
+171, 222, 223, 172
+neighbour indexes: 
+167, 218, 169, 118
+***********************
+			cell index = 169
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 674, type = 0
+ind = 219, type = 0
+ind = 683, type = 0
+ind = 169, type = 0
+number of nodes = 4
+node indexes: 
+172, 223, 224, 173
+neighbour indexes: 
+168, 219, 170, 119
+***********************
+			cell index = 170
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 683, type = 0
+ind = 220, type = 0
+ind = 692, type = 0
+ind = 170, type = 0
+number of nodes = 4
+node indexes: 
+173, 224, 225, 174
+neighbour indexes: 
+169, 220, 171, 120
+***********************
+			cell index = 171
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 692, type = 0
+ind = 221, type = 0
+ind = 701, type = 0
+ind = 171, type = 0
+number of nodes = 4
+node indexes: 
+174, 225, 226, 175
+neighbour indexes: 
+170, 221, 172, 121
+***********************
+			cell index = 172
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 701, type = 0
+ind = 222, type = 0
+ind = 710, type = 0
+ind = 172, type = 0
+number of nodes = 4
+node indexes: 
+175, 226, 227, 176
+neighbour indexes: 
+171, 222, 173, 122
+***********************
+			cell index = 173
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 710, type = 0
+ind = 223, type = 0
+ind = 719, type = 0
+ind = 173, type = 0
+number of nodes = 4
+node indexes: 
+176, 227, 228, 177
+neighbour indexes: 
+172, 223, 174, 123
+***********************
+			cell index = 174
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 719, type = 0
+ind = 224, type = 0
+ind = 728, type = 0
+ind = 174, type = 0
+number of nodes = 4
+node indexes: 
+177, 228, 229, 178
+neighbour indexes: 
+173, 224, 175, 124
+***********************
+			cell index = 175
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 728, type = 0
+ind = 225, type = 0
+ind = 737, type = 0
+ind = 175, type = 0
+number of nodes = 4
+node indexes: 
+178, 229, 230, 179
+neighbour indexes: 
+174, 225, 176, 125
+***********************
+			cell index = 176
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 737, type = 0
+ind = 226, type = 0
+ind = 746, type = 0
+ind = 176, type = 0
+number of nodes = 4
+node indexes: 
+179, 230, 231, 180
+neighbour indexes: 
+175, 226, 177, 126
+***********************
+			cell index = 177
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 746, type = 0
+ind = 227, type = 0
+ind = 755, type = 0
+ind = 177, type = 0
+number of nodes = 4
+node indexes: 
+180, 231, 232, 181
+neighbour indexes: 
+176, 227, 178, 127
+***********************
+			cell index = 178
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 755, type = 0
+ind = 228, type = 0
+ind = 764, type = 0
+ind = 178, type = 0
+number of nodes = 4
+node indexes: 
+181, 232, 233, 182
+neighbour indexes: 
+177, 228, 179, 128
+***********************
+			cell index = 179
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 764, type = 0
+ind = 229, type = 0
+ind = 773, type = 0
+ind = 179, type = 0
+number of nodes = 4
+node indexes: 
+182, 233, 234, 183
+neighbour indexes: 
+178, 229, 180, 129
+***********************
+			cell index = 180
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 773, type = 0
+ind = 230, type = 0
+ind = 782, type = 0
+ind = 180, type = 0
+number of nodes = 4
+node indexes: 
+183, 234, 235, 184
+neighbour indexes: 
+179, 230, 181, 130
+***********************
+			cell index = 181
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 782, type = 0
+ind = 231, type = 0
+ind = 791, type = 0
+ind = 181, type = 0
+number of nodes = 4
+node indexes: 
+184, 235, 236, 185
+neighbour indexes: 
+180, 231, 182, 131
+***********************
+			cell index = 182
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 791, type = 0
+ind = 232, type = 0
+ind = 800, type = 0
+ind = 182, type = 0
+number of nodes = 4
+node indexes: 
+185, 236, 237, 186
+neighbour indexes: 
+181, 232, 183, 132
+***********************
+			cell index = 183
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 800, type = 0
+ind = 233, type = 0
+ind = 809, type = 0
+ind = 183, type = 0
+number of nodes = 4
+node indexes: 
+186, 237, 238, 187
+neighbour indexes: 
+182, 233, 184, 133
+***********************
+			cell index = 184
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 809, type = 0
+ind = 234, type = 0
+ind = 818, type = 0
+ind = 184, type = 0
+number of nodes = 4
+node indexes: 
+187, 238, 239, 188
+neighbour indexes: 
+183, 234, 185, 134
+***********************
+			cell index = 185
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 818, type = 0
+ind = 235, type = 0
+ind = 827, type = 0
+ind = 185, type = 0
+number of nodes = 4
+node indexes: 
+188, 239, 240, 189
+neighbour indexes: 
+184, 235, 186, 135
+***********************
+			cell index = 186
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 827, type = 0
+ind = 236, type = 0
+ind = 836, type = 0
+ind = 186, type = 0
+number of nodes = 4
+node indexes: 
+189, 240, 241, 190
+neighbour indexes: 
+185, 236, 187, 136
+***********************
+			cell index = 187
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 836, type = 0
+ind = 237, type = 0
+ind = 845, type = 0
+ind = 187, type = 0
+number of nodes = 4
+node indexes: 
+190, 241, 242, 191
+neighbour indexes: 
+186, 237, 188, 137
+***********************
+			cell index = 188
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 845, type = 0
+ind = 238, type = 0
+ind = 854, type = 0
+ind = 188, type = 0
+number of nodes = 4
+node indexes: 
+191, 242, 243, 192
+neighbour indexes: 
+187, 238, 189, 138
+***********************
+			cell index = 189
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 854, type = 0
+ind = 239, type = 0
+ind = 863, type = 0
+ind = 189, type = 0
+number of nodes = 4
+node indexes: 
+192, 243, 244, 193
+neighbour indexes: 
+188, 239, 190, 139
+***********************
+			cell index = 190
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 863, type = 0
+ind = 240, type = 0
+ind = 872, type = 0
+ind = 190, type = 0
+number of nodes = 4
+node indexes: 
+193, 244, 245, 194
+neighbour indexes: 
+189, 240, 191, 140
+***********************
+			cell index = 191
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 872, type = 0
+ind = 241, type = 0
+ind = 881, type = 0
+ind = 191, type = 0
+number of nodes = 4
+node indexes: 
+194, 245, 246, 195
+neighbour indexes: 
+190, 241, 192, 141
+***********************
+			cell index = 192
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 881, type = 0
+ind = 242, type = 0
+ind = 890, type = 0
+ind = 192, type = 0
+number of nodes = 4
+node indexes: 
+195, 246, 247, 196
+neighbour indexes: 
+191, 242, 193, 142
+***********************
+			cell index = 193
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 890, type = 0
+ind = 243, type = 0
+ind = 899, type = 0
+ind = 193, type = 0
+number of nodes = 4
+node indexes: 
+196, 247, 248, 197
+neighbour indexes: 
+192, 243, 194, 143
+***********************
+			cell index = 194
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 899, type = 0
+ind = 244, type = 0
+ind = 908, type = 0
+ind = 194, type = 0
+number of nodes = 4
+node indexes: 
+197, 248, 249, 198
+neighbour indexes: 
+193, 244, 195, 144
+***********************
+			cell index = 195
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 908, type = 0
+ind = 245, type = 0
+ind = 917, type = 0
+ind = 195, type = 0
+number of nodes = 4
+node indexes: 
+198, 249, 250, 199
+neighbour indexes: 
+194, 245, 196, 145
+***********************
+			cell index = 196
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 917, type = 0
+ind = 246, type = 0
+ind = 926, type = 0
+ind = 196, type = 0
+number of nodes = 4
+node indexes: 
+199, 250, 251, 200
+neighbour indexes: 
+195, 246, 197, 146
+***********************
+			cell index = 197
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 926, type = 0
+ind = 247, type = 0
+ind = 935, type = 0
+ind = 197, type = 0
+number of nodes = 4
+node indexes: 
+200, 251, 252, 201
+neighbour indexes: 
+196, 247, 198, 147
+***********************
+			cell index = 198
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 935, type = 0
+ind = 248, type = 0
+ind = 944, type = 0
+ind = 198, type = 0
+number of nodes = 4
+node indexes: 
+201, 252, 253, 202
+neighbour indexes: 
+197, 248, 199, 148
+***********************
+			cell index = 199
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 944, type = 0
+ind = 249, type = 0
+ind = 953, type = 1
+ind = 199, type = 0
+number of nodes = 4
+node indexes: 
+202, 253, 254, 203
+neighbour indexes: 
+198, 249, -1, 149
+***********************
+			cell index = 200
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 504, type = 1
+ind = 250, type = 0
+ind = 513, type = 0
+ind = 200, type = 0
+number of nodes = 4
+node indexes: 
+204, 255, 256, 205
+neighbour indexes: 
+-1, 250, 201, 150
+***********************
+			cell index = 201
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 513, type = 0
+ind = 251, type = 0
+ind = 522, type = 0
+ind = 201, type = 0
+number of nodes = 4
+node indexes: 
+205, 256, 257, 206
+neighbour indexes: 
+200, 251, 202, 151
+***********************
+			cell index = 202
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 522, type = 0
+ind = 252, type = 0
+ind = 531, type = 0
+ind = 202, type = 0
+number of nodes = 4
+node indexes: 
+206, 257, 258, 207
+neighbour indexes: 
+201, 252, 203, 152
+***********************
+			cell index = 203
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 531, type = 0
+ind = 253, type = 0
+ind = 540, type = 0
+ind = 203, type = 0
+number of nodes = 4
+node indexes: 
+207, 258, 259, 208
+neighbour indexes: 
+202, 253, 204, 153
+***********************
+			cell index = 204
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 540, type = 0
+ind = 254, type = 0
+ind = 549, type = 0
+ind = 204, type = 0
+number of nodes = 4
+node indexes: 
+208, 259, 260, 209
+neighbour indexes: 
+203, 254, 205, 154
+***********************
+			cell index = 205
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 549, type = 0
+ind = 255, type = 0
+ind = 558, type = 0
+ind = 205, type = 0
+number of nodes = 4
+node indexes: 
+209, 260, 261, 210
+neighbour indexes: 
+204, 255, 206, 155
+***********************
+			cell index = 206
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 558, type = 0
+ind = 256, type = 0
+ind = 567, type = 0
+ind = 206, type = 0
+number of nodes = 4
+node indexes: 
+210, 261, 262, 211
+neighbour indexes: 
+205, 256, 207, 156
+***********************
+			cell index = 207
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 567, type = 0
+ind = 257, type = 0
+ind = 576, type = 0
+ind = 207, type = 0
+number of nodes = 4
+node indexes: 
+211, 262, 263, 212
+neighbour indexes: 
+206, 257, 208, 157
+***********************
+			cell index = 208
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 576, type = 0
+ind = 258, type = 0
+ind = 585, type = 0
+ind = 208, type = 0
+number of nodes = 4
+node indexes: 
+212, 263, 264, 213
+neighbour indexes: 
+207, 258, 209, 158
+***********************
+			cell index = 209
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 585, type = 0
+ind = 259, type = 0
+ind = 594, type = 0
+ind = 209, type = 0
+number of nodes = 4
+node indexes: 
+213, 264, 265, 214
+neighbour indexes: 
+208, 259, 210, 159
+***********************
+			cell index = 210
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 594, type = 0
+ind = 260, type = 0
+ind = 603, type = 0
+ind = 210, type = 0
+number of nodes = 4
+node indexes: 
+214, 265, 266, 215
+neighbour indexes: 
+209, 260, 211, 160
+***********************
+			cell index = 211
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 603, type = 0
+ind = 261, type = 0
+ind = 612, type = 0
+ind = 211, type = 0
+number of nodes = 4
+node indexes: 
+215, 266, 267, 216
+neighbour indexes: 
+210, 261, 212, 161
+***********************
+			cell index = 212
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 612, type = 0
+ind = 262, type = 0
+ind = 621, type = 0
+ind = 212, type = 0
+number of nodes = 4
+node indexes: 
+216, 267, 268, 217
+neighbour indexes: 
+211, 262, 213, 162
+***********************
+			cell index = 213
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 621, type = 0
+ind = 263, type = 0
+ind = 630, type = 0
+ind = 213, type = 0
+number of nodes = 4
+node indexes: 
+217, 268, 269, 218
+neighbour indexes: 
+212, 263, 214, 163
+***********************
+			cell index = 214
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 630, type = 0
+ind = 264, type = 0
+ind = 639, type = 0
+ind = 214, type = 0
+number of nodes = 4
+node indexes: 
+218, 269, 270, 219
+neighbour indexes: 
+213, 264, 215, 164
+***********************
+			cell index = 215
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 639, type = 0
+ind = 265, type = 0
+ind = 648, type = 0
+ind = 215, type = 0
+number of nodes = 4
+node indexes: 
+219, 270, 271, 220
+neighbour indexes: 
+214, 265, 216, 165
+***********************
+			cell index = 216
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 648, type = 0
+ind = 266, type = 0
+ind = 657, type = 0
+ind = 216, type = 0
+number of nodes = 4
+node indexes: 
+220, 271, 272, 221
+neighbour indexes: 
+215, 266, 217, 166
+***********************
+			cell index = 217
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 657, type = 0
+ind = 267, type = 0
+ind = 666, type = 0
+ind = 217, type = 0
+number of nodes = 4
+node indexes: 
+221, 272, 273, 222
+neighbour indexes: 
+216, 267, 218, 167
+***********************
+			cell index = 218
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 666, type = 0
+ind = 268, type = 0
+ind = 675, type = 0
+ind = 218, type = 0
+number of nodes = 4
+node indexes: 
+222, 273, 274, 223
+neighbour indexes: 
+217, 268, 219, 168
+***********************
+			cell index = 219
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 675, type = 0
+ind = 269, type = 0
+ind = 684, type = 0
+ind = 219, type = 0
+number of nodes = 4
+node indexes: 
+223, 274, 275, 224
+neighbour indexes: 
+218, 269, 220, 169
+***********************
+			cell index = 220
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 684, type = 0
+ind = 270, type = 0
+ind = 693, type = 0
+ind = 220, type = 0
+number of nodes = 4
+node indexes: 
+224, 275, 276, 225
+neighbour indexes: 
+219, 270, 221, 170
+***********************
+			cell index = 221
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 693, type = 0
+ind = 271, type = 0
+ind = 702, type = 0
+ind = 221, type = 0
+number of nodes = 4
+node indexes: 
+225, 276, 277, 226
+neighbour indexes: 
+220, 271, 222, 171
+***********************
+			cell index = 222
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 702, type = 0
+ind = 272, type = 0
+ind = 711, type = 0
+ind = 222, type = 0
+number of nodes = 4
+node indexes: 
+226, 277, 278, 227
+neighbour indexes: 
+221, 272, 223, 172
+***********************
+			cell index = 223
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 711, type = 0
+ind = 273, type = 0
+ind = 720, type = 0
+ind = 223, type = 0
+number of nodes = 4
+node indexes: 
+227, 278, 279, 228
+neighbour indexes: 
+222, 273, 224, 173
+***********************
+			cell index = 224
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 720, type = 0
+ind = 274, type = 0
+ind = 729, type = 0
+ind = 224, type = 0
+number of nodes = 4
+node indexes: 
+228, 279, 280, 229
+neighbour indexes: 
+223, 274, 225, 174
+***********************
+			cell index = 225
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 729, type = 0
+ind = 275, type = 0
+ind = 738, type = 0
+ind = 225, type = 0
+number of nodes = 4
+node indexes: 
+229, 280, 281, 230
+neighbour indexes: 
+224, 275, 226, 175
+***********************
+			cell index = 226
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 738, type = 0
+ind = 276, type = 0
+ind = 747, type = 0
+ind = 226, type = 0
+number of nodes = 4
+node indexes: 
+230, 281, 282, 231
+neighbour indexes: 
+225, 276, 227, 176
+***********************
+			cell index = 227
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 747, type = 0
+ind = 277, type = 0
+ind = 756, type = 0
+ind = 227, type = 0
+number of nodes = 4
+node indexes: 
+231, 282, 283, 232
+neighbour indexes: 
+226, 277, 228, 177
+***********************
+			cell index = 228
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 756, type = 0
+ind = 278, type = 0
+ind = 765, type = 0
+ind = 228, type = 0
+number of nodes = 4
+node indexes: 
+232, 283, 284, 233
+neighbour indexes: 
+227, 278, 229, 178
+***********************
+			cell index = 229
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 765, type = 0
+ind = 279, type = 0
+ind = 774, type = 0
+ind = 229, type = 0
+number of nodes = 4
+node indexes: 
+233, 284, 285, 234
+neighbour indexes: 
+228, 279, 230, 179
+***********************
+			cell index = 230
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 774, type = 0
+ind = 280, type = 0
+ind = 783, type = 0
+ind = 230, type = 0
+number of nodes = 4
+node indexes: 
+234, 285, 286, 235
+neighbour indexes: 
+229, 280, 231, 180
+***********************
+			cell index = 231
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 783, type = 0
+ind = 281, type = 0
+ind = 792, type = 0
+ind = 231, type = 0
+number of nodes = 4
+node indexes: 
+235, 286, 287, 236
+neighbour indexes: 
+230, 281, 232, 181
+***********************
+			cell index = 232
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 792, type = 0
+ind = 282, type = 0
+ind = 801, type = 0
+ind = 232, type = 0
+number of nodes = 4
+node indexes: 
+236, 287, 288, 237
+neighbour indexes: 
+231, 282, 233, 182
+***********************
+			cell index = 233
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 801, type = 0
+ind = 283, type = 0
+ind = 810, type = 0
+ind = 233, type = 0
+number of nodes = 4
+node indexes: 
+237, 288, 289, 238
+neighbour indexes: 
+232, 283, 234, 183
+***********************
+			cell index = 234
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 810, type = 0
+ind = 284, type = 0
+ind = 819, type = 0
+ind = 234, type = 0
+number of nodes = 4
+node indexes: 
+238, 289, 290, 239
+neighbour indexes: 
+233, 284, 235, 184
+***********************
+			cell index = 235
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 819, type = 0
+ind = 285, type = 0
+ind = 828, type = 0
+ind = 235, type = 0
+number of nodes = 4
+node indexes: 
+239, 290, 291, 240
+neighbour indexes: 
+234, 285, 236, 185
+***********************
+			cell index = 236
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 828, type = 0
+ind = 286, type = 0
+ind = 837, type = 0
+ind = 236, type = 0
+number of nodes = 4
+node indexes: 
+240, 291, 292, 241
+neighbour indexes: 
+235, 286, 237, 186
+***********************
+			cell index = 237
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 837, type = 0
+ind = 287, type = 0
+ind = 846, type = 0
+ind = 237, type = 0
+number of nodes = 4
+node indexes: 
+241, 292, 293, 242
+neighbour indexes: 
+236, 287, 238, 187
+***********************
+			cell index = 238
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 846, type = 0
+ind = 288, type = 0
+ind = 855, type = 0
+ind = 238, type = 0
+number of nodes = 4
+node indexes: 
+242, 293, 294, 243
+neighbour indexes: 
+237, 288, 239, 188
+***********************
+			cell index = 239
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 855, type = 0
+ind = 289, type = 0
+ind = 864, type = 0
+ind = 239, type = 0
+number of nodes = 4
+node indexes: 
+243, 294, 295, 244
+neighbour indexes: 
+238, 289, 240, 189
+***********************
+			cell index = 240
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 864, type = 0
+ind = 290, type = 0
+ind = 873, type = 0
+ind = 240, type = 0
+number of nodes = 4
+node indexes: 
+244, 295, 296, 245
+neighbour indexes: 
+239, 290, 241, 190
+***********************
+			cell index = 241
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 873, type = 0
+ind = 291, type = 0
+ind = 882, type = 0
+ind = 241, type = 0
+number of nodes = 4
+node indexes: 
+245, 296, 297, 246
+neighbour indexes: 
+240, 291, 242, 191
+***********************
+			cell index = 242
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 882, type = 0
+ind = 292, type = 0
+ind = 891, type = 0
+ind = 242, type = 0
+number of nodes = 4
+node indexes: 
+246, 297, 298, 247
+neighbour indexes: 
+241, 292, 243, 192
+***********************
+			cell index = 243
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 891, type = 0
+ind = 293, type = 0
+ind = 900, type = 0
+ind = 243, type = 0
+number of nodes = 4
+node indexes: 
+247, 298, 299, 248
+neighbour indexes: 
+242, 293, 244, 193
+***********************
+			cell index = 244
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 900, type = 0
+ind = 294, type = 0
+ind = 909, type = 0
+ind = 244, type = 0
+number of nodes = 4
+node indexes: 
+248, 299, 300, 249
+neighbour indexes: 
+243, 294, 245, 194
+***********************
+			cell index = 245
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 909, type = 0
+ind = 295, type = 0
+ind = 918, type = 0
+ind = 245, type = 0
+number of nodes = 4
+node indexes: 
+249, 300, 301, 250
+neighbour indexes: 
+244, 295, 246, 195
+***********************
+			cell index = 246
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 918, type = 0
+ind = 296, type = 0
+ind = 927, type = 0
+ind = 246, type = 0
+number of nodes = 4
+node indexes: 
+250, 301, 302, 251
+neighbour indexes: 
+245, 296, 247, 196
+***********************
+			cell index = 247
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 927, type = 0
+ind = 297, type = 0
+ind = 936, type = 0
+ind = 247, type = 0
+number of nodes = 4
+node indexes: 
+251, 302, 303, 252
+neighbour indexes: 
+246, 297, 248, 197
+***********************
+			cell index = 248
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 936, type = 0
+ind = 298, type = 0
+ind = 945, type = 0
+ind = 248, type = 0
+number of nodes = 4
+node indexes: 
+252, 303, 304, 253
+neighbour indexes: 
+247, 298, 249, 198
+***********************
+			cell index = 249
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 945, type = 0
+ind = 299, type = 0
+ind = 954, type = 1
+ind = 249, type = 0
+number of nodes = 4
+node indexes: 
+253, 304, 305, 254
+neighbour indexes: 
+248, 299, -1, 199
+***********************
+			cell index = 250
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 505, type = 1
+ind = 300, type = 0
+ind = 514, type = 0
+ind = 250, type = 0
+number of nodes = 4
+node indexes: 
+255, 306, 307, 256
+neighbour indexes: 
+-1, 300, 251, 200
+***********************
+			cell index = 251
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 514, type = 0
+ind = 301, type = 0
+ind = 523, type = 0
+ind = 251, type = 0
+number of nodes = 4
+node indexes: 
+256, 307, 308, 257
+neighbour indexes: 
+250, 301, 252, 201
+***********************
+			cell index = 252
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 523, type = 0
+ind = 302, type = 0
+ind = 532, type = 0
+ind = 252, type = 0
+number of nodes = 4
+node indexes: 
+257, 308, 309, 258
+neighbour indexes: 
+251, 302, 253, 202
+***********************
+			cell index = 253
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 532, type = 0
+ind = 303, type = 0
+ind = 541, type = 0
+ind = 253, type = 0
+number of nodes = 4
+node indexes: 
+258, 309, 310, 259
+neighbour indexes: 
+252, 303, 254, 203
+***********************
+			cell index = 254
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 541, type = 0
+ind = 304, type = 0
+ind = 550, type = 0
+ind = 254, type = 0
+number of nodes = 4
+node indexes: 
+259, 310, 311, 260
+neighbour indexes: 
+253, 304, 255, 204
+***********************
+			cell index = 255
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 550, type = 0
+ind = 305, type = 0
+ind = 559, type = 0
+ind = 255, type = 0
+number of nodes = 4
+node indexes: 
+260, 311, 312, 261
+neighbour indexes: 
+254, 305, 256, 205
+***********************
+			cell index = 256
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 559, type = 0
+ind = 306, type = 0
+ind = 568, type = 0
+ind = 256, type = 0
+number of nodes = 4
+node indexes: 
+261, 312, 313, 262
+neighbour indexes: 
+255, 306, 257, 206
+***********************
+			cell index = 257
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 568, type = 0
+ind = 307, type = 0
+ind = 577, type = 0
+ind = 257, type = 0
+number of nodes = 4
+node indexes: 
+262, 313, 314, 263
+neighbour indexes: 
+256, 307, 258, 207
+***********************
+			cell index = 258
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 577, type = 0
+ind = 308, type = 0
+ind = 586, type = 0
+ind = 258, type = 0
+number of nodes = 4
+node indexes: 
+263, 314, 315, 264
+neighbour indexes: 
+257, 308, 259, 208
+***********************
+			cell index = 259
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 586, type = 0
+ind = 309, type = 0
+ind = 595, type = 0
+ind = 259, type = 0
+number of nodes = 4
+node indexes: 
+264, 315, 316, 265
+neighbour indexes: 
+258, 309, 260, 209
+***********************
+			cell index = 260
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 595, type = 0
+ind = 310, type = 0
+ind = 604, type = 0
+ind = 260, type = 0
+number of nodes = 4
+node indexes: 
+265, 316, 317, 266
+neighbour indexes: 
+259, 310, 261, 210
+***********************
+			cell index = 261
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 604, type = 0
+ind = 311, type = 0
+ind = 613, type = 0
+ind = 261, type = 0
+number of nodes = 4
+node indexes: 
+266, 317, 318, 267
+neighbour indexes: 
+260, 311, 262, 211
+***********************
+			cell index = 262
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 613, type = 0
+ind = 312, type = 0
+ind = 622, type = 0
+ind = 262, type = 0
+number of nodes = 4
+node indexes: 
+267, 318, 319, 268
+neighbour indexes: 
+261, 312, 263, 212
+***********************
+			cell index = 263
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 622, type = 0
+ind = 313, type = 0
+ind = 631, type = 0
+ind = 263, type = 0
+number of nodes = 4
+node indexes: 
+268, 319, 320, 269
+neighbour indexes: 
+262, 313, 264, 213
+***********************
+			cell index = 264
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 631, type = 0
+ind = 314, type = 0
+ind = 640, type = 0
+ind = 264, type = 0
+number of nodes = 4
+node indexes: 
+269, 320, 321, 270
+neighbour indexes: 
+263, 314, 265, 214
+***********************
+			cell index = 265
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 640, type = 0
+ind = 315, type = 0
+ind = 649, type = 0
+ind = 265, type = 0
+number of nodes = 4
+node indexes: 
+270, 321, 322, 271
+neighbour indexes: 
+264, 315, 266, 215
+***********************
+			cell index = 266
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 649, type = 0
+ind = 316, type = 0
+ind = 658, type = 0
+ind = 266, type = 0
+number of nodes = 4
+node indexes: 
+271, 322, 323, 272
+neighbour indexes: 
+265, 316, 267, 216
+***********************
+			cell index = 267
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 658, type = 0
+ind = 317, type = 0
+ind = 667, type = 0
+ind = 267, type = 0
+number of nodes = 4
+node indexes: 
+272, 323, 324, 273
+neighbour indexes: 
+266, 317, 268, 217
+***********************
+			cell index = 268
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 667, type = 0
+ind = 318, type = 0
+ind = 676, type = 0
+ind = 268, type = 0
+number of nodes = 4
+node indexes: 
+273, 324, 325, 274
+neighbour indexes: 
+267, 318, 269, 218
+***********************
+			cell index = 269
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 676, type = 0
+ind = 319, type = 0
+ind = 685, type = 0
+ind = 269, type = 0
+number of nodes = 4
+node indexes: 
+274, 325, 326, 275
+neighbour indexes: 
+268, 319, 270, 219
+***********************
+			cell index = 270
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 685, type = 0
+ind = 320, type = 0
+ind = 694, type = 0
+ind = 270, type = 0
+number of nodes = 4
+node indexes: 
+275, 326, 327, 276
+neighbour indexes: 
+269, 320, 271, 220
+***********************
+			cell index = 271
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 694, type = 0
+ind = 321, type = 0
+ind = 703, type = 0
+ind = 271, type = 0
+number of nodes = 4
+node indexes: 
+276, 327, 328, 277
+neighbour indexes: 
+270, 321, 272, 221
+***********************
+			cell index = 272
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 703, type = 0
+ind = 322, type = 0
+ind = 712, type = 0
+ind = 272, type = 0
+number of nodes = 4
+node indexes: 
+277, 328, 329, 278
+neighbour indexes: 
+271, 322, 273, 222
+***********************
+			cell index = 273
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 712, type = 0
+ind = 323, type = 0
+ind = 721, type = 0
+ind = 273, type = 0
+number of nodes = 4
+node indexes: 
+278, 329, 330, 279
+neighbour indexes: 
+272, 323, 274, 223
+***********************
+			cell index = 274
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 721, type = 0
+ind = 324, type = 0
+ind = 730, type = 0
+ind = 274, type = 0
+number of nodes = 4
+node indexes: 
+279, 330, 331, 280
+neighbour indexes: 
+273, 324, 275, 224
+***********************
+			cell index = 275
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 730, type = 0
+ind = 325, type = 0
+ind = 739, type = 0
+ind = 275, type = 0
+number of nodes = 4
+node indexes: 
+280, 331, 332, 281
+neighbour indexes: 
+274, 325, 276, 225
+***********************
+			cell index = 276
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 739, type = 0
+ind = 326, type = 0
+ind = 748, type = 0
+ind = 276, type = 0
+number of nodes = 4
+node indexes: 
+281, 332, 333, 282
+neighbour indexes: 
+275, 326, 277, 226
+***********************
+			cell index = 277
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 748, type = 0
+ind = 327, type = 0
+ind = 757, type = 0
+ind = 277, type = 0
+number of nodes = 4
+node indexes: 
+282, 333, 334, 283
+neighbour indexes: 
+276, 327, 278, 227
+***********************
+			cell index = 278
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 757, type = 0
+ind = 328, type = 0
+ind = 766, type = 0
+ind = 278, type = 0
+number of nodes = 4
+node indexes: 
+283, 334, 335, 284
+neighbour indexes: 
+277, 328, 279, 228
+***********************
+			cell index = 279
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 766, type = 0
+ind = 329, type = 0
+ind = 775, type = 0
+ind = 279, type = 0
+number of nodes = 4
+node indexes: 
+284, 335, 336, 285
+neighbour indexes: 
+278, 329, 280, 229
+***********************
+			cell index = 280
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 775, type = 0
+ind = 330, type = 0
+ind = 784, type = 0
+ind = 280, type = 0
+number of nodes = 4
+node indexes: 
+285, 336, 337, 286
+neighbour indexes: 
+279, 330, 281, 230
+***********************
+			cell index = 281
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 784, type = 0
+ind = 331, type = 0
+ind = 793, type = 0
+ind = 281, type = 0
+number of nodes = 4
+node indexes: 
+286, 337, 338, 287
+neighbour indexes: 
+280, 331, 282, 231
+***********************
+			cell index = 282
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 793, type = 0
+ind = 332, type = 0
+ind = 802, type = 0
+ind = 282, type = 0
+number of nodes = 4
+node indexes: 
+287, 338, 339, 288
+neighbour indexes: 
+281, 332, 283, 232
+***********************
+			cell index = 283
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 802, type = 0
+ind = 333, type = 0
+ind = 811, type = 0
+ind = 283, type = 0
+number of nodes = 4
+node indexes: 
+288, 339, 340, 289
+neighbour indexes: 
+282, 333, 284, 233
+***********************
+			cell index = 284
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 811, type = 0
+ind = 334, type = 0
+ind = 820, type = 0
+ind = 284, type = 0
+number of nodes = 4
+node indexes: 
+289, 340, 341, 290
+neighbour indexes: 
+283, 334, 285, 234
+***********************
+			cell index = 285
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 820, type = 0
+ind = 335, type = 0
+ind = 829, type = 0
+ind = 285, type = 0
+number of nodes = 4
+node indexes: 
+290, 341, 342, 291
+neighbour indexes: 
+284, 335, 286, 235
+***********************
+			cell index = 286
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 829, type = 0
+ind = 336, type = 0
+ind = 838, type = 0
+ind = 286, type = 0
+number of nodes = 4
+node indexes: 
+291, 342, 343, 292
+neighbour indexes: 
+285, 336, 287, 236
+***********************
+			cell index = 287
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 838, type = 0
+ind = 337, type = 0
+ind = 847, type = 0
+ind = 287, type = 0
+number of nodes = 4
+node indexes: 
+292, 343, 344, 293
+neighbour indexes: 
+286, 337, 288, 237
+***********************
+			cell index = 288
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 847, type = 0
+ind = 338, type = 0
+ind = 856, type = 0
+ind = 288, type = 0
+number of nodes = 4
+node indexes: 
+293, 344, 345, 294
+neighbour indexes: 
+287, 338, 289, 238
+***********************
+			cell index = 289
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 856, type = 0
+ind = 339, type = 0
+ind = 865, type = 0
+ind = 289, type = 0
+number of nodes = 4
+node indexes: 
+294, 345, 346, 295
+neighbour indexes: 
+288, 339, 290, 239
+***********************
+			cell index = 290
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 865, type = 0
+ind = 340, type = 0
+ind = 874, type = 0
+ind = 290, type = 0
+number of nodes = 4
+node indexes: 
+295, 346, 347, 296
+neighbour indexes: 
+289, 340, 291, 240
+***********************
+			cell index = 291
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 874, type = 0
+ind = 341, type = 0
+ind = 883, type = 0
+ind = 291, type = 0
+number of nodes = 4
+node indexes: 
+296, 347, 348, 297
+neighbour indexes: 
+290, 341, 292, 241
+***********************
+			cell index = 292
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 883, type = 0
+ind = 342, type = 0
+ind = 892, type = 0
+ind = 292, type = 0
+number of nodes = 4
+node indexes: 
+297, 348, 349, 298
+neighbour indexes: 
+291, 342, 293, 242
+***********************
+			cell index = 293
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 892, type = 0
+ind = 343, type = 0
+ind = 901, type = 0
+ind = 293, type = 0
+number of nodes = 4
+node indexes: 
+298, 349, 350, 299
+neighbour indexes: 
+292, 343, 294, 243
+***********************
+			cell index = 294
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 901, type = 0
+ind = 344, type = 0
+ind = 910, type = 0
+ind = 294, type = 0
+number of nodes = 4
+node indexes: 
+299, 350, 351, 300
+neighbour indexes: 
+293, 344, 295, 244
+***********************
+			cell index = 295
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 910, type = 0
+ind = 345, type = 0
+ind = 919, type = 0
+ind = 295, type = 0
+number of nodes = 4
+node indexes: 
+300, 351, 352, 301
+neighbour indexes: 
+294, 345, 296, 245
+***********************
+			cell index = 296
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 919, type = 0
+ind = 346, type = 0
+ind = 928, type = 0
+ind = 296, type = 0
+number of nodes = 4
+node indexes: 
+301, 352, 353, 302
+neighbour indexes: 
+295, 346, 297, 246
+***********************
+			cell index = 297
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 928, type = 0
+ind = 347, type = 0
+ind = 937, type = 0
+ind = 297, type = 0
+number of nodes = 4
+node indexes: 
+302, 353, 354, 303
+neighbour indexes: 
+296, 347, 298, 247
+***********************
+			cell index = 298
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 937, type = 0
+ind = 348, type = 0
+ind = 946, type = 0
+ind = 298, type = 0
+number of nodes = 4
+node indexes: 
+303, 354, 355, 304
+neighbour indexes: 
+297, 348, 299, 248
+***********************
+			cell index = 299
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 946, type = 0
+ind = 349, type = 0
+ind = 955, type = 1
+ind = 299, type = 0
+number of nodes = 4
+node indexes: 
+304, 355, 356, 305
+neighbour indexes: 
+298, 349, -1, 249
+***********************
+			cell index = 300
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 506, type = 1
+ind = 350, type = 0
+ind = 515, type = 0
+ind = 300, type = 0
+number of nodes = 4
+node indexes: 
+306, 357, 358, 307
+neighbour indexes: 
+-1, 350, 301, 250
+***********************
+			cell index = 301
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 515, type = 0
+ind = 351, type = 0
+ind = 524, type = 0
+ind = 301, type = 0
+number of nodes = 4
+node indexes: 
+307, 358, 359, 308
+neighbour indexes: 
+300, 351, 302, 251
+***********************
+			cell index = 302
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 524, type = 0
+ind = 352, type = 0
+ind = 533, type = 0
+ind = 302, type = 0
+number of nodes = 4
+node indexes: 
+308, 359, 360, 309
+neighbour indexes: 
+301, 352, 303, 252
+***********************
+			cell index = 303
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 533, type = 0
+ind = 353, type = 0
+ind = 542, type = 0
+ind = 303, type = 0
+number of nodes = 4
+node indexes: 
+309, 360, 361, 310
+neighbour indexes: 
+302, 353, 304, 253
+***********************
+			cell index = 304
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 542, type = 0
+ind = 354, type = 0
+ind = 551, type = 0
+ind = 304, type = 0
+number of nodes = 4
+node indexes: 
+310, 361, 362, 311
+neighbour indexes: 
+303, 354, 305, 254
+***********************
+			cell index = 305
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 551, type = 0
+ind = 355, type = 0
+ind = 560, type = 0
+ind = 305, type = 0
+number of nodes = 4
+node indexes: 
+311, 362, 363, 312
+neighbour indexes: 
+304, 355, 306, 255
+***********************
+			cell index = 306
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 560, type = 0
+ind = 356, type = 0
+ind = 569, type = 0
+ind = 306, type = 0
+number of nodes = 4
+node indexes: 
+312, 363, 364, 313
+neighbour indexes: 
+305, 356, 307, 256
+***********************
+			cell index = 307
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 569, type = 0
+ind = 357, type = 0
+ind = 578, type = 0
+ind = 307, type = 0
+number of nodes = 4
+node indexes: 
+313, 364, 365, 314
+neighbour indexes: 
+306, 357, 308, 257
+***********************
+			cell index = 308
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 578, type = 0
+ind = 358, type = 0
+ind = 587, type = 0
+ind = 308, type = 0
+number of nodes = 4
+node indexes: 
+314, 365, 366, 315
+neighbour indexes: 
+307, 358, 309, 258
+***********************
+			cell index = 309
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 587, type = 0
+ind = 359, type = 0
+ind = 596, type = 0
+ind = 309, type = 0
+number of nodes = 4
+node indexes: 
+315, 366, 367, 316
+neighbour indexes: 
+308, 359, 310, 259
+***********************
+			cell index = 310
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 596, type = 0
+ind = 360, type = 0
+ind = 605, type = 0
+ind = 310, type = 0
+number of nodes = 4
+node indexes: 
+316, 367, 368, 317
+neighbour indexes: 
+309, 360, 311, 260
+***********************
+			cell index = 311
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 605, type = 0
+ind = 361, type = 0
+ind = 614, type = 0
+ind = 311, type = 0
+number of nodes = 4
+node indexes: 
+317, 368, 369, 318
+neighbour indexes: 
+310, 361, 312, 261
+***********************
+			cell index = 312
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 614, type = 0
+ind = 362, type = 0
+ind = 623, type = 0
+ind = 312, type = 0
+number of nodes = 4
+node indexes: 
+318, 369, 370, 319
+neighbour indexes: 
+311, 362, 313, 262
+***********************
+			cell index = 313
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 623, type = 0
+ind = 363, type = 0
+ind = 632, type = 0
+ind = 313, type = 0
+number of nodes = 4
+node indexes: 
+319, 370, 371, 320
+neighbour indexes: 
+312, 363, 314, 263
+***********************
+			cell index = 314
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 632, type = 0
+ind = 364, type = 0
+ind = 641, type = 0
+ind = 314, type = 0
+number of nodes = 4
+node indexes: 
+320, 371, 372, 321
+neighbour indexes: 
+313, 364, 315, 264
+***********************
+			cell index = 315
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 641, type = 0
+ind = 365, type = 0
+ind = 650, type = 0
+ind = 315, type = 0
+number of nodes = 4
+node indexes: 
+321, 372, 373, 322
+neighbour indexes: 
+314, 365, 316, 265
+***********************
+			cell index = 316
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 650, type = 0
+ind = 366, type = 0
+ind = 659, type = 0
+ind = 316, type = 0
+number of nodes = 4
+node indexes: 
+322, 373, 374, 323
+neighbour indexes: 
+315, 366, 317, 266
+***********************
+			cell index = 317
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 659, type = 0
+ind = 367, type = 0
+ind = 668, type = 0
+ind = 317, type = 0
+number of nodes = 4
+node indexes: 
+323, 374, 375, 324
+neighbour indexes: 
+316, 367, 318, 267
+***********************
+			cell index = 318
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 668, type = 0
+ind = 368, type = 0
+ind = 677, type = 0
+ind = 318, type = 0
+number of nodes = 4
+node indexes: 
+324, 375, 376, 325
+neighbour indexes: 
+317, 368, 319, 268
+***********************
+			cell index = 319
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 677, type = 0
+ind = 369, type = 0
+ind = 686, type = 0
+ind = 319, type = 0
+number of nodes = 4
+node indexes: 
+325, 376, 377, 326
+neighbour indexes: 
+318, 369, 320, 269
+***********************
+			cell index = 320
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 686, type = 0
+ind = 370, type = 0
+ind = 695, type = 0
+ind = 320, type = 0
+number of nodes = 4
+node indexes: 
+326, 377, 378, 327
+neighbour indexes: 
+319, 370, 321, 270
+***********************
+			cell index = 321
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 695, type = 0
+ind = 371, type = 0
+ind = 704, type = 0
+ind = 321, type = 0
+number of nodes = 4
+node indexes: 
+327, 378, 379, 328
+neighbour indexes: 
+320, 371, 322, 271
+***********************
+			cell index = 322
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 704, type = 0
+ind = 372, type = 0
+ind = 713, type = 0
+ind = 322, type = 0
+number of nodes = 4
+node indexes: 
+328, 379, 380, 329
+neighbour indexes: 
+321, 372, 323, 272
+***********************
+			cell index = 323
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 713, type = 0
+ind = 373, type = 0
+ind = 722, type = 0
+ind = 323, type = 0
+number of nodes = 4
+node indexes: 
+329, 380, 381, 330
+neighbour indexes: 
+322, 373, 324, 273
+***********************
+			cell index = 324
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 722, type = 0
+ind = 374, type = 0
+ind = 731, type = 0
+ind = 324, type = 0
+number of nodes = 4
+node indexes: 
+330, 381, 382, 331
+neighbour indexes: 
+323, 374, 325, 274
+***********************
+			cell index = 325
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 731, type = 0
+ind = 375, type = 0
+ind = 740, type = 0
+ind = 325, type = 0
+number of nodes = 4
+node indexes: 
+331, 382, 383, 332
+neighbour indexes: 
+324, 375, 326, 275
+***********************
+			cell index = 326
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 740, type = 0
+ind = 376, type = 0
+ind = 749, type = 0
+ind = 326, type = 0
+number of nodes = 4
+node indexes: 
+332, 383, 384, 333
+neighbour indexes: 
+325, 376, 327, 276
+***********************
+			cell index = 327
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 749, type = 0
+ind = 377, type = 0
+ind = 758, type = 0
+ind = 327, type = 0
+number of nodes = 4
+node indexes: 
+333, 384, 385, 334
+neighbour indexes: 
+326, 377, 328, 277
+***********************
+			cell index = 328
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 758, type = 0
+ind = 378, type = 0
+ind = 767, type = 0
+ind = 328, type = 0
+number of nodes = 4
+node indexes: 
+334, 385, 386, 335
+neighbour indexes: 
+327, 378, 329, 278
+***********************
+			cell index = 329
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 767, type = 0
+ind = 379, type = 0
+ind = 776, type = 0
+ind = 329, type = 0
+number of nodes = 4
+node indexes: 
+335, 386, 387, 336
+neighbour indexes: 
+328, 379, 330, 279
+***********************
+			cell index = 330
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 776, type = 0
+ind = 380, type = 0
+ind = 785, type = 0
+ind = 330, type = 0
+number of nodes = 4
+node indexes: 
+336, 387, 388, 337
+neighbour indexes: 
+329, 380, 331, 280
+***********************
+			cell index = 331
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 785, type = 0
+ind = 381, type = 0
+ind = 794, type = 0
+ind = 331, type = 0
+number of nodes = 4
+node indexes: 
+337, 388, 389, 338
+neighbour indexes: 
+330, 381, 332, 281
+***********************
+			cell index = 332
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 794, type = 0
+ind = 382, type = 0
+ind = 803, type = 0
+ind = 332, type = 0
+number of nodes = 4
+node indexes: 
+338, 389, 390, 339
+neighbour indexes: 
+331, 382, 333, 282
+***********************
+			cell index = 333
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 803, type = 0
+ind = 383, type = 0
+ind = 812, type = 0
+ind = 333, type = 0
+number of nodes = 4
+node indexes: 
+339, 390, 391, 340
+neighbour indexes: 
+332, 383, 334, 283
+***********************
+			cell index = 334
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 812, type = 0
+ind = 384, type = 0
+ind = 821, type = 0
+ind = 334, type = 0
+number of nodes = 4
+node indexes: 
+340, 391, 392, 341
+neighbour indexes: 
+333, 384, 335, 284
+***********************
+			cell index = 335
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 821, type = 0
+ind = 385, type = 0
+ind = 830, type = 0
+ind = 335, type = 0
+number of nodes = 4
+node indexes: 
+341, 392, 393, 342
+neighbour indexes: 
+334, 385, 336, 285
+***********************
+			cell index = 336
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 830, type = 0
+ind = 386, type = 0
+ind = 839, type = 0
+ind = 336, type = 0
+number of nodes = 4
+node indexes: 
+342, 393, 394, 343
+neighbour indexes: 
+335, 386, 337, 286
+***********************
+			cell index = 337
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 839, type = 0
+ind = 387, type = 0
+ind = 848, type = 0
+ind = 337, type = 0
+number of nodes = 4
+node indexes: 
+343, 394, 395, 344
+neighbour indexes: 
+336, 387, 338, 287
+***********************
+			cell index = 338
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 848, type = 0
+ind = 388, type = 0
+ind = 857, type = 0
+ind = 338, type = 0
+number of nodes = 4
+node indexes: 
+344, 395, 396, 345
+neighbour indexes: 
+337, 388, 339, 288
+***********************
+			cell index = 339
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 857, type = 0
+ind = 389, type = 0
+ind = 866, type = 0
+ind = 339, type = 0
+number of nodes = 4
+node indexes: 
+345, 396, 397, 346
+neighbour indexes: 
+338, 389, 340, 289
+***********************
+			cell index = 340
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 866, type = 0
+ind = 390, type = 0
+ind = 875, type = 0
+ind = 340, type = 0
+number of nodes = 4
+node indexes: 
+346, 397, 398, 347
+neighbour indexes: 
+339, 390, 341, 290
+***********************
+			cell index = 341
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 875, type = 0
+ind = 391, type = 0
+ind = 884, type = 0
+ind = 341, type = 0
+number of nodes = 4
+node indexes: 
+347, 398, 399, 348
+neighbour indexes: 
+340, 391, 342, 291
+***********************
+			cell index = 342
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 884, type = 0
+ind = 392, type = 0
+ind = 893, type = 0
+ind = 342, type = 0
+number of nodes = 4
+node indexes: 
+348, 399, 400, 349
+neighbour indexes: 
+341, 392, 343, 292
+***********************
+			cell index = 343
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 893, type = 0
+ind = 393, type = 0
+ind = 902, type = 0
+ind = 343, type = 0
+number of nodes = 4
+node indexes: 
+349, 400, 401, 350
+neighbour indexes: 
+342, 393, 344, 293
+***********************
+			cell index = 344
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 902, type = 0
+ind = 394, type = 0
+ind = 911, type = 0
+ind = 344, type = 0
+number of nodes = 4
+node indexes: 
+350, 401, 402, 351
+neighbour indexes: 
+343, 394, 345, 294
+***********************
+			cell index = 345
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 911, type = 0
+ind = 395, type = 0
+ind = 920, type = 0
+ind = 345, type = 0
+number of nodes = 4
+node indexes: 
+351, 402, 403, 352
+neighbour indexes: 
+344, 395, 346, 295
+***********************
+			cell index = 346
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 920, type = 0
+ind = 396, type = 0
+ind = 929, type = 0
+ind = 346, type = 0
+number of nodes = 4
+node indexes: 
+352, 403, 404, 353
+neighbour indexes: 
+345, 396, 347, 296
+***********************
+			cell index = 347
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 929, type = 0
+ind = 397, type = 0
+ind = 938, type = 0
+ind = 347, type = 0
+number of nodes = 4
+node indexes: 
+353, 404, 405, 354
+neighbour indexes: 
+346, 397, 348, 297
+***********************
+			cell index = 348
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 938, type = 0
+ind = 398, type = 0
+ind = 947, type = 0
+ind = 348, type = 0
+number of nodes = 4
+node indexes: 
+354, 405, 406, 355
+neighbour indexes: 
+347, 398, 349, 298
+***********************
+			cell index = 349
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 947, type = 0
+ind = 399, type = 0
+ind = 956, type = 1
+ind = 349, type = 0
+number of nodes = 4
+node indexes: 
+355, 406, 407, 356
+neighbour indexes: 
+348, 399, -1, 299
+***********************
+			cell index = 350
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 507, type = 1
+ind = 400, type = 0
+ind = 516, type = 0
+ind = 350, type = 0
+number of nodes = 4
+node indexes: 
+357, 408, 409, 358
+neighbour indexes: 
+-1, 400, 351, 300
+***********************
+			cell index = 351
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 516, type = 0
+ind = 401, type = 0
+ind = 525, type = 0
+ind = 351, type = 0
+number of nodes = 4
+node indexes: 
+358, 409, 410, 359
+neighbour indexes: 
+350, 401, 352, 301
+***********************
+			cell index = 352
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 525, type = 0
+ind = 402, type = 0
+ind = 534, type = 0
+ind = 352, type = 0
+number of nodes = 4
+node indexes: 
+359, 410, 411, 360
+neighbour indexes: 
+351, 402, 353, 302
+***********************
+			cell index = 353
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 534, type = 0
+ind = 403, type = 0
+ind = 543, type = 0
+ind = 353, type = 0
+number of nodes = 4
+node indexes: 
+360, 411, 412, 361
+neighbour indexes: 
+352, 403, 354, 303
+***********************
+			cell index = 354
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 543, type = 0
+ind = 404, type = 0
+ind = 552, type = 0
+ind = 354, type = 0
+number of nodes = 4
+node indexes: 
+361, 412, 413, 362
+neighbour indexes: 
+353, 404, 355, 304
+***********************
+			cell index = 355
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 552, type = 0
+ind = 405, type = 0
+ind = 561, type = 0
+ind = 355, type = 0
+number of nodes = 4
+node indexes: 
+362, 413, 414, 363
+neighbour indexes: 
+354, 405, 356, 305
+***********************
+			cell index = 356
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 561, type = 0
+ind = 406, type = 0
+ind = 570, type = 0
+ind = 356, type = 0
+number of nodes = 4
+node indexes: 
+363, 414, 415, 364
+neighbour indexes: 
+355, 406, 357, 306
+***********************
+			cell index = 357
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 570, type = 0
+ind = 407, type = 0
+ind = 579, type = 0
+ind = 357, type = 0
+number of nodes = 4
+node indexes: 
+364, 415, 416, 365
+neighbour indexes: 
+356, 407, 358, 307
+***********************
+			cell index = 358
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 579, type = 0
+ind = 408, type = 0
+ind = 588, type = 0
+ind = 358, type = 0
+number of nodes = 4
+node indexes: 
+365, 416, 417, 366
+neighbour indexes: 
+357, 408, 359, 308
+***********************
+			cell index = 359
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 588, type = 0
+ind = 409, type = 0
+ind = 597, type = 0
+ind = 359, type = 0
+number of nodes = 4
+node indexes: 
+366, 417, 418, 367
+neighbour indexes: 
+358, 409, 360, 309
+***********************
+			cell index = 360
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 597, type = 0
+ind = 410, type = 0
+ind = 606, type = 0
+ind = 360, type = 0
+number of nodes = 4
+node indexes: 
+367, 418, 419, 368
+neighbour indexes: 
+359, 410, 361, 310
+***********************
+			cell index = 361
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 606, type = 0
+ind = 411, type = 0
+ind = 615, type = 0
+ind = 361, type = 0
+number of nodes = 4
+node indexes: 
+368, 419, 420, 369
+neighbour indexes: 
+360, 411, 362, 311
+***********************
+			cell index = 362
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 615, type = 0
+ind = 412, type = 0
+ind = 624, type = 0
+ind = 362, type = 0
+number of nodes = 4
+node indexes: 
+369, 420, 421, 370
+neighbour indexes: 
+361, 412, 363, 312
+***********************
+			cell index = 363
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 624, type = 0
+ind = 413, type = 0
+ind = 633, type = 0
+ind = 363, type = 0
+number of nodes = 4
+node indexes: 
+370, 421, 422, 371
+neighbour indexes: 
+362, 413, 364, 313
+***********************
+			cell index = 364
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 633, type = 0
+ind = 414, type = 0
+ind = 642, type = 0
+ind = 364, type = 0
+number of nodes = 4
+node indexes: 
+371, 422, 423, 372
+neighbour indexes: 
+363, 414, 365, 314
+***********************
+			cell index = 365
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 642, type = 0
+ind = 415, type = 0
+ind = 651, type = 0
+ind = 365, type = 0
+number of nodes = 4
+node indexes: 
+372, 423, 424, 373
+neighbour indexes: 
+364, 415, 366, 315
+***********************
+			cell index = 366
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 651, type = 0
+ind = 416, type = 0
+ind = 660, type = 0
+ind = 366, type = 0
+number of nodes = 4
+node indexes: 
+373, 424, 425, 374
+neighbour indexes: 
+365, 416, 367, 316
+***********************
+			cell index = 367
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 660, type = 0
+ind = 417, type = 0
+ind = 669, type = 0
+ind = 367, type = 0
+number of nodes = 4
+node indexes: 
+374, 425, 426, 375
+neighbour indexes: 
+366, 417, 368, 317
+***********************
+			cell index = 368
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 669, type = 0
+ind = 418, type = 0
+ind = 678, type = 0
+ind = 368, type = 0
+number of nodes = 4
+node indexes: 
+375, 426, 427, 376
+neighbour indexes: 
+367, 418, 369, 318
+***********************
+			cell index = 369
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 678, type = 0
+ind = 419, type = 0
+ind = 687, type = 0
+ind = 369, type = 0
+number of nodes = 4
+node indexes: 
+376, 427, 428, 377
+neighbour indexes: 
+368, 419, 370, 319
+***********************
+			cell index = 370
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 687, type = 0
+ind = 420, type = 0
+ind = 696, type = 0
+ind = 370, type = 0
+number of nodes = 4
+node indexes: 
+377, 428, 429, 378
+neighbour indexes: 
+369, 420, 371, 320
+***********************
+			cell index = 371
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 696, type = 0
+ind = 421, type = 0
+ind = 705, type = 0
+ind = 371, type = 0
+number of nodes = 4
+node indexes: 
+378, 429, 430, 379
+neighbour indexes: 
+370, 421, 372, 321
+***********************
+			cell index = 372
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 705, type = 0
+ind = 422, type = 0
+ind = 714, type = 0
+ind = 372, type = 0
+number of nodes = 4
+node indexes: 
+379, 430, 431, 380
+neighbour indexes: 
+371, 422, 373, 322
+***********************
+			cell index = 373
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 714, type = 0
+ind = 423, type = 0
+ind = 723, type = 0
+ind = 373, type = 0
+number of nodes = 4
+node indexes: 
+380, 431, 432, 381
+neighbour indexes: 
+372, 423, 374, 323
+***********************
+			cell index = 374
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 723, type = 0
+ind = 424, type = 0
+ind = 732, type = 0
+ind = 374, type = 0
+number of nodes = 4
+node indexes: 
+381, 432, 433, 382
+neighbour indexes: 
+373, 424, 375, 324
+***********************
+			cell index = 375
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 732, type = 0
+ind = 425, type = 0
+ind = 741, type = 0
+ind = 375, type = 0
+number of nodes = 4
+node indexes: 
+382, 433, 434, 383
+neighbour indexes: 
+374, 425, 376, 325
+***********************
+			cell index = 376
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 741, type = 0
+ind = 426, type = 0
+ind = 750, type = 0
+ind = 376, type = 0
+number of nodes = 4
+node indexes: 
+383, 434, 435, 384
+neighbour indexes: 
+375, 426, 377, 326
+***********************
+			cell index = 377
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 750, type = 0
+ind = 427, type = 0
+ind = 759, type = 0
+ind = 377, type = 0
+number of nodes = 4
+node indexes: 
+384, 435, 436, 385
+neighbour indexes: 
+376, 427, 378, 327
+***********************
+			cell index = 378
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 759, type = 0
+ind = 428, type = 0
+ind = 768, type = 0
+ind = 378, type = 0
+number of nodes = 4
+node indexes: 
+385, 436, 437, 386
+neighbour indexes: 
+377, 428, 379, 328
+***********************
+			cell index = 379
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 768, type = 0
+ind = 429, type = 0
+ind = 777, type = 0
+ind = 379, type = 0
+number of nodes = 4
+node indexes: 
+386, 437, 438, 387
+neighbour indexes: 
+378, 429, 380, 329
+***********************
+			cell index = 380
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 777, type = 0
+ind = 430, type = 0
+ind = 786, type = 0
+ind = 380, type = 0
+number of nodes = 4
+node indexes: 
+387, 438, 439, 388
+neighbour indexes: 
+379, 430, 381, 330
+***********************
+			cell index = 381
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 786, type = 0
+ind = 431, type = 0
+ind = 795, type = 0
+ind = 381, type = 0
+number of nodes = 4
+node indexes: 
+388, 439, 440, 389
+neighbour indexes: 
+380, 431, 382, 331
+***********************
+			cell index = 382
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 795, type = 0
+ind = 432, type = 0
+ind = 804, type = 0
+ind = 382, type = 0
+number of nodes = 4
+node indexes: 
+389, 440, 441, 390
+neighbour indexes: 
+381, 432, 383, 332
+***********************
+			cell index = 383
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 804, type = 0
+ind = 433, type = 0
+ind = 813, type = 0
+ind = 383, type = 0
+number of nodes = 4
+node indexes: 
+390, 441, 442, 391
+neighbour indexes: 
+382, 433, 384, 333
+***********************
+			cell index = 384
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 813, type = 0
+ind = 434, type = 0
+ind = 822, type = 0
+ind = 384, type = 0
+number of nodes = 4
+node indexes: 
+391, 442, 443, 392
+neighbour indexes: 
+383, 434, 385, 334
+***********************
+			cell index = 385
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 822, type = 0
+ind = 435, type = 0
+ind = 831, type = 0
+ind = 385, type = 0
+number of nodes = 4
+node indexes: 
+392, 443, 444, 393
+neighbour indexes: 
+384, 435, 386, 335
+***********************
+			cell index = 386
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 831, type = 0
+ind = 436, type = 0
+ind = 840, type = 0
+ind = 386, type = 0
+number of nodes = 4
+node indexes: 
+393, 444, 445, 394
+neighbour indexes: 
+385, 436, 387, 336
+***********************
+			cell index = 387
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 840, type = 0
+ind = 437, type = 0
+ind = 849, type = 0
+ind = 387, type = 0
+number of nodes = 4
+node indexes: 
+394, 445, 446, 395
+neighbour indexes: 
+386, 437, 388, 337
+***********************
+			cell index = 388
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 849, type = 0
+ind = 438, type = 0
+ind = 858, type = 0
+ind = 388, type = 0
+number of nodes = 4
+node indexes: 
+395, 446, 447, 396
+neighbour indexes: 
+387, 438, 389, 338
+***********************
+			cell index = 389
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 858, type = 0
+ind = 439, type = 0
+ind = 867, type = 0
+ind = 389, type = 0
+number of nodes = 4
+node indexes: 
+396, 447, 448, 397
+neighbour indexes: 
+388, 439, 390, 339
+***********************
+			cell index = 390
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 867, type = 0
+ind = 440, type = 0
+ind = 876, type = 0
+ind = 390, type = 0
+number of nodes = 4
+node indexes: 
+397, 448, 449, 398
+neighbour indexes: 
+389, 440, 391, 340
+***********************
+			cell index = 391
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 876, type = 0
+ind = 441, type = 0
+ind = 885, type = 0
+ind = 391, type = 0
+number of nodes = 4
+node indexes: 
+398, 449, 450, 399
+neighbour indexes: 
+390, 441, 392, 341
+***********************
+			cell index = 392
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 885, type = 0
+ind = 442, type = 0
+ind = 894, type = 0
+ind = 392, type = 0
+number of nodes = 4
+node indexes: 
+399, 450, 451, 400
+neighbour indexes: 
+391, 442, 393, 342
+***********************
+			cell index = 393
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 894, type = 0
+ind = 443, type = 0
+ind = 903, type = 0
+ind = 393, type = 0
+number of nodes = 4
+node indexes: 
+400, 451, 452, 401
+neighbour indexes: 
+392, 443, 394, 343
+***********************
+			cell index = 394
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 903, type = 0
+ind = 444, type = 0
+ind = 912, type = 0
+ind = 394, type = 0
+number of nodes = 4
+node indexes: 
+401, 452, 453, 402
+neighbour indexes: 
+393, 444, 395, 344
+***********************
+			cell index = 395
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 912, type = 0
+ind = 445, type = 0
+ind = 921, type = 0
+ind = 395, type = 0
+number of nodes = 4
+node indexes: 
+402, 453, 454, 403
+neighbour indexes: 
+394, 445, 396, 345
+***********************
+			cell index = 396
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 921, type = 0
+ind = 446, type = 0
+ind = 930, type = 0
+ind = 396, type = 0
+number of nodes = 4
+node indexes: 
+403, 454, 455, 404
+neighbour indexes: 
+395, 446, 397, 346
+***********************
+			cell index = 397
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 930, type = 0
+ind = 447, type = 0
+ind = 939, type = 0
+ind = 397, type = 0
+number of nodes = 4
+node indexes: 
+404, 455, 456, 405
+neighbour indexes: 
+396, 447, 398, 347
+***********************
+			cell index = 398
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 939, type = 0
+ind = 448, type = 0
+ind = 948, type = 0
+ind = 398, type = 0
+number of nodes = 4
+node indexes: 
+405, 456, 457, 406
+neighbour indexes: 
+397, 448, 399, 348
+***********************
+			cell index = 399
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 948, type = 0
+ind = 449, type = 0
+ind = 957, type = 1
+ind = 399, type = 0
+number of nodes = 4
+node indexes: 
+406, 457, 458, 407
+neighbour indexes: 
+398, 449, -1, 349
+***********************
+			cell index = 400
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 508, type = 1
+ind = 450, type = 1
+ind = 517, type = 0
+ind = 400, type = 0
+number of nodes = 4
+node indexes: 
+408, 459, 460, 409
+neighbour indexes: 
+-1, -1, 401, 350
+***********************
+			cell index = 401
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 517, type = 0
+ind = 451, type = 1
+ind = 526, type = 0
+ind = 401, type = 0
+number of nodes = 4
+node indexes: 
+409, 460, 461, 410
+neighbour indexes: 
+400, -1, 402, 351
+***********************
+			cell index = 402
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 526, type = 0
+ind = 452, type = 1
+ind = 535, type = 0
+ind = 402, type = 0
+number of nodes = 4
+node indexes: 
+410, 461, 462, 411
+neighbour indexes: 
+401, -1, 403, 352
+***********************
+			cell index = 403
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 535, type = 0
+ind = 453, type = 1
+ind = 544, type = 0
+ind = 403, type = 0
+number of nodes = 4
+node indexes: 
+411, 462, 463, 412
+neighbour indexes: 
+402, -1, 404, 353
+***********************
+			cell index = 404
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 544, type = 0
+ind = 454, type = 1
+ind = 553, type = 0
+ind = 404, type = 0
+number of nodes = 4
+node indexes: 
+412, 463, 464, 413
+neighbour indexes: 
+403, -1, 405, 354
+***********************
+			cell index = 405
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 553, type = 0
+ind = 455, type = 1
+ind = 562, type = 0
+ind = 405, type = 0
+number of nodes = 4
+node indexes: 
+413, 464, 465, 414
+neighbour indexes: 
+404, -1, 406, 355
+***********************
+			cell index = 406
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 562, type = 0
+ind = 456, type = 1
+ind = 571, type = 0
+ind = 406, type = 0
+number of nodes = 4
+node indexes: 
+414, 465, 466, 415
+neighbour indexes: 
+405, -1, 407, 356
+***********************
+			cell index = 407
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 571, type = 0
+ind = 457, type = 1
+ind = 580, type = 0
+ind = 407, type = 0
+number of nodes = 4
+node indexes: 
+415, 466, 467, 416
+neighbour indexes: 
+406, -1, 408, 357
+***********************
+			cell index = 408
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 580, type = 0
+ind = 458, type = 1
+ind = 589, type = 0
+ind = 408, type = 0
+number of nodes = 4
+node indexes: 
+416, 467, 468, 417
+neighbour indexes: 
+407, -1, 409, 358
+***********************
+			cell index = 409
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 589, type = 0
+ind = 459, type = 1
+ind = 598, type = 0
+ind = 409, type = 0
+number of nodes = 4
+node indexes: 
+417, 468, 469, 418
+neighbour indexes: 
+408, -1, 410, 359
+***********************
+			cell index = 410
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 598, type = 0
+ind = 460, type = 1
+ind = 607, type = 0
+ind = 410, type = 0
+number of nodes = 4
+node indexes: 
+418, 469, 470, 419
+neighbour indexes: 
+409, -1, 411, 360
+***********************
+			cell index = 411
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 607, type = 0
+ind = 461, type = 1
+ind = 616, type = 0
+ind = 411, type = 0
+number of nodes = 4
+node indexes: 
+419, 470, 471, 420
+neighbour indexes: 
+410, -1, 412, 361
+***********************
+			cell index = 412
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 616, type = 0
+ind = 462, type = 1
+ind = 625, type = 0
+ind = 412, type = 0
+number of nodes = 4
+node indexes: 
+420, 471, 472, 421
+neighbour indexes: 
+411, -1, 413, 362
+***********************
+			cell index = 413
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 625, type = 0
+ind = 463, type = 1
+ind = 634, type = 0
+ind = 413, type = 0
+number of nodes = 4
+node indexes: 
+421, 472, 473, 422
+neighbour indexes: 
+412, -1, 414, 363
+***********************
+			cell index = 414
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 634, type = 0
+ind = 464, type = 1
+ind = 643, type = 0
+ind = 414, type = 0
+number of nodes = 4
+node indexes: 
+422, 473, 474, 423
+neighbour indexes: 
+413, -1, 415, 364
+***********************
+			cell index = 415
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 643, type = 0
+ind = 465, type = 1
+ind = 652, type = 0
+ind = 415, type = 0
+number of nodes = 4
+node indexes: 
+423, 474, 475, 424
+neighbour indexes: 
+414, -1, 416, 365
+***********************
+			cell index = 416
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 652, type = 0
+ind = 466, type = 1
+ind = 661, type = 0
+ind = 416, type = 0
+number of nodes = 4
+node indexes: 
+424, 475, 476, 425
+neighbour indexes: 
+415, -1, 417, 366
+***********************
+			cell index = 417
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 661, type = 0
+ind = 467, type = 1
+ind = 670, type = 0
+ind = 417, type = 0
+number of nodes = 4
+node indexes: 
+425, 476, 477, 426
+neighbour indexes: 
+416, -1, 418, 367
+***********************
+			cell index = 418
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 670, type = 0
+ind = 468, type = 1
+ind = 679, type = 0
+ind = 418, type = 0
+number of nodes = 4
+node indexes: 
+426, 477, 478, 427
+neighbour indexes: 
+417, -1, 419, 368
+***********************
+			cell index = 419
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 679, type = 0
+ind = 469, type = 1
+ind = 688, type = 0
+ind = 419, type = 0
+number of nodes = 4
+node indexes: 
+427, 478, 479, 428
+neighbour indexes: 
+418, -1, 420, 369
+***********************
+			cell index = 420
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 688, type = 0
+ind = 470, type = 1
+ind = 697, type = 0
+ind = 420, type = 0
+number of nodes = 4
+node indexes: 
+428, 479, 480, 429
+neighbour indexes: 
+419, -1, 421, 370
+***********************
+			cell index = 421
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 697, type = 0
+ind = 471, type = 1
+ind = 706, type = 0
+ind = 421, type = 0
+number of nodes = 4
+node indexes: 
+429, 480, 481, 430
+neighbour indexes: 
+420, -1, 422, 371
+***********************
+			cell index = 422
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 706, type = 0
+ind = 472, type = 1
+ind = 715, type = 0
+ind = 422, type = 0
+number of nodes = 4
+node indexes: 
+430, 481, 482, 431
+neighbour indexes: 
+421, -1, 423, 372
+***********************
+			cell index = 423
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 715, type = 0
+ind = 473, type = 1
+ind = 724, type = 0
+ind = 423, type = 0
+number of nodes = 4
+node indexes: 
+431, 482, 483, 432
+neighbour indexes: 
+422, -1, 424, 373
+***********************
+			cell index = 424
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 724, type = 0
+ind = 474, type = 1
+ind = 733, type = 0
+ind = 424, type = 0
+number of nodes = 4
+node indexes: 
+432, 483, 484, 433
+neighbour indexes: 
+423, -1, 425, 374
+***********************
+			cell index = 425
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 733, type = 0
+ind = 475, type = 1
+ind = 742, type = 0
+ind = 425, type = 0
+number of nodes = 4
+node indexes: 
+433, 484, 485, 434
+neighbour indexes: 
+424, -1, 426, 375
+***********************
+			cell index = 426
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 742, type = 0
+ind = 476, type = 1
+ind = 751, type = 0
+ind = 426, type = 0
+number of nodes = 4
+node indexes: 
+434, 485, 486, 435
+neighbour indexes: 
+425, -1, 427, 376
+***********************
+			cell index = 427
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 751, type = 0
+ind = 477, type = 1
+ind = 760, type = 0
+ind = 427, type = 0
+number of nodes = 4
+node indexes: 
+435, 486, 487, 436
+neighbour indexes: 
+426, -1, 428, 377
+***********************
+			cell index = 428
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 760, type = 0
+ind = 478, type = 1
+ind = 769, type = 0
+ind = 428, type = 0
+number of nodes = 4
+node indexes: 
+436, 487, 488, 437
+neighbour indexes: 
+427, -1, 429, 378
+***********************
+			cell index = 429
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 769, type = 0
+ind = 479, type = 1
+ind = 778, type = 0
+ind = 429, type = 0
+number of nodes = 4
+node indexes: 
+437, 488, 489, 438
+neighbour indexes: 
+428, -1, 430, 379
+***********************
+			cell index = 430
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 778, type = 0
+ind = 480, type = 1
+ind = 787, type = 0
+ind = 430, type = 0
+number of nodes = 4
+node indexes: 
+438, 489, 490, 439
+neighbour indexes: 
+429, -1, 431, 380
+***********************
+			cell index = 431
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 787, type = 0
+ind = 481, type = 1
+ind = 796, type = 0
+ind = 431, type = 0
+number of nodes = 4
+node indexes: 
+439, 490, 491, 440
+neighbour indexes: 
+430, -1, 432, 381
+***********************
+			cell index = 432
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 796, type = 0
+ind = 482, type = 1
+ind = 805, type = 0
+ind = 432, type = 0
+number of nodes = 4
+node indexes: 
+440, 491, 492, 441
+neighbour indexes: 
+431, -1, 433, 382
+***********************
+			cell index = 433
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 805, type = 0
+ind = 483, type = 1
+ind = 814, type = 0
+ind = 433, type = 0
+number of nodes = 4
+node indexes: 
+441, 492, 493, 442
+neighbour indexes: 
+432, -1, 434, 383
+***********************
+			cell index = 434
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 814, type = 0
+ind = 484, type = 1
+ind = 823, type = 0
+ind = 434, type = 0
+number of nodes = 4
+node indexes: 
+442, 493, 494, 443
+neighbour indexes: 
+433, -1, 435, 384
+***********************
+			cell index = 435
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 823, type = 0
+ind = 485, type = 1
+ind = 832, type = 0
+ind = 435, type = 0
+number of nodes = 4
+node indexes: 
+443, 494, 495, 444
+neighbour indexes: 
+434, -1, 436, 385
+***********************
+			cell index = 436
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 832, type = 0
+ind = 486, type = 1
+ind = 841, type = 0
+ind = 436, type = 0
+number of nodes = 4
+node indexes: 
+444, 495, 496, 445
+neighbour indexes: 
+435, -1, 437, 386
+***********************
+			cell index = 437
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 841, type = 0
+ind = 487, type = 1
+ind = 850, type = 0
+ind = 437, type = 0
+number of nodes = 4
+node indexes: 
+445, 496, 497, 446
+neighbour indexes: 
+436, -1, 438, 387
+***********************
+			cell index = 438
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 850, type = 0
+ind = 488, type = 1
+ind = 859, type = 0
+ind = 438, type = 0
+number of nodes = 4
+node indexes: 
+446, 497, 498, 447
+neighbour indexes: 
+437, -1, 439, 388
+***********************
+			cell index = 439
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 859, type = 0
+ind = 489, type = 1
+ind = 868, type = 0
+ind = 439, type = 0
+number of nodes = 4
+node indexes: 
+447, 498, 499, 448
+neighbour indexes: 
+438, -1, 440, 389
+***********************
+			cell index = 440
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 868, type = 0
+ind = 490, type = 1
+ind = 877, type = 0
+ind = 440, type = 0
+number of nodes = 4
+node indexes: 
+448, 499, 500, 449
+neighbour indexes: 
+439, -1, 441, 390
+***********************
+			cell index = 441
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 877, type = 0
+ind = 491, type = 1
+ind = 886, type = 0
+ind = 441, type = 0
+number of nodes = 4
+node indexes: 
+449, 500, 501, 450
+neighbour indexes: 
+440, -1, 442, 391
+***********************
+			cell index = 442
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 886, type = 0
+ind = 492, type = 1
+ind = 895, type = 0
+ind = 442, type = 0
+number of nodes = 4
+node indexes: 
+450, 501, 502, 451
+neighbour indexes: 
+441, -1, 443, 392
+***********************
+			cell index = 443
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 895, type = 0
+ind = 493, type = 1
+ind = 904, type = 0
+ind = 443, type = 0
+number of nodes = 4
+node indexes: 
+451, 502, 503, 452
+neighbour indexes: 
+442, -1, 444, 393
+***********************
+			cell index = 444
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 904, type = 0
+ind = 494, type = 1
+ind = 913, type = 0
+ind = 444, type = 0
+number of nodes = 4
+node indexes: 
+452, 503, 504, 453
+neighbour indexes: 
+443, -1, 445, 394
+***********************
+			cell index = 445
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 913, type = 0
+ind = 495, type = 1
+ind = 922, type = 0
+ind = 445, type = 0
+number of nodes = 4
+node indexes: 
+453, 504, 505, 454
+neighbour indexes: 
+444, -1, 446, 395
+***********************
+			cell index = 446
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 922, type = 0
+ind = 496, type = 1
+ind = 931, type = 0
+ind = 446, type = 0
+number of nodes = 4
+node indexes: 
+454, 505, 506, 455
+neighbour indexes: 
+445, -1, 447, 396
+***********************
+			cell index = 447
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 931, type = 0
+ind = 497, type = 1
+ind = 940, type = 0
+ind = 447, type = 0
+number of nodes = 4
+node indexes: 
+455, 506, 507, 456
+neighbour indexes: 
+446, -1, 448, 397
+***********************
+			cell index = 448
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 940, type = 0
+ind = 498, type = 1
+ind = 949, type = 0
+ind = 448, type = 0
+number of nodes = 4
+node indexes: 
+456, 507, 508, 457
+neighbour indexes: 
+447, -1, 449, 398
+***********************
+			cell index = 449
+center = -nan(ind),-nan(ind)
+square = 0
+number of faces = 4
+face indexes and types: 
+ind = 949, type = 0
+ind = 499, type = 1
+ind = 958, type = 1
+ind = 449, type = 0
+number of nodes = 4
+node indexes: 
+457, 508, 509, 458
+neighbour indexes: 
+448, -1, -1, 399
 ***********************

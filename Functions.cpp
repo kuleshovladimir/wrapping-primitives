@@ -1,4 +1,4 @@
-#include "Functions.h"
+п»ї#include "Functions.h"
 
 void Init(parameters* (&p), int nCells, int Nm) {
 
@@ -6,21 +6,21 @@ void Init(parameters* (&p), int nCells, int Nm) {
 
     double U0;
 
-    // входные данные 
-    T0 = 75.1; //K
-    la = 2.5658e-2;  // W/(m K)
-    mu = 17.863e-6;
+    // РІС…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ 
+    T0 = 273; //С‚РµРјРїРµСЂР°С‚СѓСЂР° РІС…РѕРґСЏС‰РµРіРѕ РіР°Р·Р°
+    la = 2.5658e-2;  // РєРѕСЌС„С„РёС†РёРµРЅС‚ С‚РµРїР»РѕРїСЂРѕРІРѕРґРЅРѕСЃС‚Рё 
+    mu = 17.863e-6;  // РІСЏР·РєРѕСЃС‚СЊ
 
-    U0 = 867.9;
+    U0 = 0.1; //СЃРєРѕСЂРѕСЃС‚СЊ
 
-    P0 = 1931;  //Pa
-    Gam = 1.4;
-    Gm = 28.97;
+    P0 = 100000;  //РґР°РІР»РµРЅРёРµ
+    Gam = 1.4;  //РєРѕРЅСЃС‚Р°РЅС‚Р° Р°РґРёР°Р±Р°С‚С‹
+    Gm = 28.97; //РјРѕР»СЏСЂРЅР°СЏ РјР°СЃСЃР°
 
-    //расчет 
-    R = 8314.41 / Gm; //J/(kg K)
-    ro = P0 / (R * T0);
-    Cp = Gam / (Gam - 1.) * R;
+    //СЂР°СЃС‡РµС‚ 
+    R = 8314.41 / Gm; 
+    ro = P0 / (R * T0); //РїР»РѕС‚РЅРѕСЃС‚СЊ
+    Cp = Gam / (Gam - 1.) * R; //С‚РµРїР»РѕРµРјРєРѕСЃС‚СЊ
 
     for (int i = 0; i < nCells; i++) {
         p[i].ro = ro;
@@ -47,8 +47,6 @@ void Init(parameters* (&p), int nCells, int Nm) {
 
         p[i].e = p[i].h / p[i].Gam;
 
-        // NS: 
-
         p[i].U = new double[Nm];
         p[i].U1 = new double[Nm];
 
@@ -69,7 +67,7 @@ void Init(parameters* (&p), int nCells, int Nm) {
 
 
 
-void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
+/*void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 {
 	int nFaces = mesh.Get_nFaces();
 
@@ -91,8 +89,8 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
             double dy = xc.y - xf.y;
             double dl = sqrt(dx * dx + dy * dy);
 
-            double length = face.length;        //длина грани
-            double S = cells[c].Get_S();        //площадь ячейки с
+            double length = face.length;        //РґР»РёРЅР° РіСЂР°РЅРё
+            double S = cells[c].Get_S();        //РїР»РѕС‰Р°РґСЊ СЏС‡РµР№РєРё СЃ
 
             int z = face.zone;
 
@@ -112,7 +110,7 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
                 //mu/Pr
                 double mu_Pr = p[c].mu / p[c].Pr;
 
-                //Fv - поток через грань
+                //Fv - РїРѕС‚РѕРє С‡РµСЂРµР· РіСЂР°РЅСЊ
                 double Fv = mu_Pr * dh_dn;
 
                 du[c].dU[0] += -Fv * length / S * dt;
@@ -130,11 +128,11 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 
 		}
 		else {
-			//координаты правой и левой ячеек
+			//РєРѕРѕСЂРґРёРЅР°С‚С‹ РїСЂР°РІРѕР№ Рё Р»РµРІРѕР№ СЏС‡РµРµРє
 			Pnt xr = cells[cr].Get_MassC();
 			Pnt xl = cells[cl].Get_MassC();
 
-			//расстояние между ячейками
+			//СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ СЏС‡РµР№РєР°РјРё
 			double dx = (xr.x - xl.y);
 			double dy = (xr.y - xl.y);
 			double dl = sqrt(dx * dx + dy * dy);
@@ -142,14 +140,14 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 			//dh/dn
 			double dh_dn = (p[cr].h - p[cl].h) / dl;
 
-			//среднее mu/Pr
+			//СЃСЂРµРґРЅРµРµ mu/Pr
 			double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
 
-			//Fv - поток через грань
+			//Fv - РїРѕС‚РѕРє С‡РµСЂРµР· РіСЂР°РЅСЊ
 			double Fv = mu_Pr * dh_dn;
 
-			double lenght = face.length;	//длина грани
-			double Sr = cells[cr].Get_S();	//площади 
+			double lenght = face.length;	//РґР»РёРЅР° РіСЂР°РЅРё
+			double Sr = cells[cr].Get_S();	//РїР»РѕС‰Р°РґРё 
 			double Sl = cells[cl].Get_S();
 
 			du[cr].dU[0] += -Fv * lenght / Sr * dt;
@@ -157,7 +155,7 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt)
 
 		}
 	}
-}
+}*/
 
 void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt, Gradient* gr, int Nm)
 {
@@ -191,7 +189,7 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt, Grad
             int granType = mesh.Get_zone(z).granType;
 
             if (granType == 1) {
-                double dl = cells[i].Yw;
+                double dl = cells[i].Get_Yw();
 
                 double du_dx, du_dy, dv_dx, dv_dy, dh_dx, dh_dy;
                 double  u_, v_;
@@ -268,7 +266,7 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt, Grad
             } 
 
             if (granType == 3) {
-                double dl = cells[i].Yw;
+                double dl = cells[i].Get_Yw();
 
                 double du_dx, du_dy, dv_dx, dv_dy, dh_dx, dh_dy;
                 double  u_, v_;
@@ -385,7 +383,7 @@ void Viscous(parameters* p, changes* du, Mesh mesh, Cell* cells, double dt, Grad
     }
 }
 
-void GetParams(parameters* (&p), int nCells, int Nm)
+void GetParams(parameters* (&p), int nCells, int Nm, Cell* cells)
 {
     for (int i = 0; i < nCells; i++) {
         p[i].ro = p[i].U1[0];
@@ -398,6 +396,7 @@ void GetParams(parameters* (&p), int nCells, int Nm)
         double e = p[i].E - q;
 
         p[i].h = e * p[i].Gam;
+        
         p[i].T = p[i].h / p[i].Cp;
         p[i].H = p[i].h + q;
 
@@ -408,7 +407,7 @@ void GetParams(parameters* (&p), int nCells, int Nm)
         p[i].V[1] = p[i].u;
         p[i].V[2] = p[i].v;
         p[i].V[3] = p[i].h;
-
+        cout << p[451].U
     }
 }
 
@@ -427,7 +426,7 @@ void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, d
         int n1 = face.nodes[0];
         int n2 = face.nodes[1];
 
-        double dl = face.length;    //длина грани
+        double dl = face.length;    //РґР»РёРЅР° РіСЂР°РЅРё
 
         Pnt x1 = mesh.Get_node(n1);
         Pnt x2 = mesh.Get_node(n2);
@@ -436,10 +435,6 @@ void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, d
         double ny = (x2.x - x1.x) / dl;
 
         double Fc;
-
-        if (i == -10) {
-            double un = p[cl].u * nx + p[cl].v * ny;
-        }
 
         if (face.is_boundary) {
             int c = max(cr, cl);
@@ -450,7 +445,7 @@ void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, d
                 double uInlet, vInlet, T_Inlet;
                 uInlet = p[c].u;
                 vInlet = p[c].v;
-                T_Inlet = 800;
+                T_Inlet = 273;
 
                 double un = uInlet * nx + vInlet * ny;
 
@@ -477,7 +472,7 @@ void Convect(parameters* (&p), changes* (&du), Mesh mesh, Cell* cells, int It, d
             }
         }
         else {
-            //средние значения
+            //СЃСЂРµРґРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ
             double u_, v_, un_, H_, E_, ro_;
 
             u_ = 0.5 * (p[cr].u + p[cl].u);
@@ -514,7 +509,7 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
 {
     int nFaces = mesh.Get_nFaces();
 
-    for (int k = 0; k < nCells; k++) {
+    for (int k = 0; k < nCells; k++){
         double z1 = 1.e10;
         Pnt E = cells[k].Get_MassC();
 
@@ -534,10 +529,10 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
                 if (z1 > z2) { z1 = z2; };
             }
         }
-        cells[k].Yw = z1;
+        cells[k].Set_Yw(z1);
     }
 
-    //поток записи
+    //РїРѕС‚РѕРє Р·Р°РїРёСЃРё
     int Nx = mesh.Get_Nx();
     int Ny = mesh.Get_Ny();
 
@@ -548,7 +543,7 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
         record2 << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
 
         for (int i = 0; i < nCells; i++) {
-            record2 << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << cells[i].Yw << endl;
+            record2 << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << cells[i].Get_Yw() << endl;
         }
 
     }
@@ -557,7 +552,7 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
 
 void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 {
-    // создаем поток для записи
+    // СЃРѕР·РґР°РµРј РїРѕС‚РѕРє РґР»СЏ Р·Р°РїРёСЃРё
     string f = "T.plt";
     ofstream record(f, ios::out);
     if (record) {
@@ -565,7 +560,8 @@ void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 
         record << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
         for (int i = 0; i < nCells; i++) {
-            record << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << p[i].T << endl;
+            if (i % Ny != 0 || i % Ny != (Ny - 2))
+                record << cells[i].Get_MassC().x << " " << cells[i].Get_MassC().y << " " << p[i].T << endl;
         }
 
     }
@@ -582,7 +578,7 @@ double Dist(Pnt A, Pnt B, Pnt E)
 
     double dist;
 
-    //векторы
+    //РІРµРєС‚РѕСЂС‹
     AB[0] = B.x - A.x;
     AB[1] = B.y - A.y;
 
@@ -592,7 +588,7 @@ double Dist(Pnt A, Pnt B, Pnt E)
     AE[0] = E.x - A.x;
     AE[1] = E.y - A.y;
 
-    //сколярное произведение векторов
+    //СЃРєРѕР»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ РІРµРєС‚РѕСЂРѕРІ
     AB_BE = (AB[0] * BE[0] + AB[1] * BE[1]);
     AB_AE = (AB[0] * AE[0] + AB[1] * AE[1]);
 
@@ -615,15 +611,15 @@ double Dist(Pnt A, Pnt B, Pnt E)
 
 void SetGran(Mesh& mesh)
 {
-    mesh.zones[0].granType = 3;
+    mesh.zones[0].granType = 4;
     mesh.zones[1].granType = 1;
-    mesh.zones[2].granType = 4;
-    mesh.zones[3].granType = 2;
+    mesh.zones[2].granType = 2;
+    mesh.zones[3].granType = 1;
 
     int nZones = mesh.nZones;
 
-    //в будущем - ввод из файла
-    //тестовые значения
+    //РІ Р±СѓРґСѓС‰РµРј - РІРІРѕРґ РёР· С„Р°Р№Р»Р°
+    //С‚РµСЃС‚РѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 
     for (int i = 0; i < nZones; i++) {
         int tp = mesh.zones[i].granType;
@@ -643,11 +639,15 @@ void SetGran(Mesh& mesh)
     mesh.zones[1].bnd[0].vals[0] = 105;
     
     mesh.zones[3].bnd[0].rules[0] = 1;
-    mesh.zones[3].bnd[0].vals[0] = 0.08;
-    mesh.zones[3].bnd[0].vals[1] = 867.9;
-    mesh.zones[3].bnd[0].vals[2] = 75.1;
-    mesh.zones[3].bnd[0].vals[3] = 1931;
-    mesh.zones[3].bnd[0].vals[4] = 0;
+    mesh.zones[3].bnd[0].rules[1] = 1;
+    mesh.zones[3].bnd[0].vals[0] = 400;
+
+    mesh.zones[2].bnd[0].rules[0] = 1;
+    mesh.zones[2].bnd[0].vals[0] = 100;
+    mesh.zones[2].bnd[0].vals[1] = 0.1;
+    mesh.zones[2].bnd[0].vals[2] = 250;
+    mesh.zones[2].bnd[0].vals[3] = 10000;
+    mesh.zones[2].bnd[0].vals[4] = 0;
     
 }
 
@@ -655,12 +655,12 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 {
     int nCells = mesh.Get_nCells();
 
-    //значение вектора Vc в центре ячейки
+    //Р·РЅР°С‡РµРЅРёРµ РІРµРєС‚РѕСЂР° Vc РІ С†РµРЅС‚СЂРµ СЏС‡РµР№РєРё
     double* Vc = new double[Nm];
-    //изменение вектора Vc по отношению к соседней клетке
+    //РёР·РјРµРЅРµРЅРёРµ РІРµРєС‚РѕСЂР° Vc РїРѕ РѕС‚РЅРѕС€РµРЅРёСЋ Рє СЃРѕСЃРµРґРЅРµР№ РєР»РµС‚РєРµ
     double* dVk = new double[Nm];
 
-    //временный вектор градиентов для всех компнентов вектора V
+    //РІСЂРµРјРµРЅРЅС‹Р№ РІРµРєС‚РѕСЂ РіСЂР°РґРёРµРЅС‚РѕРІ РґР»СЏ РІСЃРµС… РєРѕРјРїРЅРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР° V
     Vector* gr_ = new Vector[Nm];
 
     for (int i = 0; i < Nm; i++) {
@@ -668,7 +668,7 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
     }
 
     for (int i = 0; i < nCells; i++) {
-        int NB = cells[i].Get_NFaces();     //число окружающих граней
+        int NB = cells[i].Get_NFaces();     //С‡РёСЃР»Рѕ РѕРєСЂСѓР¶Р°СЋС‰РёС… РіСЂР°РЅРµР№
 
         for (int j = 0; j < Nm; j++) {
             gr_[j].cx[0] = 0;
@@ -679,7 +679,7 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
             Vc[j] = p[i].V[j];
         }
 
-        for (int j = 0; j < NB; j++) {      //проход по граням
+        for (int j = 0; j < NB; j++) {      //РїСЂРѕС…РѕРґ РїРѕ РіСЂР°РЅСЏРј
             bool fType = cells[i].Get_fType(j);
 
             int nb = cells[i].Get_Cell(j);
@@ -695,7 +695,7 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
                 int btype = mesh.Get_zone(z).granType;
 
                 if (btype == 1) {
-                    bool vel = mesh.Get_zone(z).bnd[0].rules[0];
+                    int vel = mesh.Get_zone(z).bnd[0].rules[0];
                     int temp = mesh.Get_zone(z).bnd[0].rules[1];
                     double value = mesh.Get_zone(z).bnd[0].vals[0];
 
@@ -763,6 +763,293 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
         for (int j = 0; j < Nm; j++) {
             gr[i].g[j].cx[0] = gr_[j].cx[0];
             gr[i].g[j].cx[1] = gr_[j].cx[1];
+        }
+    }
+}
+
+void Matrix_Diag(double A[4][4], double L[4], double B[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            B[i][j] = A[i][j] * L[j];
+        }
+    }
+}
+
+void Matrix_Matrix(double A[4][4], double B[4][4], double C[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < 4; k++) {
+                C[i][j] += A[i][k] + B[k][j];
+            }
+        }
+    }
+}
+
+void Matrix_Vector(double A[4][4], double B[4], double C[4])
+{
+    for (int i = 0; i < 4; i++) {
+        C[i] = 0;
+        for (int j = 0; j < 4; j++) {
+            C[i] += A[i][j] * B[j];
+        }
+    }
+}
+
+void PrintMatrix(double A[4][4])
+{
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cout << setw(15) << A[i][j];
+        }
+        cout << endl;
+    }
+}
+
+
+
+
+
+void S_Matr(double A[4][4], double u, double v, double ro, double p, double h, double nx, double ny, int iMod)
+{
+    double gam = h / (h - p / ro);
+    double a = sqrt(gam * p / ro);
+
+    double beta = gam - 1;
+    double alpha = 0.5 * (u * u + v * v);
+
+    double Ht = h + alpha;
+    double Et = Ht - p / ro;
+
+    double ly = nx;
+    double lx = -ny;
+
+    double U_ = u * nx + v * ny;
+    double V_ = u * lx + v * ly;
+
+    double S[4][4], S_[4][4];
+
+    S[0][0] = a * a - alpha * alpha;
+    S[0][1] = beta * u;
+    S[0][2] = beta * v;
+    S[0][3] = -beta;
+
+    S[1][0] = -V_;
+    S[1][1] = lx;
+    S[1][2] = ly;
+    S[1][3] = 0;
+
+    S[2][0] = alpha * beta - U_ * a;
+    S[2][1] = a * nx - beta * u;
+    S[2][2] = a * ny - beta * v;
+    S[2][3] = beta;
+
+    S[3][0] = alpha * beta + U_ * a;
+    S[3][1] = -a * nx - beta * u;
+    S[3][2] = -a * ny - beta * v;
+    S[3][3] = beta;
+
+    double a2 = a * a;
+
+    S_[0][0] = 1 / a2;
+    S_[0][1] = 0;
+    S_[0][2] = 1 / (2 * a2);
+    S_[0][3] = 1 / (2 * a2);
+
+    S_[1][0] = u / a2;
+    S_[1][1] = lx;
+    S_[1][2] = (u + a * nx) / (2 * a2);
+    S_[1][3] = (u - a * nx) / (2 * a2);
+
+    S_[2][0] = v / a2;
+    S_[2][1] = ly;
+    S_[2][2] = (v + a * ny) / (2 * a2);
+    S_[2][3] = (v - a * ny) / (2 * a2);
+
+    S_[3][0] = alpha / a2;
+    S_[3][1] = V_;
+    S_[3][2] = (Ht + a * U_) / (2 * a2);
+    S_[3][3] = (Ht - a * U_) / (2 * a2);
+
+    double L[4];
+
+    L[0] = U_;
+    L[1] = U_;
+    L[2] = U_ + a;
+    L[3] = U_ - a;
+
+    if (iMod == 1) { //РјР°С‚СЂРёС†Р° Рђ
+        
+    }
+
+    if (iMod == 2) { //РјР°С‚СЂРёС†Р° B
+        for (int i = 0; i < 4; i++) {
+            L[0] = 0.5 * (L[i] + abs(L[i]));
+        }
+    }
+
+    if (iMod == 3) { //РјР°С‚СЂРёС†Р° РЎ
+        for (int i = 0; i < 4; i++) {
+            L[0] = 0.5 * (L[i] - abs(L[i]));
+        }
+    }
+
+    double Tmp[4][4];
+
+    Matrix_Diag(S_, L, Tmp);
+
+    Matrix_Matrix(Tmp, S, A);
+}
+
+void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, int Nm) {
+
+    int nFaces = mesh.Get_nFaces();
+
+    double* Fc = new double[Nm];
+    double* UL = new double[Nm];
+    double* UR = new double[Nm];
+    double* ULR = new double[Nm];
+
+    double A[4][4];
+
+    double* AUl = new double[Nm];
+    double* AUr = new double[Nm];
+
+
+    for (int i = 0; i < nFaces; i++) {
+        Face face = mesh.Get_face(i);
+
+        int cr = face.cr;
+        int cl = face.cl;
+
+        //nodes
+        int n1 = face.nodes[0];
+        int n2 = face.nodes[1];
+
+        double dl = face.length;    
+
+        Pnt x1 = mesh.Get_node(n1);
+        Pnt x2 = mesh.Get_node(n2);
+
+        double nx = (x1.y - x2.y) / dl;
+        double ny = (x2.x - x1.x) / dl;
+
+        if (face.is_boundary) {
+            int c = max(cr, cl);
+            double S = cells[c].Get_S();
+
+            int z = face.zone;
+            int grantype = mesh.Get_zone(z).granType;
+
+            if (grantype == 1 || grantype == 3) {
+                Fc[0] = 0;
+                Fc[1] = p[c].p * nx;
+                Fc[2] = p[c].p * ny;
+                Fc[3] = 0;
+            }
+
+            if (grantype == 2) {
+                double W = mesh.Get_zone(z).bnd[0].vals[1];
+                double angle = mesh.Get_zone(z).bnd[0].vals[4];
+
+                double u_ = W * cos(angle);
+                double v_ = W * sin(angle);
+
+                double T_ = mesh.Get_zone(z).bnd[0].vals[2];
+                double p_ = mesh.Get_zone(z).bnd[0].vals[3];
+
+                double Gm = 28.97;
+                double Gam = 1.4;
+
+                double R = 8314.41 / Gm;
+                double ro_ = p_ / (R * T_);
+                double h_ = p_ * Gam / ((Gam - 1.) * ro_);
+                double H_ = h_ + 0.5 * (u_ * u_ + v_ * v_);
+                double un = u_ * nx + v_ * ny;
+
+                Fc[0] = ro_ * un;
+                Fc[1] = ro_ * un * u_ + p_ * nx;
+                Fc[2] = ro_ * un * v_ + p_ * ny;
+                Fc[3] = ro_ * un * H_;
+
+            }
+            if (grantype == 4) {
+                double un = p[c].u * nx + p[c].v * ny;
+                double ro_ = p[c].ro;
+
+                Fc[0] = ro_ * un;
+                Fc[1] = ro_ * un * p[c].u + p[c].p * nx;
+                Fc[2] = ro_ * un * p[c].v + p[c].p * ny;
+                Fc[3] = ro_ * un * p[c].H;
+            }
+            if (cr >= 0) {
+                double Sr = cells[cr].Get_S();
+                for (int m = 0; m < Nm; m++) {
+                    du[cr].dU[m] += +Fc[m] * dl / Sr * dt;
+                }
+            }
+            if (cl >= 0) {
+                double Sl = cells[cl].Get_S();
+                for (int m = 0; m < Nm; m++) {
+                    du[cl].dU[m] += -Fc[m] * dl / Sl * dt;
+                }
+            }
+        }
+        else {
+            for (int m = 0; m < Nm; m++) {
+                UL[m] = p[cl].U1[m];
+                UR[m] = p[cr].U1[m];
+                ULR[m] = 0.5 * (UL[m] + UR[m]);
+            }
+
+            double u_, v_, h_, E_, ro_, p_;
+
+            ro_ = ULR[0];
+            u_ = ULR[1] / ro_;
+            v_ = ULR[2] / ro_;
+            E_ = ULR[3] / ro_;
+
+            double q2 = 0.5 * (u_ * u_ + v_ * v_);
+            double e_ = E_ - q2;
+
+            double gam_ = 0.5 * (p[cr].Gam + p[cl].Gam);
+
+            h_ = e_ * gam_;
+            p_ = ro_ * (gam_ - 1) * e_;
+
+            //РњР°С‚СЂРёС†Р° A+
+            int iMod = 2;
+            S_Matr(A, u_, v_, ro_, p_, h_, nx, ny, iMod);
+
+            //РЈРјРЅРѕР¶Р°РµРј A+ РЅР° UL
+            Matrix_Vector(A, UL, AUl);
+
+            //РњР°С‚СЂРёС†Р° A-
+            iMod = 3;
+
+            S_Matr(A, u_, v_, ro_, p_, h_, nx, ny, iMod);
+
+            //РЈРјРЅРѕР¶Р°РµРј A- РЅР° UR
+            Matrix_Vector(A, UR, AUr);
+
+            //Р’РµРєС‚РѕСЂ РЅРµРІСЏР·РєРёС… РїРѕС‚РѕРєРѕРІ
+
+            for (int m = 0; m < Nm; m++) {
+                Fc[m] = AUl[m] + AUr[m];
+            }
+
+
+
+            double Sr = cells[cr].Get_S();
+            double Sl = cells[cl].Get_S();
+
+            for (int m = 0; m < Nm; m++) {
+                du[cr].dU[m] += +Fc[m] * dl / Sr * dt;
+                du[cl].dU[m] += -Fc[m] * dl / Sl * dt;
+            }
+
         }
     }
 }
