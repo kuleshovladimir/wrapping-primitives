@@ -6,11 +6,6 @@ void Init(parameters* (&p), int nCells, int Nm)
 	double T0, Cp, la, P0, Gm, Gam, R, ro, mu;
 
 	double U0;
-
-	//mesh.zones[3].bnd[0].vals[1] = 867.9; // [ m/s ] - U
-	//mesh.zones[3].bnd[0].vals[2] = 75.1; // [ K ] - T
-	//mesh.zones[3].bnd[0].vals[3] = 1931.; // [ Pa ] - p
-
 	// входные данные
 	T0 = 275.1;		// K
 	la = 2.5658e-2;	// W/(m K)
@@ -313,7 +308,7 @@ void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, G
 				Fv[3] = (u_ * txx + v_ * txy - qx) * nx + (u_ * txy + v_ * tyy - qy) * ny;
 
 
-			}  //if (grantype == 1) {
+			} 
 
 			if (grantype == 3) {	// symmetry
 
@@ -400,12 +395,6 @@ void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, G
 			double dy = (xr.y - xl.y);
 			double dl = sqrt(dx * dx + dy * dy);
 
-			// градиенты в соседних ячейках
-			//Vector GrR = gr[cr].g[0];
-			//Vector GrL = gr[cl].g[0];
-			//Vector Gr;
-			//Gr.cx[0] = 0.5 * (gr[cr].g[0].cx[0] + gr[cl].g[0].cx[0]);
-
 			double du_dx = 0.5 * (gr[cr].g[1].cx[0] + gr[cl].g[1].cx[0]);
 			double du_dy = 0.5 * (gr[cr].g[1].cx[1] + gr[cl].g[1].cx[1]);
 
@@ -442,9 +431,6 @@ void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, G
 				du[cr].dU[m] += -Fv[m] * length / Sr * dt;
 				du[cl].dU[m] += Fv[m] * length / Sl * dt;
 			}
-
-
-			//cout << i << ", " << cr << ", " << cl << endl;
 
 		}
 
@@ -799,14 +785,12 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 				// fType = 0	-> номер ячейки
 				// fType = 1	-> номер грани
 
-			//cout << "dVk[0]= " << dVk[0] << endl;
 
 			if (fType == 0) {  // сосед = ячейка
 				for (int m = 0; m < Nm; m++) {
 					dVk[m] = p[nb].V[m] - Vc[m];
 
 				}
-				//cout << "2. dVk[0]= " << dVk[0] << endl;
 			}
 			else {	// это граница  
 				// номер зоны
@@ -1271,9 +1255,6 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 				du[cl].dU[m] += -Fc[m] * dl / Sl * dt;
 			}
 
-
-			//cout << i << ", " << cr << ", " << cl << endl;
-
 		}
 
 
@@ -1319,4 +1300,23 @@ void Mach(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 
 	}
 	record.close();
+}
+
+void Gradplot(Gradient* gr, Cell* cells, int Nx, int Ny, int nCells)
+{
+	// создаем поток для записи
+	string f = "Grad.plt";
+	ofstream record(f, ios::out);
+	if (record) {
+		record << "VARIABLES = \"X\", \"Y\", \"hGr_x\", \"hGr_y\"" << endl;
+
+		record << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
+		for (int i = 0; i < nCells; i++) {
+			record << cells[i].Get_c().x << " " << cells[i].Get_c().y
+				<< " " << gr[i].g[0].cx[0] << " " << gr[i].g[0].cx[1] << endl;
+		}
+
+	}
+	record.close();
+
 }

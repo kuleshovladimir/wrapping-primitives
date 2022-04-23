@@ -41,3 +41,4 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 
 void Pressure(parameters* p, Cell* cells, int Nx, int Ny, int nCells);
 void Mach(parameters* p, Cell* cells, int Nx, int Ny, int nCells);
+void Gradplot(Gradient* gr,Cell* cells, int Nx, int Ny, int nCells);

@@ -13,15 +13,11 @@ int main()
 
 	Mesh mesh;
 
-	//string filename = "grid.txt";
-	string filename = "grid_head_fine.dat";
-	//string filename = "grid_rectangle.dat";
+	string filename = "grid.dat";
 
 	mesh.ReadStruct(filename);
 
 	int nCells = mesh.Get_nCells();
-
-	//cout << "nCells = " << nCells << endl;
 
 	Cell* cells = new Cell[nCells];
 
@@ -34,9 +30,6 @@ int main()
 
 	remove("cells.txt");
 
-	//for (int i = 0; i < nCells; i++) {
-	//	cells[i].Print(i);
-	//}
 
 	// ¬вод исходных данных
 	parameters* p = new parameters[nCells];
@@ -50,9 +43,6 @@ int main()
 	//exit(1);
 
 	mesh.SetZones();
-
-	//int nZones = 4;
-	//Zone* z = new Zone[nZones];
 
 	SetGran(mesh);
 
@@ -137,23 +127,5 @@ int main()
 	Velocity(p, cells, Nx, Ny, nCells);
 	Pressure(p, cells, Nx, Ny, nCells);
 	Mach(p, cells, Nx, Ny, nCells);
-	//#####################################################################  !!!!!!!!!!!!!!!!!!!
-		// создаем поток дл€ записи
-	string f = "Grad.plt";
-	ofstream record(f, ios::out);
-	if (record) {
-		record << "VARIABLES = \"X\", \"Y\", \"hGr_x\", \"hGr_y\"" << endl;
-
-		record << "ZONE I= " << Ny - 1 << ", J= " << Nx - 1 << ", DATAPACKING=POINT" << endl;
-		for (int i = 0; i < nCells; i++) {
-			record << cells[i].Get_c().x << " " << cells[i].Get_c().y
-				<< " " << gr[i].g[0].cx[0] << " " << gr[i].g[0].cx[1] << endl;
-		}
-
-	}
-	record.close();
-	//###################################################################### !!!!!!!!!!!!!!!!!!!!!!
-
-
-
+	Gradplot(gr, cells, Nx, Ny, nCells);
 }

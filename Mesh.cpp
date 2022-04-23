@@ -128,13 +128,6 @@ void Mesh::CreateFaces()
 			double dy = (nodes[n1].y - nodes[n2].y);
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
-
-			//cout << "k= " << k << ", center= " << faces[k].f_centr.x << ", " << faces[k].f_centr.y << endl;
-			//cout << "  length = " << faces[k].length << endl;
-
-			//cout << "k= " << k << endl;
-			//faces[k].Print(k);
-
 			k++;
 		}
 	}
@@ -173,13 +166,6 @@ void Mesh::CreateFaces()
 			double dy = (nodes[n1].y - nodes[n2].y);
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
-
-			//cout << "k= " << k << ", center= " << faces[k].f_centr.x << ", " << faces[k].f_centr.y << endl;
-			//cout << "  length = " << faces[k].length << endl;
-
-			//cout << "k= " << k << endl;
-			//faces[k].Print(k);
-
 			k++;
 		}
 	}
@@ -207,7 +193,6 @@ void Mesh::CellFuncs(Cell* (&cells))
 			pnts[j].x = nodes[n_].x;
 			pnts[j].y = nodes[n_].y;
 
-			//cout << "pnts[j].x= " << pnts[j].x << "pnts[j].y= " << pnts[j].y << endl;
 
 		}
 
