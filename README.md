@@ -1,1 +1,1 @@
-Для визуализации просчета системы используется программа Tecplot
+To visualize the calculation of the system, the program is used Tecplot
