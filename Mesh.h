@@ -1,102 +1,85 @@
 #pragma once
 #include "Cell.h"
 
+#include "Cell.h"
 
-struct  Face
-{
-	int nodes[2];		//индексы узлов грани
-	int cr;				//индекс правой ячейки
-	int cl;				//индекс левой ячейки
-	bool is_boundary;   //является ли эта грань граничной
-	Pnt f_center;		//координаты грани центра
-	double length;		//длина грани
-	int zone;			//номер зоны, на которой устанавливаются граничные условия
-
+struct Face {
+	int nodes[2];		// индексы узлов грани	(2)
+	int cr;				// индекс правой ячейки
+	int cl;				// индекс левой ячейки
+	bool is_boundary;	// является ли эта грань граничной
+	Pnt f_centr;		// координаты центра грани
+	double length;		// длина грани
+	int zone;			// номер зоны, на которой устанавливаются граничные условия
 
 	void Print(int k) {
-		cout << "			face index = " << k << endl;
-		cout << "nodes indexes = " << nodes[0] << " " << nodes[1] << endl;
-		cout << "cr index = " << cr << ", cl index = " << cl << endl;
-		cout << "center = " << f_center.x << " " << f_center.y << endl;
-		cout << "length = " << length << endl;
+		cout << "			face index= " << k << endl;
+		cout << " nodes indexes = " << nodes[0] << ", " << nodes[1] << endl;
+		cout << " cr index = " << cr << ", cl index = " << cl << endl;
+		cout << " center = " << f_centr.x << ", " << f_centr.y << endl;
+		cout << "  length = " << length << endl;
+
 	}
+
 };
 
 struct Wall {
-	int vel;        //0 - проскальзывание, 1 - без проскальзывания
-	int temp;       //1 - задана температура, 2 - задан тепловой поток
-	double value;   //значение Tw или qw
+	int vel;	// 0 - Free slip;  1 - No slip
+	int temp;	// 1 - Tw is set;  2 - qw is set
+	double value;	// значение Tw или qw
 };
 
-struct  Boudary
-{
-	int* rules; //определяет тип стенки и управляющие параметры
-			
-	// стенка : vel, temp
-	// сверхзвуковой вход : type - L(размер), U(скорость), T(температура), p(давление), angle(угол потока)
-	
+struct Boundary {
+	int* rules;
+	//например, для стенки :  2 elements
+		//!vel     !0 - Free slip;  1 - No slip
+		//!temp    !1 - Tw is set;  2 - qw is set < ->values
+	//Для сверзвукового входа : \
+		//type : 1 - заданы L, U, T, p, angle < ->values(5)
+
 	double* vals;
 
 };
 
-struct Zone
-{
-	int granType; //1 - стенка, 2 - сверхзвуковой вход, 3 - симметрия, 4 - сверзвуковой выход,
-				  //5 - свободная границв, 6 - дозвуковой вход, 7 - дозвуковой выход
+struct Zone {
+	int grantype;
+	//1. Wall. 2.Supersonic Inlet. 3.Symmetry
+	//4. Supersonic Outlet.  5.Free boundary
+	//6. Subsonic Inlet.     7. Subsonic Outlet
 	Wall* wall;
-	Boudary* bnd;
+	Boundary* bnd;
 };
 
-class Mesh
-{
-	friend void SetGran(Mesh& mesh);
+class Mesh {
 private:
-	int Nx, Ny;			//число точек по x, y в структурированной сетке
-	int nNodes, nCells, nFaces;
-	Pnt* nodes;			//координаты узлов
 
-	Face* faces;		//все грани сетки
+public:
+	// переменные
+	int Nx, Ny;		// число точек по x,y в структурированной сетке
+	int nNodes, nFaces, nCells;
+	Pnt* nodes;		// координаты узлов
+
+	Face* faces;	// все грани сетки		***
 
 	int nZones;
 	Zone* zones;
 
-public:
+	// функции
 	Mesh();
 	~Mesh();
 
-	void SetZones(int n);
-	Zone Get_zone(int i);
-
-	void Set_Nx(int n);
-	int Get_Nx();
-
-	void Set_Ny(int n);
-	int Get_Ny();
-
-	void Set_nNodes(int n);
-	int Get_nNodes();
-
-	void Set_nCells(int n);
-	int Get_nCells();
-
-	void Set_nFaces(int n);
-	int Get_nFaces();
-
-	Pnt Get_node(int i);
-	void Set_node(Pnt node, int i);
-
-	Face Get_face(int i);
-
 	void ReadStruct(string filename);
 
-	void CreateCells(Cell* (&cells));
+	void CreateCell(Cell* (&cells));
 
-	void CreateFases();
+	void CreateFaces();
 
 	void CellFuncs(Cell* (&cells));
 
-	int Get_nZones();
+	void SetZones();
 
 	void GradCoeffs(Cell* (&cells));
+
+
 };
 

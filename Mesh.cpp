@@ -3,152 +3,103 @@
 Mesh::Mesh()
 {
 	Nx = 0;
-	Ny = 0;
+	Ny = 0;		// число точек по x,y в структурированной сетке
 	nNodes = 0;
 	nCells = 0;
 	nFaces = 0;
-	nodes = new Pnt[nNodes];
-	nZones = 4;
-	zones = new Zone[nZones];
+	nodes = new Pnt[nNodes];		// координаты узлов
 }
 
 Mesh::~Mesh()
 {
 }
 
-void Mesh::SetZones(int n)
-{
-	nZones = n;
-	zones = new Zone[nZones];
-}
-
-Zone Mesh::Get_zone(int i)
-{
-	return zones[i];
-}
-
-void Mesh::Set_Nx(int n)
-{
-	Nx = n;
-}
-
-int Mesh::Get_Nx()
-{
-	return Nx;
-}
-
-void Mesh::Set_Ny(int n)
-{
-	Ny = n;
-}
-
-int Mesh::Get_Ny()
-{
-	return Ny;
-}
-
-void Mesh::Set_nNodes(int n)
-{
-	nNodes = n;
-}
-
-int Mesh::Get_nNodes()
-{
-	return nNodes;
-}
-
-void Mesh::Set_nCells(int n)
-{
-	nCells = n;
-}
-
-int Mesh::Get_nCells()
-{
-	return nCells;
-}
-
-void Mesh::Set_nFaces(int n)
-{
-	nFaces = n;
-}
-
-int Mesh::Get_nFaces()
-{
-	return nFaces;
-}
-
-Pnt Mesh::Get_node(int i)
-{
-	return nodes[i];
-}
-
-void Mesh::Set_node(Pnt node, int i)
-{
-	nodes[i] = node;
-}
-
-Face Mesh::Get_face(int i)
-{
-	return faces[i];
-}
-
 void Mesh::ReadStruct(string filename)
 {
-	double tmp;
+	int z;
 
 	ifstream reading(filename);
+
 	if (reading) {
-		reading >> Nx >> Ny >> tmp >> tmp;
+
+		reading >> Nx >> Ny >> z >> z;
 		nNodes = Nx * Ny;
 		nCells = (Nx - 1) * (Ny - 1);
-		nFaces = Nx * (Ny - 1) + Ny * (Nx - 1);
+		nFaces = Nx * (Ny - 1) + (Nx - 1) * Ny;
 
-		nodes = new Pnt[nNodes];
+		nodes = new Pnt[nNodes];		// координаты узлов
 
+		int k = 0;
 		for (int i = 0; i < Nx; i++) {
 			for (int j = 0; j < Ny; j++) {
-				reading >> tmp >> tmp >> nodes[Ny * i + j].x >> nodes[Ny * i + j].y;
+				reading >> z >> z >> nodes[k].x >> nodes[k].y;
+				k++;
 			}
 		}
 
+		k = 9;
+		cout << nodes[k].x << ", " << nodes[k].y << endl;
+
+
+
 		cout << "ƒанные считаны из файла " << filename << endl;
 	}
-	else {
+	else
 		cout << "Ќе удалось открыть файл " << filename << endl;
-	}
-
-	
 
 }
 
-void Mesh::CreateCells(Cell* (&cells))
+void Mesh::CreateCell(Cell* (&cells))
 {
+	int k = 0;		// счетчик граней
 	for (int i = 0; i < Nx - 1; i++) {
 		for (int j = 0; j < Ny - 1; j++) {
-			int* nodes = new int[4];
 
-			nodes[0] = Ny * i + j;
-			nodes[1] = Ny * (i + 1) + j;
-			nodes[2] = Ny * (i + 1) + (j + 1);
-			nodes[3] = Ny * i + (j + 1);
+			int nc = (Ny - 1) * i + j;		// номер €чейки
 
-			cells[(Ny - 1) * i + j].Set_Nodes(nodes, 4);
+			//cout << " nc= " << nc << endl;
+
+			int nNodes = 4;					// число узлов вокруг €чейки
+
+			// создаем массив индексов узлов, расположенных вокруг €чейки, проход€ узлы против часовой стрелки
+			int* nodes = new int[nNodes];
+
+			// элемент под номером 0
+			int n2 = Ny * i + j;
+			nodes[0] = n2;
+
+			// элемент под номером 1
+			n2 = Ny * (i + 1) + j;
+			nodes[1] = n2;
+
+			// элемент под номером 2
+			n2 = Ny * (i + 1) + (j + 1);
+			nodes[2] = n2;
+
+			// элемент под номером 3
+			n2 = Ny * i + (j + 1);
+			nodes[3] = n2;
+
+			cells[nc].Set_Nodes(nodes, nNodes);
+
+
 		}
+
 	}
+
 
 }
 
-void Mesh::CreateFases()
+void Mesh::CreateFaces()
 {
 	faces = new Face[nFaces];
-	
-	int k = 0;
-	//вертикальные грани
+
+	int k = 0;		// счетчик граней
+	// вертикальные грани
 	for (int i = 0; i < Nx; i++) {
 		for (int j = 0; j < Ny - 1; j++) {
 			int n1 = Ny * i + j;
 			int n2 = Ny * i + j + 1;
-
 			faces[k].nodes[0] = n1;
 			faces[k].nodes[1] = n2;
 			if (i == 0) {
@@ -162,7 +113,7 @@ void Mesh::CreateFases()
 				faces[k].cr = (Ny - 1) * (i - 1) + j;
 				faces[k].cl = -1;
 				faces[k].zone = 2;
- 			}
+			}
 			else {
 				faces[k].is_boundary = false;
 				faces[k].cr = (Ny - 1) * (i - 1) + j;
@@ -170,24 +121,30 @@ void Mesh::CreateFases()
 				faces[k].zone = -1;
 			}
 
-			faces[k].f_center.x = 0.5 * (nodes[n1].x + nodes[n2].x);
-			faces[k].f_center.y = 0.5 * (nodes[n1].y + nodes[n2].y);
+			faces[k].f_centr.x = 0.5 * (nodes[n1].x + nodes[n2].x);
+			faces[k].f_centr.y = 0.5 * (nodes[n1].y + nodes[n2].y);
 
-			double dx = nodes[n1].x - nodes[n2].x;
-			double dy = nodes[n1].y - nodes[n2].y;
+			double dx = (nodes[n1].x - nodes[n2].x);
+			double dy = (nodes[n1].y - nodes[n2].y);
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
+
+			//cout << "k= " << k << ", center= " << faces[k].f_centr.x << ", " << faces[k].f_centr.y << endl;
+			//cout << "  length = " << faces[k].length << endl;
+
+			//cout << "k= " << k << endl;
 			//faces[k].Print(k);
 
 			k++;
 		}
 	}
-	//горизонтальные грани
+	//cout << "k= " << k << endl;
+
+	// горизонтальные грани
 	for (int j = 0; j < Ny; j++) {
 		for (int i = 0; i < Nx - 1; i++) {
 			int n1 = Ny * i + j;
 			int n2 = Ny * (i + 1) + j;
-
 			faces[k].nodes[0] = n1;
 			faces[k].nodes[1] = n2;
 			if (j == 0) {
@@ -209,176 +166,259 @@ void Mesh::CreateFases()
 				faces[k].zone = -1;
 			}
 
-			faces[k].f_center.x = 0.5 * (nodes[n1].x + nodes[n2].x);
-			faces[k].f_center.y = 0.5 * (nodes[n1].y + nodes[n2].y);
+			faces[k].f_centr.x = 0.5 * (nodes[n1].x + nodes[n2].x);
+			faces[k].f_centr.y = 0.5 * (nodes[n1].y + nodes[n2].y);
 
-			double dx = nodes[n1].x - nodes[n2].x;
-			double dy = nodes[n1].y - nodes[n2].y;
+			double dx = (nodes[n1].x - nodes[n2].x);
+			double dy = (nodes[n1].y - nodes[n2].y);
 			faces[k].length = sqrt(dx * dx + dy * dy);
 
+
+			//cout << "k= " << k << ", center= " << faces[k].f_centr.x << ", " << faces[k].f_centr.y << endl;
+			//cout << "  length = " << faces[k].length << endl;
+
+			//cout << "k= " << k << endl;
 			//faces[k].Print(k);
 
 			k++;
 		}
 	}
+
+
 }
 
 void Mesh::CellFuncs(Cell* (&cells))
 {
 	for (int i = 0; i < nCells; i++) {
 
-		//массив узлов вокруг €чейки
-		int m = cells[i].Get_NNodes();
+		// массив точек - узлов вокруг €чейки
+		int mNodes = cells[i].Get_nNodes();
 
-		int* nds = new int[m];
-		Pnt* pnts = new Pnt[m];
-		for (int j = 0; j < m; j++) {
+		//cout << "mNodes= " << mNodes << endl;
+
+		int* nds = new int[mNodes];
+		Pnt* pnts = new Pnt[mNodes];
+		for (int j = 0; j < mNodes; j++) {
 			int n_ = cells[i].Get_Node(j);
 			nds[j] = n_;
+			//cout << "nds[j]= " << nds[j] << endl;
 
 			//координаты узлов
 			pnts[j].x = nodes[n_].x;
 			pnts[j].y = nodes[n_].y;
- 		}
 
-		Polygons pl(pnts, m);
+			//cout << "pnts[j].x= " << pnts[j].x << "pnts[j].y= " << pnts[j].y << endl;
+
+		}
+
+		//создаем полигон
+		Polygons pl(pnts, mNodes);
 
 		Pnt center = pl.MassCenter();
+		//cout << "center= " << center.x << ", " << center.y << endl;
 
-		double S = pl.Square();
-		
-		cells[i].Set_MassC(center);
-		cells[i].Set_S(S);
+		double Sq = pl.Square();
 
-		cells[i].Set_NFaces(m);
+		//cout << "square= " << Sq << endl;
+
+		cells[i].Set_c(center);
+		cells[i].Set_S(Sq);
+
+		cells[i].Set_nFaces(mNodes);
+
+
+		//exit(-6);
 	}
 
+	//return;
+
 	for (int k = 0; k < nFaces; k++) {
+
 		int n1 = faces[k].nodes[0];
 		int n2 = faces[k].nodes[1];
 		int cl = faces[k].cl;
 		int cr = faces[k].cr;
-		bool ftype = false;
-		if (faces[k].is_boundary) ftype = true;
-		
-		if (cr >= 0) {
-			//массив узлов €чейки c1
-			int n = cells[cr].Get_NNodes(); //размер массива узлов
-			int* nc1 = new int[n];			//масси индексов
+		int ftype = 0;
+		if (faces[k].is_boundary) ftype = 1;
 
-			for (int i = 0; i < n; i++) {
-				nc1[i] = cells[cr].Get_Node(i);
+		if (cr >= 0) {
+			// массив узлов €чейки cl
+			int nn = cells[cr].Get_nNodes();  // размер массива узлов
+			int* nncl = new int[nn];			// выделение массива под эти индексы
+
+			//cout << " n1= " << n1 << " n2= " << n2 << endl;
+
+			//cout << " cr: " << cr << endl;
+
+			for (int i = 0; i < nn; i++) {
+				nncl[i] = cells[cr].Get_Node(i);			//int Get_Node(int i) { return nodes[i]; };
+
+				//cout << i << " nodes: " << nncl[i] << endl;
 			}
 
 			int iFace;
 
-			for (int i = 0; i < n; i++) {
+			for (int i = 0; i < nn; i++) {
 				int j = i + 1;
-				if (j == n) j = 0;
-				if ((nc1[i] == n1) && (nc1[j] == n2)) {
+				if (j == nn) j = 0;
+				if (nncl[i] == n1 && nncl[j] == n2) {
 					iFace = i;
 					cells[cr].Set_Face(iFace, k);
 					cells[cr].Set_fType(iFace, ftype);
 					cells[cr].Set_cells(iFace, cl);
 				}
 			}
+			//if (nncl[0] == n1 && nncl[1] == n2) {
+			//	iFace = 0;
+			//	cells[cr].Set_Face(iFace, k);
+			//}
+			//if (nncl[1] == n1 && nncl[2] == n2) {
+			//	iFace = 1;
+			//	cells[cr].Set_Face(iFace, k);
+			//}
+			//if (nncl[2] == n1 && nncl[3] == n2) {
+			//	iFace = 2;
+			//	cells[cr].Set_Face(iFace, k);
+			//}
+			//if (nncl[3] == n1 && nncl[0] == n2) {
+			//	iFace = 2;
+			//	cells[cr].Set_Face(iFace, k);
+			//}
+
 		}
 
 		if (cl >= 0) {
-			//массив узлов €чейки c1
-			int n = cells[cl].Get_NNodes(); //размер массива узлов
-			int* nc1 = new int[n];			//масси индексов
+			// массив узлов €чейки cl
+			int nn = cells[cl].Get_nNodes();  // размер массива узлов
+			int* nncl = new int[nn];			// выделение массива под эти индексы
 
-			for (int i = 0; i < n; i++) {
-				nc1[i] = cells[cl].Get_Node(i);
+			//cout << " n1= " << n1 << " n2= " << n2 << endl;
+
+			//cout << " cl: " << cl << endl;
+
+			for (int i = 0; i < nn; i++) {
+				nncl[i] = cells[cl].Get_Node(i);			//int Get_Node(int i) { return nodes[i]; };
+
+				//cout << i << " nodes: " << nncl[i] << endl;
 			}
 
 			int iFace;
-
-			for (int i = 0; i < n; i++) {
+			for (int i = 0; i < nn; i++) {
 				int j = i + 1;
-				if (j == n) j = 0;
-				if ((nc1[i] == n2) && (nc1[j] == n1)) {
+				if (j == nn) j = 0;
+				if (nncl[i] == n2 && nncl[j] == n1) {
 					iFace = i;
 					cells[cl].Set_Face(iFace, k);
 					cells[cl].Set_fType(iFace, ftype);
 					cells[cl].Set_cells(iFace, cr);
 				}
 			}
+
+
+
+			//if (cl==7) exit(-6);
+
 		}
+
+
+
 	}
+
+
 }
 
-int Mesh::Get_nZones()
+void Mesh::SetZones()
 {
-	return nZones;
+	nZones = 4;
+	zones = new Zone[nZones];
 }
 
 void Mesh::GradCoeffs(Cell* (&cells))
 {
 	for (int i = 0; i < nCells; i++) {
-		int nFaces = cells[i].Get_NFaces();
 
-		//массивы весовых коэффициентов wk и векторов ck
+		//cout << "i= " << i << endl;
+
+		int nFaces = cells[i].Get_nFaces(); // число граней, окружающих €чейку i
+
+		// создаем массив весовых коэффициентов wk и векторов ck
 		cells[i].wk = new double[nFaces];
 		cells[i].ck = new Vector[nFaces];
 
 		int iDim = 2;
 
-		for (int j = 0; j < nFaces; j++) {
-			cells[i].ck[j].cx = new double[iDim];
+		for (int k = 0; k < nFaces; k++) {
+			cells[i].ck[k].cx = new double[iDim];
 		}
 
-		//координаты центра €чейки
-		Pnt xc = cells[i].Get_MassC();
+		// координаты центра данной €чейки
+		Pnt xc = cells[i].Get_c();
 
-		//рассто€ни€ до соседей
+		// рассто€ни€ до соседей
 		double* dx = new double[nFaces];
 		double* dy = new double[nFaces];
 
-		//компоненты матрицы
-		double axx = 0, axy = 0, ayy = 0;
+		// компоненты матрицы
+		double axx = 0., axy = 0, ayy = 0.;
+
+		//cout << "before: for (int k " << endl;
 
 		for (int k = 0; k < nFaces; k++) {
-			int nf = cells[i].Get_Face(k);
-			if (!faces[nf].is_boundary) {
-				//номер соседней €чейки
+			int nf = cells[i].Get_Face(k); // номер грани
+			if (!faces[nf].is_boundary) {     // internal face
+
+				// номер соседней €чейки
 				int nc = cells[i].Get_Cell(k);
-				//ее центр
-				Pnt xk = cells[nc].Get_MassC();
+				// координаты ее центра
+				Pnt xk = cells[nc].Get_c();
 
 				dx[k] = xk.x - xc.x;
 				dy[k] = xk.y - xc.y;
 
+
+
 			}
-			else{
-				//центр грани
-				Pnt xk = faces[nf].f_center;
+			else {
+				// координаты центра грани
+				Pnt xk = faces[nf].f_centr;
 				dx[k] = xk.x - xc.x;
 				dy[k] = xk.y - xc.y;
-			}
 
-			double wk = 1 / sqrt(dx[k] * dx[k] + dy[k] * dy[k]);
+			}
+			//weight coefficients
+			double wk = 1. / sqrt(dx[k] * dx[k] + dy[k] * dy[k]);
 			cells[i].wk[k] = wk;
 
 			axx += wk * dx[k] * dx[k];
 			axy += wk * dx[k] * dy[k];
 			ayy += wk * dy[k] * dy[k];
+
 		}
 
-		//получение обратной матрицы
+		// ќбратна€ матрица M
 		double det = axx * ayy - axy * axy;
 		double Mxx, Mxy, Myy;
-
+		//if (det != 0) {
 		Mxx = ayy / det;
 		Mxy = -axy / det;
 		Myy = axx / det;
 
+		// 
+		//cout << axx*Mxx + axy*Mxy << ", " << axx * Mxy + axy * Myy << endl;
+		//cout << axy * Mxx + ayy * Mxy << ", " << axy * Mxy + ayy * Myy << endl;
+
+		//return;
+	//}
+
+	// ¬ектор ck
 		for (int k = 0; k < nFaces; k++) {
+
 			cells[i].ck[k].cx[0] = Mxx * dx[k] + Mxy * dy[k];
 			cells[i].ck[k].cx[1] = Mxy * dx[k] + Myy * dy[k];
 		}
 
-	}
-}
 
+	}
+
+
+}

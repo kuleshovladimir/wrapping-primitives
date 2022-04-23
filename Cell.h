@@ -1,73 +1,78 @@
 #pragma once
 #include "Polygons.h"
 
+
 struct Vector {
 	double* cx;
 };
 
-
-class Cell
-{
-	friend class Mesh;
+class Cell {
 private:
-	Pnt MassC;  // координаты центра т€жести
-	double S;   // площадь €чейки
+	Pnt c;		// координаты ц.т.
+	double S;	// площадь €чейки
 
-	double Yw;
+	int nFaces;		// число граней, окружающих €чейку
 
-	int nFaces; // число граней, окружающих €чейку
-	int nNodes; // число узлов, окружающих €чейку
+	int nNodes;		// число узлов, окружающих €чейку
 
 
-	int* faces; //номера граней, окружающих €чейку (nFaces)
-	int* nodes; //номера узлов, окружающих €чейку (nNodes)
 
-	bool* fType; //типы граней, окружающих €чейку (0 - внутр.грань, 1 - гранична€ грань)
+	int* nodes;    // номера узлов, окружающих €чейку (nNodes)
 
-	int* cells; //номера соседних €чеек (nFaces)
-				//если fType = 0 - номер €чейки
-				//	   fType = 1 - номер грани
 
-	double* wk;
-	Vector* ck;
+
+
+
 
 public:
+
+	double Yw;	// –ассто€ние от центра €чейки до стенки
+
+	double* wk;  // weight coefficients [nFaces]
+	Vector* ck;
+
+	int* cells;		// номера соседних €чеек (nFaces)
+					// fType = 0	-> номер €чейки
+					// fType = 1	-> номер грани
+
+	int* fType;	// типы граней:  =0 -> внутренн€€ грань	(nFaces)
+								//   =1 -> гранична€ грань
+	int* faces;		// номера граней, окружающих €чейку (nFaces)
+
+
 	Cell();
 	~Cell();
 
-	Pnt Get_MassC();
-	void Set_MassC(Pnt c_);
 
-	void Set_S(double S_);
-	double Get_S();
+	Pnt Get_c() { return c; };
+	void Set_c(Pnt c_);
 
-	void Set_Yw(double yw);
-	double Get_Yw();
+	void Set_S(double S_) { S = S_; };
+	double Get_S() { return S; };
 
-	void Set_NFaces(int NF);
-	int Get_NFaces();
+	void Set_nFaces(int nf);
+	int Get_nFaces() { return nFaces; };
 
-	void Set_NNodes(int NN);
-	int Get_NNodes();
+	void Set_nNodes(int nn);
+	int Get_nNodes() { return nNodes; };
 
-	int Get_Node(int i);
+	//void Set_Nodes(int* nodes, int n);  // new
+
+	int Get_Node(int i) { return nodes[i]; };
 
 	int Get_Face(int i);
 
-	void Set_Face(int iFace, int fIndex);
+	void Set_Face(int iFace, int fIndex) { faces[iFace] = fIndex; }; // new
 
-	void Set_Nodes(int* nodes, int nNodes);
+	void Set_fType(int iFace, int ftype) { fType[iFace] = ftype; };
 
-	void Set_fType(int iFace, bool ftype);
-
-	void Set_cells(int iFace, int cell);
-	int Get_Cell(int i);
+	void Set_cells(int iFace, int cel) { cells[iFace] = cel; };
 
 	void Print(int i);
 
-	bool Get_fType(int i);
+	void Set_Nodes(int* nodes_, int nn);
 
-	double Get_wk(int i);
-	Vector Get_ck(int i);
+	int Get_Cell(int i) { return cells[i]; };
+
+
 };
-
