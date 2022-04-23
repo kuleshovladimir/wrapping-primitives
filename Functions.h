@@ -2,35 +2,8 @@
 #include "Polygons.h"
 #include "Mesh.h"
 
-
-struct parameters {
-	// main
-	double ro, p, h, H, u, v, w, T, E, e;
-
-	// transport
-	double mu, la, Pr;
-
-	double Cp, Gam, Gm;
-
-	// vectors
-	double* U, * U1;
-	double* V;   // ro, u,v, h
-
-
-};
-
-struct changes {
-	double* dU;
-};
-
-struct Gradient {
-	Vector* g;
-};
-
-
-
 void Init(parameters* (&p), int nCells, int Nm);
-void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt);
+//void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt);
 
 void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, Gradient* gr, int Nm);
 

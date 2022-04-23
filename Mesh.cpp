@@ -215,19 +215,13 @@ void Mesh::CellFuncs(Cell* (&cells))
 		Polygons pl(pnts, mNodes);
 
 		Pnt center = pl.MassCenter();
-		//cout << "center= " << center.x << ", " << center.y << endl;
 
 		double Sq = pl.Square();
-
-		//cout << "square= " << Sq << endl;
 
 		cells[i].Set_c(center);
 		cells[i].Set_S(Sq);
 
 		cells[i].Set_nFaces(mNodes);
-
-
-		//exit(-6);
 	}
 
 	//return;
@@ -246,14 +240,8 @@ void Mesh::CellFuncs(Cell* (&cells))
 			int nn = cells[cr].Get_nNodes();  // размер массива узлов
 			int* nncl = new int[nn];			// выделение массива под эти индексы
 
-			//cout << " n1= " << n1 << " n2= " << n2 << endl;
-
-			//cout << " cr: " << cr << endl;
-
 			for (int i = 0; i < nn; i++) {
-				nncl[i] = cells[cr].Get_Node(i);			//int Get_Node(int i) { return nodes[i]; };
-
-				//cout << i << " nodes: " << nncl[i] << endl;
+				nncl[i] = cells[cr].Get_Node(i);			
 			}
 
 			int iFace;
@@ -268,23 +256,6 @@ void Mesh::CellFuncs(Cell* (&cells))
 					cells[cr].Set_cells(iFace, cl);
 				}
 			}
-			//if (nncl[0] == n1 && nncl[1] == n2) {
-			//	iFace = 0;
-			//	cells[cr].Set_Face(iFace, k);
-			//}
-			//if (nncl[1] == n1 && nncl[2] == n2) {
-			//	iFace = 1;
-			//	cells[cr].Set_Face(iFace, k);
-			//}
-			//if (nncl[2] == n1 && nncl[3] == n2) {
-			//	iFace = 2;
-			//	cells[cr].Set_Face(iFace, k);
-			//}
-			//if (nncl[3] == n1 && nncl[0] == n2) {
-			//	iFace = 2;
-			//	cells[cr].Set_Face(iFace, k);
-			//}
-
 		}
 
 		if (cl >= 0) {
@@ -403,13 +374,6 @@ void Mesh::GradCoeffs(Cell* (&cells))
 		Mxy = -axy / det;
 		Myy = axx / det;
 
-		// 
-		//cout << axx*Mxx + axy*Mxy << ", " << axx * Mxy + axy * Myy << endl;
-		//cout << axy * Mxx + ayy * Mxy << ", " << axy * Mxy + ayy * Myy << endl;
-
-		//return;
-	//}
-
 	// Вектор ck
 		for (int k = 0; k < nFaces; k++) {
 
@@ -421,4 +385,49 @@ void Mesh::GradCoeffs(Cell* (&cells))
 	}
 
 
+}
+
+int Mesh::Get_Nx()
+{
+	return Nx;
+}
+
+int Mesh::Get_Ny()
+{
+	return Ny;
+}
+
+int Mesh::Get_nFaces()
+{
+	return nFaces;
+}
+
+int Mesh::Get_nNodes()
+{
+	return nNodes;
+}
+
+int Mesh::Get_nCells()
+{
+	return nCells;
+}
+
+int Mesh::Get_nZones()
+{
+	return nZones;
+}
+
+Pnt Mesh::Get_node(int n)
+{
+	return nodes[n];
+}
+
+Face Mesh::Get_face(int n)
+{
+	return faces[n];
+}
+
+Zone Mesh::Get_zone(int n)
+{
+	return zones[n];
 }

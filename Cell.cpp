@@ -97,10 +97,6 @@ void Cell::Print(int m)
 	else
 		cout << "Не удалось открыть файл " << f << endl;
 
-	//record << "  square= " << S << endl;
-	//record << "  square= " << S << endl;
-
-
 	record.close();
 
 
@@ -119,5 +115,10 @@ void Cell::Set_Nodes(int* nodes_, int nn)
 		nodes[i] = nodes_[i];
 	}
 
+}
+
+int Cell::Get_Cell(int i)
+{
+	return cells[i];
 }
 

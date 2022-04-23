@@ -80,123 +80,123 @@ void Init(parameters* (&p), int nCells, int Nm)
 
 }
 
-void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt)
-{
-	int nFaces = mesh.nFaces;
-
-	for (int i = 0; i < nFaces; i++) {
-
-		Face face = mesh.faces[i];
-
-		int cr = face.cr;
-		int cl = face.cl;
-
-		if (face.is_boundary) {
-			int c = max(cr, cl);
-
-			// координаты ц.т. ячейки
-			Pnt xc = cells[c].Get_c();
-
-			// координаты центра грани
-			Pnt xf = face.f_centr;
-
-			// расстояние до стенки
-			double dx = (xc.x - xf.x);
-			double dy = (xc.y - xf.y);
-			double dl = sqrt(dx * dx + dy * dy);
-
-			double length = face.length;		// длина грани
-			double S = cells[c].Get_S();		// площадь ячейки с
-
-			int z = face.zone;
-
-			// boundary type:
-			int btype = mesh.zones[z].grantype;
-
-
-			double Tw;
-			if (face.zone == 1) Tw = 500.;
-
-			if (face.zone == 3) Tw = 200.;
-
-			if (face.zone == 1 || face.zone == 3) {
-				double hw = p[c].Cp * Tw;
-
-				// dh/dn
-				double dh_dn = (p[c].h - hw) / dl;
-
-				// mu/Pr
-				double mu_Pr = p[c].mu / p[c].Pr;
-
-				// Fv - поток через грань
-				double Fv = mu_Pr * dh_dn;
-
-				du[c].dU[0] += -Fv * length / S * dt;
-				//du[c].dU[0] = du[c].dU[0] + ( -Fv * length / S * dt );
-
-			}
-
-			if (face.zone == 0) {
-				// Fv - поток через грань
-				double Fv = 0.;
-				du[c].dU[0] += Fv * length / S * dt;
-			}
-
-			if (face.zone == 2) {
-				// Fv - поток через грань
-				double Fv = 0.;
-				du[c].dU[0] += Fv * length / S * dt;
-			}
-
-
-
-
-
-		}
-		else
-		{
-
-			// координаты правой и левой ячеек
-			Pnt xr = cells[cr].Get_c();
-			Pnt xl = cells[cl].Get_c();
-
-			// расстояние между ячейками
-			double dx = (xr.x - xl.x);
-			double dy = (xr.y - xl.y);
-			double dl = sqrt(dx * dx + dy * dy);
-
-			// dh/dn
-			double dh_dn = (p[cr].h - p[cl].h) / dl;
-
-			// среднее mu/Pr
-			double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
-
-			// Fv - поток через грань
-			double Fv = mu_Pr * dh_dn;
-
-			// приращения
-			// если p[cr].h > p[cl].h => dh_dn>0 => Fv>0
-			// тепло втекает в левую ячейку => для нее в приращении Fv берется с плюсом
-			// для правой -  с минусом
-
-			double length = face.length;		// длина грани
-			double Sr = cells[cr].Get_S();		// площадь правой ячейки
-			double Sl = cells[cl].Get_S();		// площадь левой ячейки
-
-			du[cr].dU[0] += -Fv * length / Sr * dt;
-			du[cl].dU[0] += Fv * length / Sl * dt;
-
-
-		}
-
-
-	}
-
-}
+//void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt)
+//{
+//	int nFaces = mesh.Get_nFaces();
+//
+//	for (int i = 0; i < nFaces; i++) {
+//
+//		Face face = mesh.faces[i];
+//
+//		int cr = face.cr;
+//		int cl = face.cl;
+//
+//		if (face.is_boundary) {
+//			int c = max(cr, cl);
+//
+//			// координаты ц.т. ячейки
+//			Pnt xc = cells[c].Get_c();
+//
+//			// координаты центра грани
+//			Pnt xf = face.f_centr;
+//
+//			// расстояние до стенки
+//			double dx = (xc.x - xf.x);
+//			double dy = (xc.y - xf.y);
+//			double dl = sqrt(dx * dx + dy * dy);
+//
+//			double length = face.length;		// длина грани
+//			double S = cells[c].Get_S();		// площадь ячейки с
+//
+//			int z = face.zone;
+//
+//			// boundary type:
+//			int btype = mesh.zones[z].grantype;
+//
+//
+//			double Tw;
+//			if (face.zone == 1) Tw = 500.;
+//
+//			if (face.zone == 3) Tw = 200.;
+//
+//			if (face.zone == 1 || face.zone == 3) {
+//				double hw = p[c].Cp * Tw;
+//
+//				// dh/dn
+//				double dh_dn = (p[c].h - hw) / dl;
+//
+//				// mu/Pr
+//				double mu_Pr = p[c].mu / p[c].Pr;
+//
+//				// Fv - поток через грань
+//				double Fv = mu_Pr * dh_dn;
+//
+//				du[c].dU[0] += -Fv * length / S * dt;
+//				//du[c].dU[0] = du[c].dU[0] + ( -Fv * length / S * dt );
+//
+//			}
+//
+//			if (face.zone == 0) {
+//				// Fv - поток через грань
+//				double Fv = 0.;
+//				du[c].dU[0] += Fv * length / S * dt;
+//			}
+//
+//			if (face.zone == 2) {
+//				// Fv - поток через грань
+//				double Fv = 0.;
+//				du[c].dU[0] += Fv * length / S * dt;
+//			}
+//
+//
+//
+//
+//
+//		}
+//		else
+//		{
+//
+//			// координаты правой и левой ячеек
+//			Pnt xr = cells[cr].Get_c();
+//			Pnt xl = cells[cl].Get_c();
+//
+//			// расстояние между ячейками
+//			double dx = (xr.x - xl.x);
+//			double dy = (xr.y - xl.y);
+//			double dl = sqrt(dx * dx + dy * dy);
+//
+//			// dh/dn
+//			double dh_dn = (p[cr].h - p[cl].h) / dl;
+//
+//			// среднее mu/Pr
+//			double mu_Pr = 0.5 * (p[cr].mu / p[cr].Pr + p[cl].mu / p[cl].Pr);
+//
+//			// Fv - поток через грань
+//			double Fv = mu_Pr * dh_dn;
+//
+//			// приращения
+//			// если p[cr].h > p[cl].h => dh_dn>0 => Fv>0
+//			// тепло втекает в левую ячейку => для нее в приращении Fv берется с плюсом
+//			// для правой -  с минусом
+//
+//			double length = face.length;		// длина грани
+//			double Sr = cells[cr].Get_S();		// площадь правой ячейки
+//			double Sl = cells[cl].Get_S();		// площадь левой ячейки
+//
+//			du[cr].dU[0] += -Fv * length / Sr * dt;
+//			du[cl].dU[0] += Fv * length / Sl * dt;
+//
+//
+//		}
+//
+//
+//	}
+//
+//}
 
 void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, Gradient* gr, int Nm)
 {
-	int nFaces = mesh.nFaces;
+	int nFaces = mesh.Get_nFaces();
 
 	double* Fv = new double[Nm];
 
@@ -415,17 +415,6 @@ void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, G
 			double dh_dx = 0.5 * (gr[cr].g[3].cx[0] + gr[cl].g[3].cx[0]);
 			double dh_dy = 0.5 * (gr[cr].g[3].cx[1] + gr[cl].g[3].cx[1]);
 
-
-			//// nodes:
-			//int n1 = face.nodes[0];
-			//int n2 = face.nodes[1];
-
-			//Pnt x1 = mesh.nodes[n1];
-			//Pnt x2 = mesh.nodes[n2];
-
-			//double nx = -(x2.y - x1.y) / length;
-			//double ny = (x2.x - x1.x) / length;
-
 			double mu = 0.5 * (p[cr].mu + p[cl].mu);
 			double div = du_dx + dv_dy;
 			double txx = mu * (2. * du_dx - 2. / 3. * div);
@@ -444,14 +433,6 @@ void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, G
 			Fv[1] = txx * nx + txy * ny;
 			Fv[2] = txy * nx + tyy * ny;
 			Fv[3] = (u_ * txx + v_ * txy - qx) * nx + (u_ * txy + v_ * tyy - qy) * ny;
-
-			// Fv - поток через грань
-			//double Fv = mu_Pr * dh_dn;
-
-			// приращения
-			// если p[cr].h > p[cl].h => dh_dn>0 => Fv>0
-			// тепло втекает в левую ячейку => для нее в приращении Fv берется с плюсом
-			// для правой -  с минусом
 
 			double length = face.length;		// длина грани
 			double Sr = cells[cr].Get_S();		// площадь правой ячейки
@@ -521,11 +502,11 @@ void Tecplot(parameters* p, Cell* cells, int Nx, int Ny, int nCells)
 
 void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, double dt)
 {
-	int nFaces = mesh.nFaces;
+	int nFaces = mesh.Get_nFaces();
 
 	for (int i = 0; i < nFaces; i++) {
 
-		Face face = mesh.faces[i];
+		Face face = mesh.Get_face(i);
 
 		int cr = face.cr;
 		int cl = face.cl;
@@ -536,8 +517,8 @@ void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, doub
 
 		double dl = face.length; // длина грани
 
-		Pnt x1 = mesh.nodes[n1];
-		Pnt x2 = mesh.nodes[n2];
+		Pnt x1 = mesh.Get_node(n1);
+		Pnt x2 = mesh.Get_node(n2);
 
 		double nx = -(x2.y - x1.y) / dl;
 		double ny = (x2.x - x1.x) / dl;
@@ -545,16 +526,6 @@ void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, doub
 		// при таком подходе вектор n является внешним по отношению к левой ячейке и внутренним по отношению к правой
 
 		double Fc;
-
-		//if (i == -10) {
-		//	double un = p[cl].u * nx + p[cl].v * ny;
-		//	cout << "face= " << i << " cr, cl= " << cr << ", " << cl << endl;
-		//	cout << "nx= " << nx << " ny= " << ny << endl;
-		//	cout << "un= " << un << endl;
-
-		//	cout << x2.y << ", " << x1.y << endl;
-		//	exit(34);
-		//}
 
 		if (face.is_boundary) {
 			int c = max(cr, cl);
@@ -575,17 +546,10 @@ void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, doub
 
 				double E = h / p[c].Gam + 0.5 * (uInlet * uInlet + vInlet * vInlet);
 
-				//cout << "E= " << E << endl;
-				//exit(35);
 				// Fc - поток через грань
 				Fc = p[c].ro * H * un;
 
 				du[c].dU[0] += -Fc * dl / S * dt;
-
-				//if (It == 1100 && i == 1) {
-				//	cout << "i= " << i << " H= " << H << endl;
-				//}
-
 			}
 
 			if (face.zone == 3) {
@@ -624,12 +588,6 @@ void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, doub
 			UL = p[cl].U[0];
 			UR = p[cr].U[0];
 
-			//if (It == 1100 && i == 40) {
-			//	cout << "H_= " << H_ << ", ro_= " << ro_ << ", un_= " << un_ << ", ro_*un_*H_= " << ro_ * un_ * H_ << endl;
-			//	cout << "Amn , UR= " << Amn * UR << endl;
-			//	cout << "UR , UL= " << UR << ", " << UL << endl;
-			//}
-
 						// Fc - поток через грань
 			Fc = Apl * UL + Amn * UR;
 
@@ -645,22 +603,12 @@ void Convect(parameters* p, changes* (&du), Mesh mesh, Cell* cells, int It, doub
 
 		}
 
-		//if (It == 1100) {
-		//	if (i == 1 || i==40 ) {
-		//		cout << "i= " << i << ", cr= " << cr << ", cl= " << cl << endl;
-		//		cout << " Fc= "<< Fc << endl;
-		//	}
-		//	//if (cl == 1) {
-		//	//	cout << "cl. i= " << i << ", Fc= " << Fc << endl;
-		//	//}
-		//}
-
 	}
 }
 
 void Yw(Mesh mesh, Cell* (&cells), int nCells)
 {
-	int nFaces = mesh.nFaces;
+	int nFaces = mesh.Get_nFaces();
 
 	for (int k = 0; k < nCells; k++) {
 		double z1 = 1.e10;
@@ -668,15 +616,14 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
 
 		for (int i = 0; i < nFaces; i++) {
 
-			int nz = mesh.faces[i].zone;
-			int grantype = mesh.zones[nz].grantype;
+			int nz = mesh.Get_face(i).zone;
+			int grantype = mesh.Get_zone(nz).grantype;
 
-			//if (mesh.faces[i].is_boundary) {
 			if (grantype == 1) {
-				int n1 = mesh.faces[i].nodes[0];
-				int n2 = mesh.faces[i].nodes[1];
-				Pnt A = mesh.nodes[n1];
-				Pnt B = mesh.nodes[n2];
+				int n1 = mesh.Get_face(i).nodes[0];
+				int n2 = mesh.Get_face(i).nodes[1];
+				Pnt A = mesh.Get_node(n1);
+				Pnt B = mesh.Get_node(n2);
 
 				double z2 = Dist(A, B, E);
 
@@ -690,8 +637,8 @@ void Yw(Mesh mesh, Cell* (&cells), int nCells)
 	}
 
 	// создаем поток для записи
-	int Nx = mesh.Nx;
-	int Ny = mesh.Ny;
+	int Nx = mesh.Get_Nx();
+	int Ny = mesh.Get_Ny();
 
 	string f = "Yw.plt";
 	ofstream record2(f, ios::out);
@@ -782,9 +729,9 @@ void SetGran(Mesh& mesh)
 		!6. Subsonic Inlet.     7. Subsonic Outlet */
 
 
-	int nZones = mesh.nZones;
+	int nZones = mesh.Get_nZones();
 	for (int i = 0; i < nZones; i++) {
-		int tp = mesh.zones[i].grantype;
+		int tp = mesh.Get_zone(i).grantype;
 		mesh.zones[i].bnd = new Boundary[1];
 		if (tp == 1) {
 			//mesh.zones[i].wall = new Wall[1];
@@ -814,7 +761,7 @@ void SetGran(Mesh& mesh)
 
 void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 {
-	int nCells = mesh.nCells;
+	int nCells = mesh.Get_nCells();
 
 	// Значение вектора Vc в центре ячейки
 	double* Vc = new double[Nm];
@@ -861,18 +808,18 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 				}
 				//cout << "2. dVk[0]= " << dVk[0] << endl;
 			}
-			else {	// это граница  !!!!!!!!!!!!!   NS $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+			else {	// это граница  
 				// номер зоны
-				int z = mesh.faces[nf].zone;
+				int z = mesh.Get_face(nf).zone;
 				// boundary type:
-				int btype = mesh.zones[z].grantype;
+				int btype = mesh.Get_zone(z).grantype;
 
 				//cout << "3. dVk[0]= " << dVk[0] << " z= " << z << endl;
 
 				if (btype == 1) { // WALL
-					int vel = mesh.zones[z].bnd[0].rules[0];		// 0 - Free slip;  1 - No slip
-					int temp = mesh.zones[z].bnd[0].rules[1];		// 1 - Tw is set; 2 - qw is set
-					double value = mesh.zones[z].bnd[0].vals[0];	// значение Tw или qw
+					int vel = mesh.Get_zone(z).bnd[0].rules[0];		// 0 - Free slip;  1 - No slip
+					int temp = mesh.Get_zone(z).bnd[0].rules[1];		// 1 - Tw is set; 2 - qw is set
+					double value = mesh.Get_zone(z).bnd[0].vals[0];	// значение Tw или qw
 					if (vel == 0) {
 						dVk[1] = 0.;
 						dVk[2] = 0.;
@@ -901,9 +848,9 @@ void Gradients(Cell* cells, Mesh mesh, Gradient* (&gr), parameters* p, int Nm)
 				}
 
 				if (btype == 2) { //Supersonic Inlet
-					double u = mesh.zones[z].bnd[0].vals[1];  // U
-					double T = mesh.zones[z].bnd[0].vals[2];  // T
-					double P = mesh.zones[z].bnd[0].vals[3];  // p
+					double u = mesh.Get_zone(z).bnd[0].vals[1];  // U
+					double T = mesh.Get_zone(z).bnd[0].vals[2];  // T
+					double P = mesh.Get_zone(z).bnd[0].vals[3];  // p
 
 					double ro = P * p[i].Gm / (8314.41 * T);	// ro
 					double h = p[i].Cp * T;
@@ -1021,7 +968,6 @@ void ConvectNS()
 	double u, v, ro, p, h, nx, ny;
 	int iMod;
 
-	// Временно !!!!
 	u = 3000.;
 	v = 1000.;
 
@@ -1151,19 +1097,11 @@ void S_Matr(double A[4][4], double u, double v, double ro, double p, double h, d
 
 	Matrix_Matrix(Tmp, S, A);
 
-	/*
-	double C[4][4];
-	Matrix_Matrix(S, S_, C);
-
-
-	PrintMatr(C);
-
-	*/
 }
 
 void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, int Nm)
 {
-	int nFaces = mesh.nFaces;
+	int nFaces = mesh.Get_nFaces();
 
 	double* Fc = new double[Nm];
 	double* UL = new double[Nm];
@@ -1177,7 +1115,7 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 
 	for (int i = 0; i < nFaces; i++) {
 
-		Face face = mesh.faces[i];
+		Face face = mesh.Get_face(i);
 
 		int cr = face.cr;
 		int cl = face.cl;
@@ -1188,8 +1126,8 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 
 		double dl = face.length; // длина грани
 
-		Pnt x1 = mesh.nodes[n1];
-		Pnt x2 = mesh.nodes[n2];
+		Pnt x1 = mesh.Get_node(n1);
+		Pnt x2 = mesh.Get_node(n2);
 
 		double nx = -(x2.y - x1.y) / dl;
 		double ny = (x2.x - x1.x) / dl;
@@ -1203,7 +1141,7 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 
 			int z = face.zone;
 
-			int grantype = mesh.zones[z].grantype;
+			int grantype = mesh.Get_zone(z).grantype;
 
 			if (grantype == 1 || grantype == 3) {
 				Fc[0] = 0;
@@ -1216,15 +1154,15 @@ void ConvectNS(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt,
 			if (grantype == 2) {	// Supersonic Inlet
 
 				// скорость на входе
-				double VV = mesh.zones[z].bnd[0].vals[1];
+				double VV = mesh.Get_zone(z).bnd[0].vals[1];
 				// угол потока
-				double angle = mesh.zones[z].bnd[0].vals[4];
+				double angle = mesh.Get_zone(z).bnd[0].vals[4];
 				// компоненты скорости
 				double u_ = VV * cos(angle);
 				double v_ = VV * sin(angle);
 
-				double T_ = mesh.zones[z].bnd[0].vals[2];
-				double p_ = mesh.zones[z].bnd[0].vals[3];
+				double T_ = mesh.Get_zone(z).bnd[0].vals[2];
+				double p_ = mesh.Get_zone(z).bnd[0].vals[3];
 
 				double Gm = 28.97;
 				double Gam = 1.4;

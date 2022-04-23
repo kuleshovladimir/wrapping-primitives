@@ -19,7 +19,7 @@ int main()
 
 	mesh.ReadStruct(filename);
 
-	int nCells = mesh.nCells;
+	int nCells = mesh.Get_nCells();
 
 	//cout << "nCells = " << nCells << endl;
 
@@ -60,7 +60,7 @@ int main()
 
 	mesh.GradCoeffs(cells);
 
-	int ItMax = 2000;	// 0000; //		50000; //0000000;	// 000;
+	int ItMax = 2000;
 	int It = 0;
 
 	double resMin = 1.e-6;
@@ -69,7 +69,6 @@ int main()
 
 	for (int i = 0; i < nCells; i++) {
 		du[i].dU = new double[Nm];
-		//du[i].dU[0] = 0.;
 	}
 
 	// выделение пам€ти под градиенты параметров
@@ -81,10 +80,6 @@ int main()
 	}
 
 	auto start = std::chrono::system_clock::now();
-
-	//ConvectNS();
-	//exit(19);
-
 
 	while (It < ItMax && res > resMin) {
 
@@ -101,16 +96,12 @@ int main()
 		Gradients(cells, mesh, gr, p, Nm);  // NS
 
 		double dt = 0.000001;
-		//if(It>1000) dt = 0.00001;
 
-		//exit(5);
 
 		// ѕриращение за счет нев€зких потоков
-		//Convect(p, du, mesh, cells, It, dt);
 		ConvectNS(p, du, mesh, cells, dt, Nm);
 
 		// ѕриращение за счет в€зкости
-		//Viscous(p, du, mesh, cells, dt);
 		Viscous(p, du, mesh, cells, dt, gr, Nm);
 
 		for (int i = 0; i < nCells; i++) {
@@ -139,8 +130,8 @@ int main()
 	std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 
 
-	int Nx = mesh.Nx;
-	int Ny = mesh.Ny;
+	int Nx = mesh.Get_Nx();
+	int Ny = mesh.Get_Ny();
 
 	Tecplot(p, cells, Nx, Ny, nCells);
 	Velocity(p, cells, Nx, Ny, nCells);

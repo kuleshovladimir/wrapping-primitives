@@ -7,6 +7,7 @@ struct Vector {
 };
 
 class Cell {
+	friend class Mesh;
 private:
 	Pnt c;		// координаты ц.т.
 	double S;	// площадь €чейки
@@ -20,15 +21,10 @@ private:
 	int* nodes;    // номера узлов, окружающих €чейку (nNodes)
 
 
-
-
-
-
 public:
-
 	double Yw;	// –ассто€ние от центра €чейки до стенки
 
-	double* wk;  // weight coefficients [nFaces]
+	double* wk;  // весовые коэффициенты [nFaces]
 	Vector* ck;
 
 	int* cells;		// номера соседних €чеек (nFaces)
@@ -56,8 +52,6 @@ public:
 	void Set_nNodes(int nn);
 	int Get_nNodes() { return nNodes; };
 
-	//void Set_Nodes(int* nodes, int n);  // new
-
 	int Get_Node(int i) { return nodes[i]; };
 
 	int Get_Face(int i);
@@ -72,7 +66,5 @@ public:
 
 	void Set_Nodes(int* nodes_, int nn);
 
-	int Get_Cell(int i) { return cells[i]; };
-
-
+	int Get_Cell(int i);
 };

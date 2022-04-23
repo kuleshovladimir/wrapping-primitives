@@ -1,7 +1,29 @@
 #pragma once
 #include "Cell.h"
 
-#include "Cell.h"
+struct parameters {
+	// main
+	double ro, p, h, H, u, v, w, T, E, e;
+
+	// transport
+	double mu, la, Pr;
+
+	double Cp, Gam, Gm;
+
+	// vectors
+	double* U, * U1;
+	double* V;   // ro, u,v, h
+
+
+};
+
+struct changes {
+	double* dU;
+};
+
+struct Gradient {
+	Vector* g;
+};
 
 struct Face {
 	int nodes[2];		// индексы узлов грани	(2)
@@ -51,10 +73,10 @@ struct Zone {
 };
 
 class Mesh {
+	friend void SetGran(Mesh& mesh);
+	friend void Viscous(parameters* p, changes* (&du), Mesh mesh, Cell* cells, double dt, Gradient* gr, int Nm);
 private:
 
-public:
-	// переменные
 	int Nx, Ny;		// число точек по x,y в структурированной сетке
 	int nNodes, nFaces, nCells;
 	Pnt* nodes;		// координаты узлов
@@ -63,8 +85,7 @@ public:
 
 	int nZones;
 	Zone* zones;
-
-	// функции
+public:
 	Mesh();
 	~Mesh();
 
@@ -80,6 +101,16 @@ public:
 
 	void GradCoeffs(Cell* (&cells));
 
+	int Get_Nx();
+	int Get_Ny();
+	int Get_nFaces();
+	int Get_nNodes();
+	int Get_nCells();
+	int Get_nZones();
+
+	Pnt Get_node(int n);
+	Face Get_face(int n);
+	Zone Get_zone(int n);
 
 };
 
